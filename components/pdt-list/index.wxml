@@ -1,0 +1,18 @@
+<view class="pdt-list">
+  <block wx:if="{{ !list.length }}">
+    <view class="no-data">
+      暂无数据
+    </view>
+  </block>
+  <block wx:else>
+    <van-row gutter="6">
+      <block wx:for="{{ list }}" wx:key="id">
+        <van-col span="12">
+          <view class="pdt-list_item">
+            <pdt-item info="{{ item }}" />
+          </view>
+        </van-col>
+      </block>
+    </van-row>
+  </block>
+</view>

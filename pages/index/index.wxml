@@ -1,0 +1,43 @@
+<!--index.wxml-->
+<view class="topbar {{ topbarStyle? 'van-hairline--bottom': '' }}" style="background-color: {{ topbarStyle }}">
+  <view class="location-box">
+    <van-icon name="location-o" />
+    <text class="van-ellipsis">你当前的位置信息展示过长显示省略号</text>
+    <van-icon name="arrow-down" />
+  </view>
+  <navigator class="search-box" url="/pages/search/index">
+    <van-icon name="search" />
+    <text>输入商品名称</text>
+  </navigator>
+</view>
+<view class="swiper">
+  <swiper
+    indicator-dots
+    autoplay
+    circular
+    indicator-active-color="#20c064"
+  >
+    <block wx:for="{{ background }}" wx:key="*this">
+      <swiper-item>
+        <view class="swiper-item {{ item }}"></view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<view class="grid">
+  <van-grid column-num="5" border="{{ false }}" clickable>
+    <block wx:for="{{ 10 }}" wx:key="*this">
+      <van-grid-item use-slot>
+        <view class="grid-item">
+          <my-image src="http://bpic.588ku.com/element_origin_min_pic/16/08/15/1057b1232f6bd2a.jpg" round mode="aspectFill"></my-image>
+          <!-- <image src="http://www.iiijk.com/uploads2009/allimg/150919/1521490.jpg" mode="widthFix" /> -->
+          <text>分类{{ item }}</text>
+        </view>
+      </van-grid-item>
+    </block>
+  </van-grid>
+</view>
+<view class="list">
+  <view class="recommend-box"><view class="recommend">推荐商品</view></view>
+  <pdt-list list="{{ list }}" />
+</view>

@@ -1,0 +1,39 @@
+.pdt-item {
+  border-radius: 8rpx;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .2);
+  padding: 8rpx 20rpx 8rpx;
+  overflow: hidden;
+}
+.img-box {}
+.name-box {
+  font-size: 28rpx;
+  line-height: 34rpx;
+  height: 68rpx;
+  font-weight: 300;
+}
+.amt-box {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10rpx;
+}
+.amt-box .price {
+  font-size: 32rpx;
+  color: #ec132d;
+  font-weight: 400;
+}
+.currency .small {
+  font-size: 24rpx;
+}
+.amt-box .cart {
+  background: #20c064;
+  border-radius: 50%;
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 44rpx;
+}

@@ -1,0 +1,88 @@
+/**顶部定位和搜索按钮**/
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80rpx;
+  z-index: 3;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: -20rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.location-box, .search-box {
+  flex: none;
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  line-height: 60rpx;
+  margin-left: 20rpx;
+  box-sizing: border-box;
+}
+.topbar text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.topbar .location-box {
+  max-width: 50%;
+  color: #fff;
+  background-color: rgba(0, 0, 0, .6);
+  border-radius: 30rpx;
+  padding: 0 15rpx;
+}
+
+.topbar .search-box {
+  flex: 1;
+  color: #666;
+  justify-content: center;
+  background-color: #f2f2f2;
+  border-radius: 30rpx;
+}
+
+/**轮播图**/
+.swiper .swiper-item {
+  height: 100%;
+  background-color: seagreen;
+}
+
+/**分类格子布局**/
+.grid {
+  background-color: #fff;
+  padding: 14rpx 20rpx;
+  margin-bottom: 20rpx;
+}
+.grid .grid-item {
+  text-align: center;
+  width: 100%;
+}
+.grid-item image {
+  width: 100%;
+  height: auto;
+}
+.grid-item text {
+  font-size: 24rpx;
+  color: #666;
+}
+
+/**单品列表**/
+.list {
+  background-color: #fff;
+}
+.recommend-box {
+  padding: 20rpx 20rpx 0;
+}
+.recommend-box .recommend {
+  line-height: 60rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+  padding-left: 20rpx;
+  background: no-repeat;
+  background-image: linear-gradient(to right, #20c064, #20c064);
+  background-size: 10rpx 100%;
+}

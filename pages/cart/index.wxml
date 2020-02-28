@@ -1,0 +1,18 @@
+<wxs src="../../wxs/price.wxs" module="price" />
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+<view class="list-box">
+  <cart-list list="{{ list }}" checked-all="{{ checkedAll }}" bind:calc="getCalc" />
+</view>
+<view class="submit-box van-hairline--top">
+  <van-checkbox value="{{ checkedAll && isCheckedAll }}" checked-color="#20c064" bind:change="onCheckAll">全选</van-checkbox>
+  <view class="content">
+    <view class="price">
+      <text class="currency">¥</text>
+      <text>{{ price.pointBefore(totalPrice) }}</text>
+      <text wx:if="{{price.pointAfter(totalPrice)}}" class="small">.{{ price.pointAfter(totalPrice) }}</text>
+    </view>
+  </view>
+  <view class="btn">
+    <van-button custom-class="btn-submit" color="#f75355" round bind:click="onSubmit">去结算</van-button>
+  </view>
+</view>

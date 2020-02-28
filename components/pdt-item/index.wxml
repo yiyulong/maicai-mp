@@ -1,0 +1,19 @@
+<wxs src="../../wxs/price.wxs" module="price" />
+<view class="pdt-item" data-id="{{ info.id }}" bind:tap="itemClick">
+  <view class="img-box">
+    <my-image src="{{ info.image }}" lazy-load mode="aspectFit" square></my-image>
+  </view>
+  <view class="name-box">
+    <text class="van-multi-ellipsis--l2">{{ info.name }}</text>
+  </view>
+  <view class="amt-box">
+    <view class="price">
+      <text class="currency">¥</text>
+      <text>{{ price.pointBefore(info.price) }}</text>
+      <text wx:if="{{price.pointAfter(info.price)}}" class="small">.{{ price.pointAfter(info.price) }}</text>
+    </view>
+    <view class="cart" data-id="{{ info.id }}" catch:tap="cartClick">
+      <van-icon name="cart" />
+    </view>
+  </view>
+</view>
