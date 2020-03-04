@@ -1,0 +1,31 @@
+page {
+  height: 100%;
+}
+.box {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: gray;
+}
+.box::after {
+  position: absolute;
+  box-sizing: border-box;
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  content: " ";
+  pointer-events: none;
+  top: -50%;
+  right: -50%;
+  bottom: -50%;
+  left: -50%;
+  border: 0 solid cyan;
+  -webkit-transform: scale(.5);
+  transform: scale(.5);
+  border-width: 1px;
+  background: indianred;
+}

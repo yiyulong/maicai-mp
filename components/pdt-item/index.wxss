@@ -23,7 +23,7 @@
   color: #ec132d;
   font-weight: 400;
 }
-.currency .small {
+.currency, .small {
   font-size: 24rpx;
 }
 .amt-box .cart {

@@ -1,6 +1,7 @@
 {
-  "navagationBarTitleText": "搜索",
+  "navigationBarTitleText": "搜索",
   "navigationBarBackgroundColor": "#20c064",
+  "backgroundColor": "#ffffff",
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "van-search": "@vant/weapp/search/index",

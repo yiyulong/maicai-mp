@@ -1,1 +1,58 @@
-<view></view>
+<wxs src="../../wxs/price.wxs" module="price"></wxs>
+<view class="search-box">
+  <navigator class="search" url="/pages/search/index">
+    <van-icon name="search" />
+    <text>请输入商品名称</text>
+  </navigator>
+</view>
+<view class="classify-box">
+  <view class="lt-box">
+    <scroll-view scroll-y class="sidebar-scroll">
+      <van-sidebar custom-class="classify-sidebar" active-key="{{ activeKey }}" bind:change="onChange">
+        <block wx:for="{{ sideList }}" wx:key="value">
+          <van-sidebar-item custom-class="classify-sidebar-item" title="{{ item.title }}" />
+        </block>
+      </van-sidebar>
+    </scroll-view>
+  </view>
+  <view class="rt-box">
+    <stabs 
+      stabs="{{ stabs }}"
+      activeTab="{{ activeTab }}"
+    >
+      <block wx:for="{{ list }}" wx:key="title">
+        <stabs-item tabIndex="{{ index }}">
+          <view class="stabs-content-item">
+            <view class="item-title van-hairline--bottom">
+              我是第{{index + 1}}项： {{item.title}}
+            </view>
+            <view class="item-list">
+              <block wx:for="{{ item.data }}" wx:for-item="pItem" wx:key="id">
+                <view class="item-list-content van-hairline--bottom" data-id="{{ pItem.id }}" bind:tap="onItem">
+                  <view class="img-box">
+                    <my-image src="{{ pItem.image}}" square mode="aspectFit" />
+                  </view>
+                  <view class="info-box">
+                    <view class="name van-multi-ellipsis--l2">
+                      <view>{{ pItem.name }}</view>
+                    </view>
+                    <view class="price-conent">
+                      <view class="price">
+                        <text class="currency">¥</text>
+                        <text>{{ price.pointBefore(pItem.price) }}</text>
+                        <text wx:if="{{price.pointAfter(pItem.price)}}" class="small">.{{ price.pointAfter(pItem.price) }}</text>
+                      </view>
+                      <view class="cart" data-id="{{ pItem.id }}" catch:tap="onCart">
+                        <van-icon name="cart" />
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </view>
+        </stabs-item>
+      </block>
+    </stabs>
+  </view>
+</view>

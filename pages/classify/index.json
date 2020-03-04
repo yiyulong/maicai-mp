@@ -1,1 +1,12 @@
-{}
+{
+  "navigationBarTitleText": "分类",
+  "disableScroll": true,
+  "usingComponents": {
+    "stabs": "/components/stabs/index",
+    "stabs-item": "/components/stabs-item/index",
+    "my-image": "/components/my-image/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-sidebar": "@vant/weapp/sidebar/index",
+    "van-sidebar-item": "@vant/weapp/sidebar-item/index"
+  }
+}

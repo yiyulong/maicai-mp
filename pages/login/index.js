@@ -3,8 +3,10 @@ const _userInfo = {
   accounts: '15800807767'
 }
 Page({
+  data: {
+  },
   onLoad () {
     const eventChannel = this.getOpenerEventChannel()
-    eventChannel.emit('getLoginInfo', _userInfo)
+    eventChannel && eventChannel.emit && eventChannel.emit('getLoginInfo', _userInfo)
   }
 })

@@ -140,7 +140,8 @@ Page({
     searched: false, // 是否搜索完成
     candidateList: [],
     historyList: [..._historyList], // 历史搜索
-    list: []
+    list: [],
+    refresherTriggered: false, // 设置当前下拉刷新状态
   },
   /**
    * TODO 候选词点击事件
@@ -155,6 +156,10 @@ Page({
       value: item.label,
       searched: true,
       list: _list
+    }, () => {
+      this.setData({
+        refresherTriggered: true
+      })
     })
   },
   onSearch (detail) {
@@ -168,5 +173,22 @@ Page({
       searched: false
     })
   },
-  onDelete (e) {}
+  onDelete (e) {},
+  scrollRefresh (e) {
+    console.log('触发', e)
+    setTimeout(() => {
+      this.setData({
+        refresherTriggered: false
+      })
+    }, 2000)
+  },
+  scrollRestore (e) {
+    console.log('复位', e)
+  },
+  scrollAbort (e) {
+    console.log('中止', e)
+  },
+  scrollLower (e) {
+    console.log('滚动到底部', e)
+  }
 })

@@ -10,7 +10,15 @@ page {
 }
 
 .content-box {
-  padding-top: 54px;
+  position: absolute;
+  top: 54px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.content-box .scroll-box {
+  height: 100%;
 }
 
 .candidate-box {

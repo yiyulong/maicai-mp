@@ -12,7 +12,19 @@
 <!-- 搜索完成显示搜索结果 -->
 <block wx:if="{{ searched }}">
   <view class="content-box">
-    <pdt-list list="{{ list }}" />
+    <scroll-view
+      class="scroll-box"
+      scroll-y
+      refresher-enabled
+      enable-back-to-top
+      refresher-triggered="{{ refresherTriggered }}"
+      bindrefresherrefresh="scrollRefresh"
+      bindrefresherrestore="scrollRestore"
+      bindrefresherabort="scrollAbort"
+      bindscrolltolower="scrollLower"
+    >
+      <pdt-list list="{{ list }}" />
+    </scroll-view>
   </view>
 </block>
 <!-- 搜索中时显示 -->
