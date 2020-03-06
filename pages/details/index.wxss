@@ -1,31 +1,53 @@
 page {
   height: 100%;
+  padding-bottom: calc(60px + constant(safe-area-inset-bottom));
+  padding-bottom: calc(60px + env(safe-area-inset-bottom));
 }
-.box {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  top: 0;
+.detail-box {}
+.goods-action {
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  margin: auto;
-  background: gray;
+  z-index: 3;
+  width: 100%;
+  background: #fff;
+  padding-bottom: constant(safe-area-inset-bottom); /* 兼容 iOS < 11.2 */
+  padding-bottom: env(safe-area-inset-bottom); /* 兼容 iOS >= 11.2 */
 }
-.box::after {
-  position: absolute;
+.goods-action .content {
+  height: 60px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 20rpx;
   box-sizing: border-box;
-  -webkit-transform-origin: center;
-  transform-origin: center;
-  content: " ";
-  pointer-events: none;
-  top: -50%;
-  right: -50%;
-  bottom: -50%;
-  left: -50%;
-  border: 0 solid cyan;
-  -webkit-transform: scale(.5);
-  transform: scale(.5);
-  border-width: 1px;
-  background: indianred;
+}
+.goods-action .content .ic {
+  display: inline-flex;
+}
+.goods-action .content .lt {
+  flex: 1;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  text-align: right;
+}
+.goods-action .content .lt > view {
+  display: inline-block;
+}
+.goods-action .content .rt {
+  flex: none;
+}
+
+.submit-box .content .price {
+  font-size: 32rpx;
+  color: #ec132d;
+  font-weight: 400;
+}
+.submit-box .content .price .currency {
+  font-size: 24rpx;
+}
+.submit-box .content .price .small {
+  font-size: 24rpx;
 }

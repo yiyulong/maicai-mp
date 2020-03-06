@@ -14,6 +14,9 @@ Component({
       }
     }) {
       console.log(id)
+      wx.navigateTo({
+        url: `/pages/details/index?id=${id}`
+      })
     },
     cartClick ({
       currentTarget: {

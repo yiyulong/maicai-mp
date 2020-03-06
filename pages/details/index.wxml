@@ -1,1 +1,19 @@
-<view class="box"></view>
+<wxs src="../../wxs/price.wxs" module="price"></wxs>
+<view class="detail-box"></view>
+<view class="goods-action van-hairline--top">
+  <view class="content">
+    <view class="ic" bind:tap="onToCart">
+      <van-icon name="shopping-cart-o" size="22" info="9" />
+    </view>
+    <view class="lt">
+      <view class="price">
+        <text class="currency">¥</text>
+        <text>{{ price.pointBefore(info.price) }}</text>
+        <text wx:if="{{price.pointAfter(info.price)}}" class="small">.{{ price.pointAfter(info.price) }}</text>
+      </view>
+    </view>
+    <view class="rt">
+      <van-button custom-class="btn-submit" color="#f75355" round bind:click="onAddToCart">加入购物篮</van-button>
+    </view>
+  </view>
+</view>

@@ -156,10 +156,6 @@ Page({
       value: item.label,
       searched: true,
       list: _list
-    }, () => {
-      this.setData({
-        refresherTriggered: true
-      })
     })
   },
   onSearch (detail) {
