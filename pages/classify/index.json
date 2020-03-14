@@ -7,6 +7,8 @@
     "my-image": "/components/my-image/index",
     "van-icon": "@vant/weapp/icon/index",
     "van-sidebar": "@vant/weapp/sidebar/index",
-    "van-sidebar-item": "@vant/weapp/sidebar-item/index"
+    "van-sidebar-item": "@vant/weapp/sidebar-item/index",
+    "van-stepper": "@vant/weapp/stepper/index",
+    "add": "/components/add/index"
   }
 }

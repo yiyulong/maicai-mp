@@ -3,31 +3,36 @@ const _list = [
     id: 1,
     name: 'name1',
     image: 'http://static.i3.xywy.com/cms/20150719/ed7215299703ac8902fb529ff8ef8db141050.jpg',
-    price: 28
+    price: 28,
+    qty: 0
   },
   {
     id: 2,
     name: '商品2商品2商品2商品2商品2商品2商品2',
     image: 'http://talkimages.cn/images/medium/20153237/tkf005_2324427.jpg',
-    price: 28.8
+    price: 28.8,
+    qty: 99
   },
   {
     id: 3,
     name: '商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3商品3',
     image: 'http://img3.imgtn.bdimg.com/it/u=3051136919,4103618198&fm=26&gp=0.jpg',
-    price: 28.8
+    price: 28.8,
+    qty: 0
   },
   {
     id: 4,
     name: 'name4',
     image: 'http://img3.imgtn.bdimg.com/it/u=3051136919,4103618198&fm=26&gp=0.jpg',
-    price: 28.8
+    price: 28.8,
+    qty: 1
   },
   {
     id: 5,
     name: 'name5',
     image: 'http://img3.imgtn.bdimg.com/it/u=3051136919,4103618198&fm=26&gp=0.jpg',
-    price: 28.8
+    price: 28.8,
+    qty: 0
   }
 ]
 const _sideList = [
@@ -37,7 +42,8 @@ const _sideList = [
   },
   {
     title: '分类2',
-    value: 1
+    value: 1,
+    info: 20
   },
   {
     title: '分类3',
@@ -45,7 +51,8 @@ const _sideList = [
   },
   {
     title: '分类4',
-    value: 3
+    value: 3,
+    info: 1
   },
   {
     title: '分类5',
@@ -119,6 +126,9 @@ Page({
     }
   }) {
     console.log(id)
+  },
+  onChange (e) {
+    
   },
   onCart ({
     currentTarget: {

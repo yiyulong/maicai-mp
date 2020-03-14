@@ -51,6 +51,7 @@
   font-size: 32rpx;
   color: #ec132d;
   font-weight: 400;
+  white-space: nowrap;
 }
 .calc-box .price .currency {
   font-size: 24rpx;

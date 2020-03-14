@@ -35,12 +35,12 @@ Component({
     loading: true
   },
   methods: {
-    onLoad: function (event) {
+    _onLoad: function (event) {
       this.setData({
-          loading: false
+        loading: false
       })
     },
-    onError: function (event) {
+    _onError: function (event) {
       this.setData({
         loading: false,
         error: true

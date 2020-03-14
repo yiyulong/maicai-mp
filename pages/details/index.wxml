@@ -1,19 +1,35 @@
 <wxs src="../../wxs/price.wxs" module="price"></wxs>
-<view class="detail-box"></view>
+<view class="detail-box">
+  <view class="swiper-content">
+    <swiper indicator-dots="{{ swiper.length > 1 }}" indicator-active-color="#20c064" circular>
+      <block wx:for="{{ swiper }}" wx:key="index">
+        <swiper-item>
+          <view class="swiper-content">
+            <view></view>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+</view>
 <view class="goods-action van-hairline--top">
   <view class="content">
-    <view class="ic" bind:tap="onToCart">
+    <view class="ic" bind:tap="onToCart" animation="{{ cartAnimationData }}">
       <van-icon name="shopping-cart-o" size="22" info="9" />
     </view>
     <view class="lt">
       <view class="price">
         <text class="currency">¥</text>
         <text>{{ price.pointBefore(info.price) }}</text>
-        <text wx:if="{{price.pointAfter(info.price)}}" class="small">.{{ price.pointAfter(info.price) }}</text>
+        <text wx:if="{{price.pointAfter(info.price)}}" class="small">
+          .{{ price.pointAfter(info.price) }}
+        </text>
       </view>
     </view>
     <view class="rt">
-      <van-button custom-class="btn-submit" color="#f75355" round bind:click="onAddToCart">加入购物篮</van-button>
+      <van-button custom-class="btn-submit" color="#f75355" round bind:click="onAddToCart">
+        加入购物篮
+      </van-button>
     </view>
   </view>
 </view>

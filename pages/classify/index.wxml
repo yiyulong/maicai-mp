@@ -10,7 +10,7 @@
     <scroll-view scroll-y class="sidebar-scroll">
       <van-sidebar custom-class="classify-sidebar" active-key="{{ activeKey }}" bind:change="onChange">
         <block wx:for="{{ sideList }}" wx:key="value">
-          <van-sidebar-item custom-class="classify-sidebar-item" title="{{ item.title }}" />
+          <van-sidebar-item custom-class="classify-sidebar-item" title="{{ item.title }}" info="{{ item.info }}" />
         </block>
       </van-sidebar>
     </scroll-view>
@@ -42,9 +42,17 @@
                         <text>{{ price.pointBefore(pItem.price) }}</text>
                         <text wx:if="{{price.pointAfter(pItem.price)}}" class="small">.{{ price.pointAfter(pItem.price) }}</text>
                       </view>
-                      <view class="cart" data-id="{{ pItem.id }}" catch:tap="onCart">
-                        <van-icon name="cart" />
+                      <view class="action">
+                        <view wx:if="{{ pItem.qty }}">
+                          <van-stepper value="{{ pItem.qty }}" button-size="24" async-change bind:change="onChange" />
+                        </view>
+                        <view wx:else data-id="{{ pItem.id }}" class="add-cart" catch:tap="onCart">
+                          <add size="24" />
+                        </view>
                       </view>
+                      <!-- <view class="cart" data-id="{{ pItem.id }}" catch:tap="onCart">
+                        <van-icon name="add" size="22" />
+                      </view> -->
                     </view>
                   </view>
                 </view>

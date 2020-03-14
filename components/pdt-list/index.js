@@ -3,6 +3,7 @@ Component({
     list: {
       type: Array,
       value: []
-    }
+    },
+    isNoMore: Boolean
   }
 })

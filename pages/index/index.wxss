@@ -61,9 +61,17 @@
   text-align: center;
   width: 100%;
 }
-.grid-item image {
+.grid-item .grid-item_img {
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+}
+.grid-item .grid-item_img .grid-item_img_content {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 .grid-item text {
   font-size: 24rpx;

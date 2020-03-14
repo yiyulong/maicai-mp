@@ -1,4 +1,4 @@
-<!--index.wxml-->
+<!-- index.wxml -->
 <view class="topbar {{ topbarStyle? 'van-hairline--bottom': '' }}" style="background-color: {{ topbarStyle }}">
   <view class="location-box">
     <van-icon name="location-o" />
@@ -11,12 +11,7 @@
   </navigator>
 </view>
 <view class="swiper">
-  <swiper
-    indicator-dots
-    autoplay
-    circular
-    indicator-active-color="#20c064"
-  >
+  <swiper indicator-dots autoplay circular indicator-active-color="#20c064">
     <block wx:for="{{ background }}" wx:key="*this">
       <swiper-item>
         <view class="swiper-item {{ item }}"></view>
@@ -29,8 +24,11 @@
     <block wx:for="{{ 10 }}" wx:key="*this">
       <van-grid-item use-slot>
         <view class="grid-item">
-          <my-image src="http://bpic.588ku.com/element_origin_min_pic/16/08/15/1057b1232f6bd2a.jpg" round mode="aspectFill"></my-image>
-          <!-- <image src="http://www.iiijk.com/uploads2009/allimg/150919/1521490.jpg" mode="widthFix" /> -->
+          <view class="grid-item_img">
+            <view class="grid-item_img_content">
+              <my-image src="http://bpic.588ku.com/element_origin_min_pic/16/08/15/1057b1232f6bd2a.jpg" round mode="aspectFill"></my-image>
+            </view>
+          </view>
           <text>分类{{ item }}</text>
         </view>
       </van-grid-item>
@@ -38,6 +36,8 @@
   </van-grid>
 </view>
 <view class="list">
-  <view class="recommend-box"><view class="recommend">推荐商品</view></view>
-  <pdt-list list="{{ list }}" />
+  <view class="recommend-box">
+    <view class="recommend">推荐商品</view>
+  </view>
+  <pdt-list list="{{ list }}" is-no-more="{{ _isNoMore }}" />
 </view>

@@ -1,26 +1,12 @@
 <wxs src="../../../wxs/price.wxs" module="price"></wxs>
 <block wx:for="{{ result }}" wx:key="id">
-  <mp-slideview
-    buttons="{{ item.delete }}"
-    icon="{{true}}"
-    bindbuttontap="slideButtonTap"
-    bind:hide="slideHide"
-    bind:show="slideShow"
-    bind:transitionend="slideTransitionEnd"
-  >
+  <mp-slideview buttons="{{ item.delete }}" icon="{{true}}" bindbuttontap="slideButtonTap" bind:hide="slideHide" bind:show="slideShow" bind:transitionend="slideTransitionEnd">
     <view class="list-item">
-      <van-checkbox
-        value="{{ item.checked }}"
-        custom-class="my-check"
-        label-class="my-check-label"
-        checked-color="#20c064"
-        data-index="{{ index }}"
-        bind:change="onItemCheck"
-      />
+      <van-checkbox value="{{ item.checked }}" custom-class="my-check" label-class="my-check-label" checked-color="#20c064" data-index="{{ index }}" bind:change="onItemCheck" />
       <view class="content van-hairline--bottom">
         <view class="info-box" bind:tap="onItemClick">
           <view class="img">
-            <my-image src="{{ item.img || 'https://img.yzcdn.cn/vant/cat.jpeg' }}" mode="contain" lazy-load square />
+            <my-image src="{{ item.img }}" mode="contain" lazy-load square />
           </view>
           <view class="info">
             <view class="name van-multi-ellipsis--l2">

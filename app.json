@@ -7,7 +7,9 @@
     "pages/details/index",
     "pages/search/index",
     "pages/login/index",
+    "pages/register/index",
     "pages/order/index",
+    "pages/web/index",
     "pages/logs/logs"
   ],
   "window": {
@@ -15,7 +17,8 @@
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "maicai",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "onReachBottomDistance": 50
   },
   "tabBar": {
     "color": "#666666",

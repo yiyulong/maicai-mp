@@ -29,4 +29,4 @@ const update = () => {
     })
   }
 }
-module.exports.update = update
+module.exports.updateManager = update

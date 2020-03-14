@@ -1,19 +1,31 @@
 <wxs src="../../wxs/price.wxs" module="price" />
 <view class="pdt-item" data-id="{{ info.id }}" bind:tap="itemClick">
   <view class="img-box">
-    <my-image src="{{ info.image }}" lazy-load mode="aspectFit" square></my-image>
+    <my-image src="{{ info.url }}" lazy-load mode="aspectFit" square></my-image>
   </view>
   <view class="name-box">
-    <text class="van-multi-ellipsis--l2">{{ info.name }}</text>
+    <text class="van-ellipsis name">{{ info.name }}</text>
+    <text class="van-multi-ellipsis--l2 title">{{ info.title }}</text>
   </view>
   <view class="amt-box">
-    <view class="price">
+    <view wx:if="{{ info.price }}" class="price">
+      <text>¥</text>
+      <view class="line-through">
+        <text>{{ price.pointBefore(info.price) }}</text>
+        <text wx:if="{{price.pointAfter(info.price)}}" class="small">
+          .{{ price.pointAfter(info.price) }}
+        </text>
+      </view>
+    </view>
+    <view class="rulingPrice">
       <text class="currency">¥</text>
-      <text>{{ price.pointBefore(info.price) }}</text>
-      <text wx:if="{{price.pointAfter(info.price)}}" class="small">.{{ price.pointAfter(info.price) }}</text>
+      <text>{{ price.pointBefore(info.rulingPrice) }}</text>
+      <text wx:if="{{price.pointAfter(info.rulingPrice)}}" class="small">
+        .{{ price.pointAfter(info.rulingPrice) }}
+      </text>
     </view>
     <view class="cart" data-id="{{ info.id }}" catch:tap="cartClick">
-      <van-icon name="cart" />
+      <add name="add" size="24" />
     </view>
   </view>
 </view>

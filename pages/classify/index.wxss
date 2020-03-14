@@ -54,6 +54,9 @@ page {
   color: #666;
   position: relative;
 }
+.lt-box .classify-sidebar-item .van-sidebar-item__text {
+  padding-right: 2ch;
+}
 .lt-box .classify-sidebar-item::after {
   content: '';
   position: absolute;
@@ -61,7 +64,9 @@ page {
   left: 0;
   right: 0;
   height: 1px;
-  background: #eee;
+  width: 100%;
+  background: #fff;
+  transform-origin: center bottom;
   transform: scaleY(.5);
 }
 .lt-box .classify-sidebar-item.van-sidebar-item--selected {
@@ -122,13 +127,6 @@ page {
 .price .currency, .price .small {
   font-size: 24rpx;
 }
-.price-conent .cart {
-  display: flex;
-  justify-content: center;
+.price-conent .add-cart {
   line-height: 0;
-  color: #fff;
-  background: #42b656;
-  height: 50rpx;
-  width: 50rpx;
-  border-radius: 50%;
 }

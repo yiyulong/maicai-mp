@@ -1,20 +1,10 @@
-<view class="my-image {{ round? 'round': '' }}" >
+<view class="my-image {{ round? 'round': '' }}">
   <block wx:if="{{ !error }}">
     <view hidden="{{ loading && showLoading }}" class="img {{ round || square? 'square': '' }}">
-      <image
-        src="{{ src }}"
-        mode="{{ mode }}"
-        lazy-load="{{ lazyLoad }}"
-        class="my-image_img"
-        bind:load="onLoad"
-        bind:error="onError"
-      />
+      <image src="{{ src }}" mode="{{ mode }}" lazy-load="{{ lazyLoad }}" class="my-image_img" bind:load="_onLoad" bind:error="_onError" />
     </view>
   </block>
-  <view
-    wx:if="{{ error && showError }}"
-    class="my-image_error"
-  >
+  <view wx:if="{{ error && showError }}" class="my-image_error">
     <view class="content">
       <view class="align">
         <slot wx:if="{{ useErrorSlot }}" name="error" />
@@ -22,19 +12,11 @@
       </view>
     </view>
   </view>
-  <view
-    wx:if="{{ loading && showLoading }}"
-    class="my-image_loading"
-  >
+  <view wx:if="{{ loading && showLoading }}" class="my-image_loading">
     <view class="content">
       <view class="align">
         <slot wx:if="{{ useLoadingSlot }}" name="loading" />
-        <van-loading
-          wx:else
-          type="spinner"
-          size="22"
-          vertical
-        />
+        <van-loading wx:else type="spinner" size="22" vertical />
       </view>
     </view>
   </view>
