@@ -1,4 +1,4 @@
-import { login } from './api'
+import { getUserInfo } from './api'
 
 const wxLogin = () => new Promise((resolve, reject) => {
   wx.login({
@@ -6,7 +6,7 @@ const wxLogin = () => new Promise((resolve, reject) => {
       console.log('login success')
       if (res.code) {
         //发起网络请求
-        login({ code: res.code }).then(result => {
+        getUserInfo({ code: res.code }).then(result => {
           console.log('login res', result)
           wx.setStorageSync('token', result.token)
           resolve(result.token)
