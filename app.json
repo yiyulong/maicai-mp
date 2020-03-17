@@ -9,8 +9,7 @@
     "pages/login/index",
     "pages/register/index",
     "pages/order/index",
-    "pages/web/index",
-    "pages/logs/logs"
+    "pages/web/index"
   ],
   "window": {
     "backgroundColor": "#f5f5f5",
