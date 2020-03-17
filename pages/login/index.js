@@ -3,6 +3,7 @@ const _userInfo = {
   accounts: '15800807767'
 }
 import { wxCheckSession } from '../../utils/wxCheckLogin'
+import { login } from '../../utils/api'
 Page({
   data: {
   },
@@ -19,9 +20,10 @@ Page({
       wx.showLoading({ mask: true })
       wxCheckSession().then(token => {
         console.log(token)
-        // const token = token
-        // ...api.login({ encryptedData, iv, token }).then()
-        // wx.navigateBack({ detail: 2 })
+        login({ encryptedData, iv, token }).then(res => {
+          console.log(res)
+          wx.navigateBack()
+        })
       })
     } else {
       wx.showModal({

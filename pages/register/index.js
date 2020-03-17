@@ -1,3 +1,5 @@
+import { wxCheckSession } from '../../utils/wxCheckLogin'
+import { login } from '../../utils/api'
 Page({
   data: {
     tel: '',
@@ -49,9 +51,10 @@ Page({
       wx.showLoading({ mask: true })
       wxCheckSession().then(token => {
         console.log(token)
-        // const token = token
-        // ...api.login({ encryptedData, iv, token }).then()
-        // wx.navigateBack({ detail: 2 })
+        login({ encryptedData, iv, token }).then(res => {
+          console.log(res)
+          wx.navigateBack({ detail: 2 })
+        })
       })
     } else {
       wx.showModal({
