@@ -17,10 +17,9 @@ Page({
     const ok = detail.errMsg === 'getPhoneNumber:ok'
     if (ok) {
       const { encryptedData, iv } = detail
-      wx.showLoading({ mask: true })
       wxCheckSession().then(token => {
         console.log(token)
-        login({ encryptedData, iv, token }).then(res => {
+        login({ encryptedData, iv }).then(res => {
           console.log(res)
           wx.navigateBack()
         })

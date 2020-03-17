@@ -8,7 +8,7 @@ function getCommonHeader () {
   let token = wx.getStorageSync("token")
   if (token) {
     header = Object.assign({}, header, {
-      'Authorization': 'Bearer ' + token
+      'token': token
     })
   }
 

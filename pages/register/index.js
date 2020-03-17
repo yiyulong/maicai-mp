@@ -1,5 +1,5 @@
 import { wxCheckSession } from '../../utils/wxCheckLogin'
-import { login } from '../../utils/api'
+import { login, sendMessage, mobileLogin } from '../../utils/api'
 Page({
   data: {
     tel: '',
@@ -10,7 +10,8 @@ Page({
       msg: '',
       type: 'error', // info、error、success
       show: false
-    }
+    },
+    logging: false
   },
   onUnload () {
     if (this._interval) clearInterval(this._interval)
@@ -32,6 +33,9 @@ Page({
       this.setData({ tips })
       return
     }
+    sendMessage({ mobile: this.data.tel }).then(({ data }) => {
+      console.log(data)
+    })
     let time = 60
     this._interval = setInterval(() => {
       time--
@@ -41,17 +45,26 @@ Page({
     }, 1000)
   },
   toLogin (e) {
-    // 
+    clearInterval(this._interval)
+    this.setData({ logging: true, text: '验证码' })
+    mobileLogin({ mobile: this.data.tel, Verification: this.data.sms }, { showToast: false }).then(({ data }) => {
+      console.log(data)
+      wx.navigateBack({ detail: 2 })
+    }).catch(err => {
+      const tips = { msg: err.msg || '登录失败！', type: 'error', show: true }
+      this.setData({ tips })
+    }).finally(() => {
+      this.setData({ logging: false })
+    })
   },
   _getPhoneNumber ({ detail }) {
     console.log(detail)
     const ok = detail.errMsg === 'getPhoneNumber:ok'
     if (ok) {
       const { encryptedData, iv } = detail
-      wx.showLoading({ mask: true })
       wxCheckSession().then(token => {
         console.log(token)
-        login({ encryptedData, iv, token }).then(res => {
+        login({ encryptedData, iv }).then(res => {
           console.log(res)
           wx.navigateBack({ detail: 2 })
         })

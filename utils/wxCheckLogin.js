@@ -6,10 +6,10 @@ const wxLogin = () => new Promise((resolve, reject) => {
       console.log('login success')
       if (res.code) {
         //发起网络请求
-        getUserInfo({ code: res.code }).then(result => {
-          console.log('login res', result)
-          wx.setStorageSync('token', result.token)
-          resolve(result.token)
+        getUserInfo({ code: res.code }).then(({ data }) => {
+          console.log('login res', data)
+          wx.setStorageSync('token', data.token)
+          resolve(data.token)
         }).catch(err => {
           console.log('login err', err)
           reject(err)
