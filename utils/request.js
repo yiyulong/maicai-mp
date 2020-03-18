@@ -1,7 +1,7 @@
 function getCommonHeader () {
 
   let header = {
-    'Content-type': 'application/x-www-form-urlencoded'
+    'Content-type': 'application/json'
   }
 
   // 如果token有值则带上
