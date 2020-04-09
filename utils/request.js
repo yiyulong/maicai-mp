@@ -1,3 +1,4 @@
+const baseUrl = 'https://avril.easy.echosite.cn'
 function getCommonHeader () {
 
   let header = {
@@ -100,10 +101,10 @@ function request (url, data = {}, header = {}, method = "POST", config = {}) {
 }
 
 function getRequest (url, data = {}, config = {}) {
-  return request(url, data, getCommonHeader(), "GET", config)
+  return request(baseUrl + url, data, getCommonHeader(), "GET", config)
 }
 function postRequest (url, data = {}, config = {}) {
-  return request(url, data, getCommonHeader(), "POST", config)
+  return request(baseUrl + url, data, getCommonHeader(), "POST", config)
 }
 
 module.exports = {

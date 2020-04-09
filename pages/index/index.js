@@ -1,16 +1,18 @@
-//index.js
-import { getIsCommandProductList } from '../../utils/api'
+import { getBanner } from '../../api/common'
+import { getIsCommandProductList } from '../../api/product'
 Page({
   data: {
-    background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
+    bannerList: [], // 顶部轮播图
     list: [],
     topbarStyle: '',
-    _isLoading: false,
-    _isNoMore: false,
+    isNoMore: false,
     _pageNum: 1,
   },
-  onLoad: function () {
-    this._getList()
+  async onLoad () {
+    const [{ data: { list } }] = await Promise.all([getBanner(), this._getList()])
+    this.setData({
+      bannerList: list
+    })
   },
   onReady () {
     // 获取topbar高度
@@ -31,21 +33,27 @@ Page({
       })
   },
   _getList () {
-    this.data._isLoading = true
-    getIsCommandProductList({ pageNum: this.data._pageNum }).then(({ data }) => {
+    getIsCommandProductList({ pageNum: this.data._pageNum }, { showLoading: true }).then(({ data }) => {
       const list = this.data._pageNum === 1 ? data.list : this.data.list.push(...data.list)
-      this.data._isNoMore = !data.hasNextPage
+      this.setData({
+        isNoMore: data.isLastPage
+      })
       this.setData({
         list,
       })
     }).finally(() => {
-      this.data._isLoading = false
+      wx.stopPullDownRefresh()
     })
   },
   // 上拉触底事件
   onReachBottom () {
-    if (this.data._isNoMore || this.data._isLoading) return
+    if (this.data.isNoMore) return
     this.data._pageNum = this.data._pageNum + 1
+    this._getList()
+  },
+  // 下拉刷新
+  onPullDownRefresh () {
+    this.pageNum = 1
     this._getList()
   }
 })

@@ -1,5 +1,5 @@
 import { getRequest, postRequest } from './request'
-const baseUrl = 'http://192.168.8.22:8080'
+const baseUrl = 'https://avril.easy.echosite.cn'
 module.exports = {
   // 获取用户信息
   getUserInfo: (data, config = {}) => getRequest(baseUrl + '/user/getUserInfo', data, config),
@@ -8,7 +8,7 @@ module.exports = {
   // 用户手机号注册/登陆
   mobileLogin: (data, config = { showLoading: true, loadingTitle: '登录中...' }) => postRequest(baseUrl + '/user/mobileLogin', data, config),
   // 退出登陆
-  logOut: (data, config = {}) => postRequest(baseUrl + '/user/logOut', data, config),
+  logOut: (data, config = {}) => getRequest(baseUrl + '/user/logOut', data, config),
   // 发送验证码
   sendMessage: (data, config = {}) => postRequest(baseUrl + '/user/sendMessage', data, config),
   // 搜索产品，动态排序

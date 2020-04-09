@@ -1,15 +1,11 @@
-const _userInfo = {
-  name: '张三',
-  accounts: '15800807767'
-}
 import { wxCheckSession } from '../../utils/wxCheckLogin'
-import { login } from '../../utils/api'
+import { login } from '../../api/user'
+const app = getApp()
 Page({
   data: {
   },
   onLoad () {
-    const eventChannel = this.getOpenerEventChannel()
-    eventChannel && eventChannel.emit && eventChannel.emit('getLoginInfo', _userInfo)
+    // this._eventChannel = this.getOpenerEventChannel()
 
   },
   _getPhoneNumber ({ detail }) {
@@ -19,8 +15,12 @@ Page({
       const { encryptedData, iv } = detail
       wxCheckSession().then(token => {
         console.log(token)
-        login({ encryptedData, iv }).then(res => {
-          console.log(res)
+        login({ encryptedData, iv }).then(({ data }) => {
+          // console.log(data)
+          const { cartCount, mobile, orderStatusCount, token } = data
+          wx.setStorageSync('token', token)
+          Object.assign(app.globalData, { cartCount, orderStatusCount, userInfo: { accounts: mobile } })
+          // this._eventChannel?.emit?.('getLoginInfo')
           wx.navigateBack()
         })
       })

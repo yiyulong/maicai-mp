@@ -4,12 +4,14 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
+		"enhance": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
+		"nodeModules": true,
 		"autoAudits": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": false,
@@ -18,12 +20,11 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		},
-		"nodeModules": true
+		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.10.2",
-	"appid": "wx029c287ecdfccc8c",
+	"libVersion": "2.10.4",
+	"appid": "wx1aba4b8e5e2c0947",
 	"projectname": "maicai",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -109,6 +110,12 @@
 					"name": "pages/register/index",
 					"pathName": "pages/register/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/reviewOrder/index",
+					"pathName": "pages/reviewOrder/index",
 					"scene": null
 				}
 			]

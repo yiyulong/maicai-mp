@@ -114,17 +114,35 @@ page {
   font-size: 28rpx;
   line-height: 38rpx;
 }
+.info-box .name .desc {
+  font-size: 24rpx;
+  line-height: 28rpx;
+  color: #666;
+}
 .info-box .price-conent {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
   color: #ec132d;
+  position: relative;
 }
 .price-conent .price {
-  font-size: 28rpx;
+  position: absolute;
+  left: 0;
+  top: -28rpx;
+  font-size: 24rpx;
+  text-decoration:line-through;
+  font-style: italic;
+  color: #666;
 }
 .price .currency, .price .small {
+  font-size: 24rpx;
+}
+.price-conent .rulingPrice {
+  font-size: 28rpx;
+}
+.rulingPrice .currency, .rulingPrice .small {
   font-size: 24rpx;
 }
 .price-conent .add-cart {

@@ -134,14 +134,41 @@ const _list = [
     price: 28.8
   }
 ]
+import { getLst } from '../../api/product'
 Page({
   data: {
     value: '', // search值
     searched: false, // 是否搜索完成
-    candidateList: [],
+    _pageNum: 1,
+    _pageSize: 30,
+    orderBy: '', // 排序
+    upOrdown: '', // 升序降序
+    isNoMore: false, // 没有更多数据
+    candidateList: [], // 候选列表
     historyList: [..._historyList], // 历史搜索
     list: [],
     refresherTriggered: false, // 设置当前下拉刷新状态
+  },
+  _getLst () {
+    const params = {
+      keyword: this.data.value,
+      pageNum: this.data._pageNum,
+      pageSize: this.data._pageSize,
+      orderBy: this.data.orderBy,
+      upOrdown: this.data.upOrdown
+    }
+    getList(params, { showLoading: true}).then(res => {
+      console.log(res)
+      const list = this.data._pageNum === 1 ? data.list : this.data.list.push(...data.list)
+      this.data._isNoMore = !data.hasNextPage
+      this.setData({
+        list,
+      })
+    }).finally(() => {
+      this.setData({
+        refresherTriggered: false
+      })
+    })
   },
   /**
    * TODO 候选词点击事件
@@ -158,8 +185,13 @@ Page({
       list: _list
     })
   },
-  onSearch (detail) {
+  onSearch ({ detail }) {
     console.log('search', detail)
+    this.data._pageNum = 1
+    this.setData({
+      value: detail
+    })
+    this._getList()
   },
   onChange ({ detail }) {
     const candidateList = _candidateList.filter(item => item.label.indexOf(detail) !== -1)
@@ -172,11 +204,8 @@ Page({
   onDelete (e) {},
   scrollRefresh (e) {
     console.log('触发', e)
-    setTimeout(() => {
-      this.setData({
-        refresherTriggered: false
-      })
-    }, 2000)
+    this.data._pageNum = 1
+    this._getList()
   },
   scrollRestore (e) {
     console.log('复位', e)
@@ -186,5 +215,8 @@ Page({
   },
   scrollLower (e) {
     console.log('滚动到底部', e)
+    if (this.data._isNoMore) return
+    this.data._pageNum = this.data._pageNum + 1
+    this._getList()
   }
 })

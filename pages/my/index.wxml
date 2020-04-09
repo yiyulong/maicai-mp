@@ -5,7 +5,7 @@
         <my-image src="{{ avatar || '/assets/avatar.png' }}" mode="aspectFill" round></my-image>
       </view>
       <view class="user-info">
-        <block wx:if="{{ userInfo && userInfo.name }}">
+        <block wx:if="{{ userInfo && userInfo.accounts }}">
           <view class="name">{{ userInfo.name }}</view>
           <view class="accounts">{{ userInfo.accounts }}</view>
         </block>
@@ -13,7 +13,7 @@
           <view class="name">立即登录</view>
         </block>
       </view>
-      <block wx:if="{{ !(userInfo && userInfo.name) }}">
+      <block wx:if="{{ !(userInfo && userInfo.accounts) }}">
         <view class="arrow">
           <van-icon name="arrow" />
         </view>
@@ -41,7 +41,7 @@
     </van-cell-group>
   </view>
 </view>
-<block wx:if="{{ userInfo && userInfo.name }}">
+<block wx:if="{{ userInfo && userInfo.accounts }}">
   <view class="logout">
     <van-button color="#e44545" round block bind:click="onLogout">退出登录</van-button>
   </view>

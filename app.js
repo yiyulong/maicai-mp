@@ -13,6 +13,8 @@ App({
     wxLogin()
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    orderStatusCount: [],
+    cartCount: null
   }
 })

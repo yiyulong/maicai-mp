@@ -8,9 +8,9 @@
 <view class="classify-box">
   <view class="lt-box">
     <scroll-view scroll-y class="sidebar-scroll">
-      <van-sidebar custom-class="classify-sidebar" active-key="{{ activeKey }}" bind:change="onChange">
-        <block wx:for="{{ sideList }}" wx:key="value">
-          <van-sidebar-item custom-class="classify-sidebar-item" title="{{ item.title }}" info="{{ item.info }}" />
+      <van-sidebar custom-class="classify-sidebar">
+        <block wx:for="{{ categoryList }}" wx:key="id">
+          <van-sidebar-item custom-class="classify-sidebar-item" title="{{ item.name }}" data-id="{{item.id}}" bind:click="tapClassifyItem" />
         </block>
       </van-sidebar>
     </scroll-view>
@@ -24,23 +24,29 @@
         <stabs-item tabIndex="{{ index }}">
           <view class="stabs-content-item">
             <view class="item-title van-hairline--bottom">
-              我是第{{index + 1}}项： {{item.title}}
+              {{item.name}}
             </view>
             <view class="item-list">
-              <block wx:for="{{ item.data }}" wx:for-item="pItem" wx:key="id">
+              <block wx:for="{{ item.productVoList }}" wx:for-item="pItem" wx:key="id">
                 <view class="item-list-content van-hairline--bottom" data-id="{{ pItem.id }}" bind:tap="onItem">
                   <view class="img-box">
-                    <my-image src="{{ pItem.image}}" square mode="aspectFit" />
+                    <my-image src="{{ pItem.realm + pItem.bannerUrls }}" square mode="aspectFit" />
                   </view>
                   <view class="info-box">
                     <view class="name van-multi-ellipsis--l2">
                       <view>{{ pItem.name }}</view>
+                      <view class="desc van-ellipsis">{{ pItem.title }}</view>
                     </view>
                     <view class="price-conent">
                       <view class="price">
                         <text class="currency">¥</text>
                         <text>{{ price.pointBefore(pItem.price) }}</text>
                         <text wx:if="{{price.pointAfter(pItem.price)}}" class="small">.{{ price.pointAfter(pItem.price) }}</text>
+                      </view>
+                      <view class="rulingPrice">
+                        <text class="currency">¥</text>
+                        <text>{{ price.pointBefore(pItem.rulingPrice) }}</text>
+                        <text wx:if="{{price.pointAfter(pItem.rulingPrice)}}" class="small">.{{ price.pointAfter(pItem.rulingPrice) }}</text>
                       </view>
                       <view class="action">
                         <view wx:if="{{ pItem.qty }}">

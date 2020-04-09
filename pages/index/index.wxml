@@ -2,7 +2,7 @@
 <view class="topbar {{ topbarStyle? 'van-hairline--bottom': '' }}" style="background-color: {{ topbarStyle }}">
   <view class="location-box">
     <van-icon name="location-o" />
-    <text class="van-ellipsis">你当前的位置信息展示过长显示省略号</text>
+    <text class="van-ellipsis">您当前的位置信息展示过长显示省略号</text>
     <van-icon name="arrow-down" />
   </view>
   <navigator class="search-box" url="/pages/search/index">
@@ -12,9 +12,11 @@
 </view>
 <view class="swiper">
   <swiper indicator-dots autoplay circular indicator-active-color="#20c064">
-    <block wx:for="{{ background }}" wx:key="*this">
+    <block wx:for="{{ bannerList }}" wx:key="*this">
       <swiper-item>
-        <view class="swiper-item {{ item }}"></view>
+        <view class="swiper-item">
+          <image src="{{item.realm + item.picUrl}}" mode="aspectFill" />
+        </view>
       </swiper-item>
     </block>
   </swiper>
@@ -39,5 +41,5 @@
   <view class="recommend-box">
     <view class="recommend">推荐商品</view>
   </view>
-  <pdt-list list="{{ list }}" is-no-more="{{ _isNoMore }}" />
+  <pdt-list list="{{ list }}" is-no-more="{{ isNoMore }}" />
 </view>

@@ -48,7 +48,10 @@
 /**轮播图**/
 .swiper .swiper-item {
   height: 100%;
-  background-color: seagreen;
+}
+.swiper .swiper-item image {
+  width: 100%;
+  height: 100%;
 }
 
 /**分类格子布局**/

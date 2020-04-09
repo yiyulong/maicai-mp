@@ -9,6 +9,7 @@
     "pages/login/index",
     "pages/register/index",
     "pages/order/index",
+    "pages/reviewOrder/index",
     "pages/web/index"
   ],
   "window": {

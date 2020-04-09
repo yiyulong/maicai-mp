@@ -1,4 +1,4 @@
-import { getUserInfo } from './api'
+import { getUserInfo } from '../api/user'
 
 const wxLogin = () => new Promise((resolve, reject) => {
   wx.login({
@@ -31,7 +31,16 @@ const wxCheckSession = () => new Promise((resolve, reject) => {
     success () {
       console.log('checkLogin success')
       //session_key 未过期，并且在本生命周期一直有效
-      resolve(wx.getStorageSync('token'))
+      if (wx.getStorageSync('token')) {
+        resolve(wx.getStorageSync('token'))
+      } else {
+        wxLogin().then(res => {
+          resolve(res)
+        }).catch(err => {
+          reject(err)
+        })
+      }
+      // resolve(wx.getStorageSync('token'))
     },
     fail () {
       console.log('checkLogin error')

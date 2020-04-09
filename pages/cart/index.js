@@ -84,7 +84,11 @@ Page({
         error: '请至少选择一件商品'
       })
     }
+    if (!paramsData.length) return
     // console.log(e, paramsData)
+    wx.navigateTo({
+      url: '/pages/reviewOrder/index'
+    })
   },
   onPullDownRefresh (e) {
     setTimeout(() => {
