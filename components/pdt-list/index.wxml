@@ -6,7 +6,7 @@
   </block>
   <block wx:else>
     <van-row gutter="6">
-      <block wx:for="{{ list }}" wx:key="id">
+      <block wx:for="{{ list }}" wx:key="index">
         <van-col span="12">
           <view class="pdt-list_item">
             <pdt-item info="{{ item }}" />

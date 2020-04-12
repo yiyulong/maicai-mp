@@ -54,6 +54,9 @@
   color: #ec132d;
   font-weight: 400;
 }
+.amt-box .rulingPrice > text {
+  display: inline-block;
+}
 .currency, .small {
   font-size: 24rpx;
 }

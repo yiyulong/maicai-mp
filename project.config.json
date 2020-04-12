@@ -95,7 +95,7 @@
 					"id": 5,
 					"name": "pages/details/index",
 					"pathName": "pages/details/index",
-					"query": "id=5",
+					"query": "id=1157",
 					"scene": null
 				},
 				{
@@ -116,6 +116,7 @@
 					"id": -1,
 					"name": "pages/reviewOrder/index",
 					"pathName": "pages/reviewOrder/index",
+					"query": "",
 					"scene": null
 				}
 			]

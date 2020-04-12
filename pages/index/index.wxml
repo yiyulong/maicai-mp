@@ -12,7 +12,7 @@
 </view>
 <view class="swiper">
   <swiper indicator-dots autoplay circular indicator-active-color="#20c064">
-    <block wx:for="{{ bannerList }}" wx:key="*this">
+    <block wx:for="{{ bannerList }}" wx:key="index">
       <swiper-item>
         <view class="swiper-item">
           <image src="{{item.realm + item.picUrl}}" mode="aspectFill" />
@@ -23,15 +23,15 @@
 </view>
 <view class="grid">
   <van-grid column-num="5" border="{{ false }}" clickable>
-    <block wx:for="{{ 10 }}" wx:key="*this">
-      <van-grid-item use-slot>
+    <block wx:for="{{ category }}" wx:key="index">
+      <van-grid-item use-slot data-id="{{item.id}}" bind:tap="_switchClassify">
         <view class="grid-item">
           <view class="grid-item_img">
             <view class="grid-item_img_content">
-              <my-image src="http://bpic.588ku.com/element_origin_min_pic/16/08/15/1057b1232f6bd2a.jpg" round mode="aspectFill"></my-image>
+              <my-image src="{{item.url}}" round mode="aspectFill"></my-image>
             </view>
           </view>
-          <text>分类{{ item }}</text>
+          <text>{{item.name}}</text>
         </view>
       </van-grid-item>
     </block>
@@ -41,5 +41,6 @@
   <view class="recommend-box">
     <view class="recommend">推荐商品</view>
   </view>
-  <pdt-list list="{{ list }}" is-no-more="{{ isNoMore }}" />
+  <pdt-list list="{{ list }}" is-no-more="{{ isNoMore }}" bind:addSuccess="_addSuccess" bind:addError="_addError" />
 </view>
+<van-toast id="van-toast" />

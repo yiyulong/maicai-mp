@@ -1,3 +1,5 @@
+import { addOrUpdate } from '../../api/cart'
+const app = getApp()
 Component({
   options: {
     addGlobalClass: true,
@@ -13,30 +15,37 @@ Component({
         }
       }
     }) {
-      console.log(id)
+      // console.log(id)
       wx.navigateTo({
         url: `/pages/details/index?id=${id}`
       })
     },
-    cartClick ({
-      currentTarget: {
-        dataset: {
-          id
-        }
+    async cartClick ({ currentTarget: { dataset: { id } } }) {
+      console.log('addcart', id)
+      const params = {
+        count: 1,
+        productId: id
       }
-    }) {
-      console.log(id)
-      this.clearAnimation('.cart', function () {
-        console.log('清除动画')
-      })
-      this.animate('.cart', [
-        { opacity: 1, scale: [1, 1] },
-        { opacity: 0, scale: [1.5, 1.5] }
-      ], 400, () => {
-        this.clearAnimation('.cart', function () {
-          console.log('清除动画')
-        })
-      })
+      try {
+        await addOrUpdate(params, { showLoading: true })
+        const cartCount = parseInt(app.globalData.cartCount) + 1
+        app.globalData.cartCount = cartCount
+        this.triggerEvent('addSuccess', {}, { bubbles: true, composed: true })
+      } catch (err) {
+        console.log(err)
+        this.triggerEvent('addError', {}, { bubbles: true, composed: true })
+      }
+      // this.clearAnimation('.cart', function () {
+      //   console.log('清除动画')
+      // })
+      // this.animate('.cart', [
+      //   { opacity: 1, scale: [1, 1] },
+      //   { opacity: 0, scale: [1.5, 1.5] }
+      // ], 400, () => {
+      //   this.clearAnimation('.cart', function () {
+      //     console.log('清除动画')
+      //   })
+      // })
     }
   },
 })

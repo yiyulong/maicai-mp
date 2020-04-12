@@ -4,22 +4,31 @@
     <view class="list-item">
       <van-checkbox value="{{ item.checked }}" custom-class="my-check" label-class="my-check-label" checked-color="#20c064" data-index="{{ index }}" bind:change="onItemCheck" />
       <view class="content van-hairline--bottom">
-        <view class="info-box" bind:tap="onItemClick">
+        <view class="info-box" data-id="{{ item.id }}" bind:tap="onItemClick">
           <view class="img">
-            <my-image src="{{ item.img }}" mode="contain" lazy-load square />
+            <my-image src="{{ item.realm + item.productMainImg }}" mode="contain" lazy-load square />
           </view>
           <view class="info">
-            <view class="name van-multi-ellipsis--l2">
-              <text>{{ item.name }}</text>
+            <view class="name van-ellipsis">
+              <text>{{ item.productName }}</text>
             </view>
+            <view class="desc van-multi-ellipsis--l2">
+              <text>{{ item.productTitle }}</text>
+            </view>
+            <view class="space"></view>
             <view class="calc-box">
               <view class="price">
+                <text>¥</text>
+                <text>{{ price.pointBefore(item.productPrice) }}</text>
+                <text wx:if="{{price.pointAfter(item.productPrice)}}" class="small">.{{ price.pointAfter(item.productPrice) }}</text>
+              </view>
+              <view class="rulingPrice">
                 <text class="currency">¥</text>
-                <text>{{ price.pointBefore(item.amt) }}</text>
-                <text wx:if="{{price.pointAfter(item.amt)}}" class="small">.{{ price.pointAfter(item.amt) }}</text>
+                <text>{{ price.pointBefore(item.rulingPrice) }}</text>
+                <text wx:if="{{price.pointAfter(item.rulingPrice)}}" class="small">.{{ price.pointAfter(item.rulingPrice) }}</text>
               </view>
               <view class="stepper" catch:tap="stopBubble">
-                <van-stepper value="{{ item.qty }}" async-change min="{{ 0 }}" data-index="{{ index }}" bind:change="onChangeQty" />
+                <van-stepper value="{{ item.quantity }}" async-change min="{{ 0 }}" data-index="{{ index }}" bind:change="onChangeQty" />
               </view>
             </view>
           </view>

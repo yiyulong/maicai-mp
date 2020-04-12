@@ -50,3 +50,14 @@ page {
 .logout {
   padding: 20rpx 30rpx;
 }
+
+.version {
+  position: fixed;
+  bottom: 0;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+}

@@ -1,29 +1,53 @@
-<wxs src="../../wxs/price.wxs" module="price"></wxs>
+<wxs src="../../wxs/price.wxs" module="price" />
 <view class="detail-box">
   <view class="swiper-content">
     <swiper indicator-dots="{{ swiper.length > 1 }}" indicator-active-color="#20c064" circular>
-      <block wx:for="{{ swiper }}" wx:key="index">
+      <block wx:for="{{ detail.bannerUrls }}" wx:key="index">
         <swiper-item>
-          <view class="swiper-content">
-            <view></view>
+          <view class="swiper-item">
+            <image src="{{ detail.bannerRealm + item }}" mode="aspectFill" />
           </view>
         </swiper-item>
       </block>
     </swiper>
   </view>
 </view>
+<view class="van-hairline--top detail-info">
+  <view class="van-ellipsis detail_name">{{ detail.name }}</view>
+  <view class="van-multi-ellipsis--l3 detail_desc"> {{ detail.title }}</view>
+  <view class="detail_price">
+    <text class="currency">¥</text>
+    <text>{{ price.pointBefore(detail.rulingPrice) }}</text>
+    <text wx:if="{{price.pointAfter(detail.rulingPrice)}}" class="small">.{{ price.pointAfter(detail.rulingPrice) }}</text>
+    <view class="price">
+      <text>¥</text>
+      <text>{{ price.pointBefore(detail.price) }}</text>
+      <text wx:if="{{price.pointAfter(detail.price)}}">.{{ price.pointAfter(detail.price) }}</text>
+    </view>
+  </view>
+</view>
+<view class="detail-norms">
+  <view class="norms">规格</view>
+  <view class="van-hairline--top norms_item">
+    <view class="label">库存</view>
+    <view class="value">{{ detail.stock }}</view>
+  </view>
+  <view class="details">
+    <block wx:for="{{ detail.detailUrls }}" wx:key="index">
+      <image src="{{ detail.bannerRealm + item }}" mode="widthFix" />
+    </block>
+  </view>
+</view>
 <view class="goods-action van-hairline--top">
   <view class="content">
     <view class="ic" bind:tap="onToCart" animation="{{ cartAnimationData }}">
-      <van-icon name="shopping-cart-o" size="22" info="9" />
+      <van-icon name="shopping-cart-o" size="22" info="{{ cartCount }}" />
     </view>
     <view class="lt">
       <view class="price">
         <text class="currency">¥</text>
-        <text>{{ price.pointBefore(info.price) }}</text>
-        <text wx:if="{{price.pointAfter(info.price)}}" class="small">
-          .{{ price.pointAfter(info.price) }}
-        </text>
+        <text>{{ price.pointBefore(detail.rulingPrice) }}</text>
+        <text wx:if="{{price.pointAfter(detail.rulingPrice)}}" class="small">.{{ price.pointAfter(detail.rulingPrice) }}</text>
       </view>
     </view>
     <view class="rt">

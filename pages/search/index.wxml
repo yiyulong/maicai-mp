@@ -23,7 +23,7 @@
       bindrefresherabort="scrollAbort"
       bindscrolltolower="scrollLower"
     >
-      <pdt-list list="{{ list }}" />
+      <pdt-list list="{{ list }}" is-no-more="{{ isNoMore }}" />
     </scroll-view>
   </view>
 </block>
@@ -39,11 +39,11 @@
   <view hidden="{{ value }}" class="history-box">
     <view class="title-box">
       <view class="title">历史搜索</view>
-      <view class="clear" bind:tag="onDelete"><mp-icon icon="delete" color="#666" /></view>
+      <view class="clear" bind:tap="onDelete"><mp-icon icon="delete" color="#666" /></view>
     </view>
     <view class="history-list">
-      <block wx:for="{{ historyList }}" wx:key="value">
-        <view class="history-item" data-item="{{ item }}" bind:tap="onItemClick">{{ item.label }}</view>
+      <block wx:for="{{ historyList }}" wx:key="*this">
+        <view class="history-item" data-item="{{ item }}" bind:tap="onItemClick">{{ item }}</view>
       </block>
     </view>
   </view>

@@ -19,7 +19,7 @@ Page({
           // console.log(data)
           const { cartCount, mobile, orderStatusCount, token } = data
           wx.setStorageSync('token', token)
-          Object.assign(app.globalData, { cartCount, orderStatusCount, userInfo: { accounts: mobile } })
+          Object.assign(app.globalData, { cartCount, orderStatusCount, userInfo: { mobile } })
           // this._eventChannel?.emit?.('getLoginInfo')
           wx.navigateBack()
         })

@@ -42,14 +42,32 @@ const _list = [
     id: 6
   }
 ]
+import { getCartList } from '../../api/cart'
 Page({
   data: {
     error: '', // 错误提示
-    list: _list,
+    list: [],
     checkedAll: true,
     isCheckedAll: true,
-    totalPrice: 999.99,
+    totalPrice: 0.00,
     checkedList: []
+  },
+  onShow () {
+    this._getList()
+  },
+  _getList () {
+    getCartList().then(({ data }) => {
+      this.setData({
+        list: data.cartProductVoList,
+        totalPrice: data.carTotalPrice
+      })
+    }).finally (() => {
+      this.setData({
+        checkedAll: true,
+        isCheckedAll: true,
+      })
+      wx.stopPullDownRefresh()
+    })
   },
   onCheckAll ({ detail }) {
     // console.log('checkAll event', detail)
@@ -57,10 +75,17 @@ Page({
   },
   getCalc ({ detail }) {
     // console.log('getCalc', detail)
+    const { sum, num, isCheckedAll, checkedList } = detail
+    app.globalData.cartCount = num
+    const text = num + ''
+    wx.setTabBarBadge({
+      index: 2,
+      text
+    })
     this.setData({
-      isCheckedAll: detail.isCheckedAll,
-      totalPrice: detail.sum,
-      checkedList: detail.checkedList
+      isCheckedAll: isCheckedAll,
+      totalPrice: sum,
+      checkedList: checkedList
     })
   },
   onSubmit (e) {
@@ -91,15 +116,6 @@ Page({
     })
   },
   onPullDownRefresh (e) {
-    setTimeout(() => {
-      this.setData({
-        list: _list,
-        checkedAll: true,
-        isCheckedAll: true,
-        totalPrice: 999.89
-      }, () => {
-        wx.stopPullDownRefresh()
-      })
-    }, 1000)
+    this._getList()
   }
 })

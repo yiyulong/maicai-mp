@@ -1,5 +1,6 @@
 const deleteIconSrc = '/assets/trash.png'
 const computedBehavior = require('miniprogram-computed')
+import { addOrUpdate } from '../../../api/cart'
 Component({
   behaviors: [computedBehavior],
   options: {
@@ -52,11 +53,20 @@ Component({
     sum (data) {
       const sum = data.result.reduce((acc, obj) => {
         if (obj.checked) {
-          return acc + parseFloat(obj.qty) * parseFloat(obj.amt)
+          return acc + parseFloat(obj.quantity) * parseFloat(obj.rulingPrice)
         }
         return acc
       }, 0)
       return Math.round(sum * 100)/ 100
+    },
+    num (data) {
+      const num = data.result.reduce((acc, obj) => {
+        if (obj.checked) {
+          return acc + parseInt(obj.quantity)
+        }
+        return acc
+      }, 0)
+      return num
     },
     // 当前选中的项目
     checkedList (data) {
@@ -103,15 +113,15 @@ Component({
       this.setData({
         [key]: detail
       }, () => {
-        _this.triggerEvent('calc', { sum: _this.data.sum, isCheckedAll: _this.data.isCheckedAll, checkedList: _this.data.checkedList })
+        _this.triggerEvent('calc', { sum: _this.data.sum, num: _this.data.num, isCheckedAll: _this.data.isCheckedAll, checkedList: _this.data.checkedList })
         // console.log('sum', _this.data.sum, 'isCheckedAll', _this.data.isCheckedAll, 'checkedList', _this.data.checkedList)
       })
     },
     // 单击跳转到详情页
-    onItemClick (e) {
+    onItemClick ({ currentTarget: { dataset: { id } } }) {
       if (!this.canClick()) return
       wx.navigateTo({
-        url: '/pages/details/index'
+        url: `/pages/details/index?id=${id}`
       })
     },
     // 阻止stepper组件事件冒泡
@@ -119,7 +129,7 @@ Component({
       return false
     },
     // 修改订量
-    onChangeQty ({
+    async onChangeQty ({
       detail,
       currentTarget: {
         dataset: { index }
@@ -127,14 +137,23 @@ Component({
     }) {
       if (!this.canClick()) return
       if (detail) {
-        const key = `result[${index}].qty`
-        const _this = this
-        this.setData({
-          [key]: detail
-        }, () => {
-          _this.triggerEvent('calc', { sum: _this.data.sum, isCheckedAll: _this.data.isCheckedAll, checkedList: _this.data.checkedList })
-          // console.log('sum', _this.data.sum, 'isCheckedAll', _this.data.isCheckedAll, 'checkedList', _this.data.checkedList)
-        })
+        const params = {
+          count: detail,
+          productId: this.data.result[index].id
+        }
+        try {
+          await addOrUpdate(params, { showLoading: true })
+          const key = `result[${index}].quantity`
+          const _this = this
+          this.setData({
+            [key]: detail
+          }, () => {
+            _this.triggerEvent('calc', { sum: _this.data.sum, num: _this.data.num, isCheckedAll: _this.data.isCheckedAll, checkedList: _this.data.checkedList })
+            // console.log('sum', _this.data.sum, 'isCheckedAll', _this.data.isCheckedAll, 'checkedList', _this.data.checkedList)
+          })
+        } catch (err) {
+          console.log(err)
+        }
       } else {
         this.deleteItem(index)
       }
@@ -160,7 +179,7 @@ Component({
               _this.setData({
                 result: _this.data.result
               }, () => {
-                _this.triggerEvent('calc', { sum: _this.data.sum, isCheckedAll: _this.data.isCheckedAll, checkedList: _this.data.checkedList })
+                _this.triggerEvent('calc', { sum: _this.data.sum, num: _this.data.num, isCheckedAll: _this.data.isCheckedAll, checkedList: _this.data.checkedList })
                 // console.log('sum', _this.data.sum, 'isCheckedAll', _this.data.isCheckedAll, 'checkedList', _this.data.checkedList)
                 wx.hideLoading()
               })

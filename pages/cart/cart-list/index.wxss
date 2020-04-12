@@ -31,14 +31,21 @@
   flex: 1;
   display: inline-flex;
   flex-flow: column nowrap;
-  justify-content: space-between;
   padding-left: 20rpx;
 }
 .info-box .info .name {
   font-size: 28rpx;
   line-height: 38rpx;
-  height: 76rpx;
   overflow: hidden;
+}
+.info-box .info .desc {
+  font-size: 24rpx;
+  line-height: 32rpx;
+  color: #666;
+  overflow: hidden;
+}
+.info-box .space {
+  flex: auto;
 }
 .info-box .info .calc-box {
   height: 40px;
@@ -46,16 +53,25 @@
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 .calc-box .price {
-  font-size: 32rpx;
+  position: absolute;
+  top: -20rpx;
+  left: 0;
+  color: #666;
+  text-decoration: line-through;
+  font-size: 24rpx;
+}
+.calc-box .rulingPrice {
+  font-size: 38rpx;
   color: #ec132d;
   font-weight: 400;
   white-space: nowrap;
 }
-.calc-box .price .currency {
-  font-size: 24rpx;
+.calc-box .rulingPrice .currency {
+  font-size: 28rpx;
 }
-.calc-box .price .small {
-  font-size: 24rpx;
+.calc-box .rulingPrice .small {
+  font-size: 28rpx;
 }

@@ -1,7 +1,7 @@
 <wxs src="../../wxs/price.wxs" module="price" />
 <view class="pdt-item" data-id="{{ info.id }}" bind:tap="itemClick">
   <view class="img-box">
-    <my-image src="{{ info.url }}" lazy-load mode="aspectFit" square></my-image>
+    <my-image src="{{ info.realm + info.url }}" lazy-load mode="aspectFit" square></my-image>
   </view>
   <view class="name-box">
     <text class="van-ellipsis name">{{ info.name }}</text><text class="specs">{{ info.specs }}</text>
@@ -12,17 +12,13 @@
       <text>¥</text>
       <view class="line-through">
         <text>{{ price.pointBefore(info.price) }}</text>
-        <text wx:if="{{price.pointAfter(info.price)}}" class="small">
-          .{{ price.pointAfter(info.price) }}
-        </text>
+        <text wx:if="{{price.pointAfter(info.price)}}" class="small">.{{ price.pointAfter(info.price) }}</text>
       </view>
     </view>
     <view class="rulingPrice">
       <text class="currency">¥</text>
       <text>{{ price.pointBefore(info.rulingPrice) }}</text>
-      <text wx:if="{{price.pointAfter(info.rulingPrice)}}" class="small">
-        .{{ price.pointAfter(info.rulingPrice) }}
-      </text>
+      <text wx:if="{{price.pointAfter(info.rulingPrice)}}" class="small">.{{ price.pointAfter(info.rulingPrice) }}</text>
     </view>
     <view class="cart" data-id="{{ info.id }}" catch:tap="cartClick">
       <add name="add" size="24" />

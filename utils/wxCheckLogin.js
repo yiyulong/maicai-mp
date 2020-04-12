@@ -1,5 +1,5 @@
 import { getUserInfo } from '../api/user'
-
+const app = getApp()
 const wxLogin = () => new Promise((resolve, reject) => {
   wx.login({
     success (res) {
@@ -7,9 +7,9 @@ const wxLogin = () => new Promise((resolve, reject) => {
       if (res.code) {
         //发起网络请求
         getUserInfo({ code: res.code }).then(({ data }) => {
-          console.log('login res', data)
+          // console.log('login res', data)
           wx.setStorageSync('token', data.token)
-          resolve(data.token)
+          resolve(data)
         }).catch(err => {
           console.log('login err', err)
           reject(err)

@@ -20,7 +20,7 @@
       stabs="{{ stabs }}"
       activeTab="{{ activeTab }}"
     >
-      <block wx:for="{{ list }}" wx:key="title">
+      <block wx:for="{{ list }}" wx:key="id">
         <stabs-item tabIndex="{{ index }}">
           <view class="stabs-content-item">
             <view class="item-title van-hairline--bottom">

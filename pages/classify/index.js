@@ -1,12 +1,12 @@
 const computedBehavior = require('miniprogram-computed')
 import { getCategory, getSecondCategoryProduct } from '../../api/common'
+const app = getApp()
 Component({
   behaviors: [computedBehavior],
   data: {
     activeTab: 0,
     list: [],
     categoryList: [],
-    categoryId: null,
     _tempList: {}
   },
   computed: {
@@ -17,28 +17,44 @@ Component({
       }, [])
     }
   },
-  lifetimes: {
-    async attached () {
-      if (this.data.categoryId) {} else {
-        const { data: categoryList } = await getCategory()
-        // console.log(categoryList)
-        this.setData({ categoryList })
-        const categoryId = categoryList[0]?.id
-        const { data } = await getSecondCategoryProduct({ categoryId }, { showLoading: true })
-        // console.log(data)
-        this.data._tempList[categoryId] = data
+  pageLifetimes: {
+    async show () {
+      const { switchClassifyId } = app.globalData
+      if (switchClassifyId) {
+        if (!this.data.categoryList.length) {
+          const { data: categoryList } = await getCategory()
+          this.setData({ categoryList })
+        }
+        if (this.data._tempList[switchClassifyId]) {
+          this.setData({
+            list: this.data._tempList[switchClassifyId]
+          })
+        } else {
+          const { data } = await getSecondCategoryProduct({ categoryId: switchClassifyId }, { showLoading: true })
+          this.data._tempList[switchClassifyId] = data
+          this.setData({
+            list: data
+          })
+        }
       }
+    },
+    hide () {
+      app.globalData.switchClassifyId = null
     }
   },
-  async onLoad (options) {
-    if (this.data.categoryId) {} else {
+  lifetimes: {
+    async attached () {
+      if (app.globalData.switchClassifyId) return // 如果从点击首页分类过来
       const { data: categoryList } = await getCategory()
       // console.log(categoryList)
       this.setData({ categoryList })
-      const categoryId = categoryList[0]?.id
+      const categoryId = app.globalData.switchClassifyId || categoryList[0]?.id
       const { data } = await getSecondCategoryProduct({ categoryId }, { showLoading: true })
       // console.log(data)
       this.data._tempList[categoryId] = data
+      this.setData({
+        list: data
+      })
     }
   },
   methods: {
