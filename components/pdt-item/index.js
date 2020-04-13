@@ -21,7 +21,11 @@ Component({
       })
     },
     async cartClick ({ currentTarget: { dataset: { id } } }) {
-      console.log('addcart', id)
+      // console.log('addcart', id)
+      if (!app.globalData.userInfo?.mobile) {
+        wx.navigateTo({ url: '/pages/login/index' })
+        return
+      }
       const params = {
         count: 1,
         productId: id

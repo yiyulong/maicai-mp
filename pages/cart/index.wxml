@@ -3,7 +3,13 @@
 <view class="list-box">
   <cart-list list="{{ list }}" checked-all="{{ checkedAll }}" bind:calc="getCalc" />
 </view>
-<view class="submit-box van-hairline--top">
+<view class="status-box" wx:if="{{ statusList.length }}">
+  <status-list list="{{ statusList }}" bind:clearAllSuccess="_clearAllSuccess" />
+</view>
+<view class="toLogin" wx:if="{{ showLoginBtn }}">
+  <van-button color="#20c064" round custom-class="toLoginBtn" bind:click="_toLogn">登录</van-button>
+</view>
+<view class="submit-box van-hairline--top" wx:else>
   <van-checkbox value="{{ checkedAll && isCheckedAll }}" checked-color="#20c064" bind:change="onCheckAll">全选</van-checkbox>
   <view class="content">
     <view class="price">

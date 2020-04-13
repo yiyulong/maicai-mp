@@ -1,5 +1,6 @@
 import { getBanner, getHomeCategoryList } from '../../api/common'
 import { getIsCommandProductList } from '../../api/product'
+import { getAreasList } from '../../api/address'
 import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast'
 const app = getApp()
 Page({
@@ -10,13 +11,16 @@ Page({
     topbarStyle: '',
     isNoMore: false,
     _pageNum: 1,
+    areaList: [],
+    areaIndex: null
   },
   async onLoad () {
     // 获取轮播图 分类 推荐商品
-    const [{ data: { list } }, { data }] = await Promise.all([getBanner(), getHomeCategoryList(), this._getList()])
+    const [{ data: { list: bannerList } }, { data: category }, { data: { list: areaList } }] = await Promise.all([getBanner(), getHomeCategoryList(), getAreasList(), this._getList()])
     this.setData({
-      bannerList: list,
-      category: data
+      bannerList,
+      category,
+      areaList
     })
   },
   onReady () {
@@ -27,12 +31,16 @@ Page({
     }).exec()
   },
   onShow () {
-    if (!parseInt(app.globalData.cartCount)) return
-    const text = app.globalData.cartCount + ''
-    wx.setTabBarBadge({
-      index: 2,
-      text
-    })
+    if (parseInt(app.globalData.cartCount)) {
+      wx.setTabBarBadge({
+        index: 2,
+        text: app.globalData.cartCount + ''
+      })
+    } else {
+      wx.removeTabBarBadge({
+        index: 2
+      })
+    }
   },
   observerContentScroll (top) {
     this.createIntersectionObserver().disconnect()
@@ -44,6 +52,10 @@ Page({
           topbarStyle: intersectionTop ? '' : '#fff'
         })
       })
+  },
+  _pickerChange ({ detail: { value } }) {
+    // console.log(value)
+    this.setData({ areaIndex: value })
   },
   _getList () {
     getIsCommandProductList({ pageNum: this.data._pageNum }, { showLoading: true }).then(({ data }) => {
@@ -70,20 +82,33 @@ Page({
     this._getList()
   },
   _addSuccess () {
-    if (!parseInt(app.globalData.cartCount)) return
-    const text = app.globalData.cartCount + ''
-    wx.setTabBarBadge({
-      index: 2,
-      text
-    })
+    if (parseInt(app.globalData.cartCount)) {
+      wx.setTabBarBadge({
+        index: 2,
+        text: app.globalData.cartCount + ''
+      })
+    } else {
+      wx.removeTabBarBadge({
+        index: 2
+      })
+    }
     Toast.success('已加入购物车')
   },
   _addError () {
-    Toast.fail('添加失败请重试')
+    // Toast.fail('添加失败请重试')
+  },
+  _toWebView () {
+    wx.navigateTo({ url: '/pages/web/index'})
   },
   // 下拉刷新
   onPullDownRefresh () {
     this.pageNum = 1
     this._getList()
+  },
+  onShareAppMessage (res) {
+    return {
+      title: '大咖生鲜',
+      path: '/pages/index/index'
+    }
   }
 })

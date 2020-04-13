@@ -1,14 +1,13 @@
-import { getOrderList } from '../../api/order'
+import { getCoupon } from '../../api/common'
 Page({
   data: {
     active: 0,
     triggered: false,
-    _pageNum: 1
+    _pageNum: 1,
+    list: []
   },
   onLoad (options) {
     console.log(options)
-    const { id } = options
-    this.setData({ active: parseInt(id) })
     this._getList()
   },
   _getList () {
@@ -17,7 +16,7 @@ Page({
       status: this.data.active
     }
     // 获取对应订单状态的列表，如果需要获取全部订单列表则不传,1待支付 3待收货 4待评价 6售后退款
-    getOrderList(params).then(({ data }) => {
+    getCoupon(params).then(({ data }) => {
       console.log(data)
     }).finally(() => {
       console.log('finally')

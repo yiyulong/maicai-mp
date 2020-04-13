@@ -6,15 +6,14 @@ Page({
   },
   onLoad () {
     // this._eventChannel = this.getOpenerEventChannel()
-
   },
   _getPhoneNumber ({ detail }) {
-    console.log(detail)
+    // console.log(detail)
     const ok = detail.errMsg === 'getPhoneNumber:ok'
     if (ok) {
       const { encryptedData, iv } = detail
       wxCheckSession().then(token => {
-        console.log(token)
+        // console.log(token)
         login({ encryptedData, iv }).then(({ data }) => {
           // console.log(data)
           const { cartCount, mobile, orderStatusCount, token } = data

@@ -1,5 +1,7 @@
 const computedBehavior = require('miniprogram-computed')
 import { getCategory, getSecondCategoryProduct } from '../../api/common'
+import { addOrUpdate } from '../../api/cart'
+import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast'
 const app = getApp()
 Component({
   behaviors: [computedBehavior],
@@ -7,7 +9,8 @@ Component({
     activeTab: 0,
     list: [],
     categoryList: [],
-    _tempList: {}
+    _tempList: {},
+    activeKey: 0
   },
   computed: {
     stabs (data) {
@@ -23,7 +26,11 @@ Component({
       if (switchClassifyId) {
         if (!this.data.categoryList.length) {
           const { data: categoryList } = await getCategory()
-          this.setData({ categoryList })
+          const activeIndex = categoryList.findIndex(item => parseInt(switchClassifyId) === item.id)
+          this.setData({ categoryList, activeKey: activeIndex })
+        } else {
+          const activeIndex = this.data.categoryList.findIndex(item => parseInt(switchClassifyId) === item.id)
+          this.setData({ activeKey: activeIndex })
         }
         if (this.data._tempList[switchClassifyId]) {
           this.setData({
@@ -62,14 +69,16 @@ Component({
       // console.log(id)
       if (this.data._tempList[id]) {
         this.setData({
-          list: this.data._tempList[id]
+          list: this.data._tempList[id],
+          activeTab: 0
         })
         return
       }
       const { data } = await getSecondCategoryProduct({ categoryId: id }, { showLoading: true })
       this.data._tempList[id] = data
       this.setData({
-        list: data
+        list: data,
+        activeTab: 0
       })
     },
     onItem ({
@@ -79,19 +88,46 @@ Component({
         }
       }
     }) {
-      console.log(id)
+      // console.log(id)
+      wx.navigateTo({ url: `/pages/details/index?id=${id}`})
     },
     onChange (e) {
       
     },
-    onCart ({
+    async onCart ({
       currentTarget: {
         dataset: {
           id
         }
       }
     }) {
-      console.log(id)
+      // console.log(id)
+      if (!app.globalData.userInfo?.mobile) {
+        wx.navigateTo({ url: '/pages/login/index' })
+        return
+      }
+      const params = {
+        count: 1,
+        productId: id
+      }
+      try {
+        await addOrUpdate(params, { showLoading: true })
+        const cartCount = parseInt(app.globalData.cartCount) + 1
+        app.globalData.cartCount = cartCount
+        if (parseInt(app.globalData.cartCount)) {
+          wx.setTabBarBadge({
+            index: 2,
+            text: app.globalData.cartCount + ''
+          })
+        } else {
+          wx.removeTabBarBadge({
+            index: 2
+          })
+        }
+        Toast.success('已加入购物车')
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
 })

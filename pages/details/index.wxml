@@ -27,14 +27,14 @@
   </view>
 </view>
 <view class="detail-norms">
-  <view class="norms">规格</view>
+  <!-- <view class="norms">规格</view> -->
   <view class="van-hairline--top norms_item">
     <view class="label">库存</view>
     <view class="value">{{ detail.stock }}</view>
   </view>
   <view class="details">
     <block wx:for="{{ detail.detailUrls }}" wx:key="index">
-      <image src="{{ detail.bannerRealm + item }}" mode="widthFix" />
+      <image src="{{ detail.detailRealm + item }}" mode="widthFix" />
     </block>
   </view>
 </view>
@@ -51,7 +51,8 @@
       </view>
     </view>
     <view class="rt">
-      <van-button custom-class="btn-submit" color="#f75355" round bind:click="onAddToCart">
+      <van-button wx:if="{{ showLoginBtn }}" custom-class="btn-login" color="#20c064" round bind:click="_toLogn">登录</van-button>
+      <van-button wx:else custom-class="btn-submit" color="#f75355" round bind:click="onAddToCart">
         加入购物篮
       </van-button>
     </view>

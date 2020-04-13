@@ -24,7 +24,8 @@
   margin-left: 20rpx;
   box-sizing: border-box;
 }
-.topbar text {
+.topbar .location {
+  /* line-height: 28rpx; */
   display: inline-block;
   vertical-align: middle;
 }

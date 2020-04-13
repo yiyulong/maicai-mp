@@ -31,7 +31,7 @@
   </view>
   <view class="my-content">
     <van-cell-group>
-      <van-cell title="我的收货地址" is-link />
+      <van-cell title="我的收货地址" is-link bind:click="_toAddress" />
     </van-cell-group>
   </view>
   <view class="my-content">

@@ -15,10 +15,16 @@ App({
         mobile: res.mobile
       }
       this.globalData.cartCount = res.cartCount
-      wx.setTabBarBadge({
-        index: 2,
-        text: parseInt(res.cartCount) ? res.cartCount + '' : ''
-      })
+      if (parseInt(res.cartCount)) {
+        wx.setTabBarBadge({
+          index: 2,
+          text: res.cartCount + ''
+        })
+      } else {
+        wx.removeTabBarBadge({
+          index: 2
+        })
+      }
     })
     // console.log(this)
   },

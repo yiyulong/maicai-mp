@@ -8,7 +8,7 @@
 <view class="classify-box">
   <view class="lt-box">
     <scroll-view scroll-y class="sidebar-scroll">
-      <van-sidebar custom-class="classify-sidebar">
+      <van-sidebar custom-class="classify-sidebar" active-key="{{ activeKey }}">
         <block wx:for="{{ categoryList }}" wx:key="id">
           <van-sidebar-item custom-class="classify-sidebar-item" title="{{ item.name }}" data-id="{{item.id}}" bind:click="tapClassifyItem" />
         </block>
@@ -70,3 +70,4 @@
     </stabs>
   </view>
 </view>
+<van-toast id="van-toast" />

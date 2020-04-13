@@ -17,12 +17,17 @@ Page({
   },
   onShow () {
     const { cartCount, orderStatusCount, userInfo } = app.globalData
-    const text = cartCount + ''
-    wx.setTabBarBadge({
-      index: 2,
-      text
-    })
-    if (userInfo.mobile) {
+    if (parseInt(cartCount)) {
+      wx.setTabBarBadge({
+        index: 2,
+        text: cartCount + ''
+      })
+    } else {
+      wx.removeTabBarBadge({
+        index: 2
+      })
+    }
+    if (userInfo?.mobile) {
       refreshCount().then(({ data }) => {
         // console.log(res)
         this.setData({
@@ -39,7 +44,7 @@ Page({
     // console.log(this.data)
   },
   onLogin (e) {
-    if (this.data.userInfo && this.data.userInfo.accounts) return
+    if (this.data.userInfo?.mobile) return
     wx.navigateTo({
       url: '/pages/login/index',
       events: {
@@ -51,13 +56,20 @@ Page({
       }
     })
   },
-  onOrder ({
-    currentTarget: {
-      dataset: { index }
-    }
-  }) {
+  onOrder ({ currentTarget: { dataset: { index } } }) {
     // console.log(index)
-    wx.navigateTo({ url: `/pages/order/index?id=${index}` })
+    if (app.globalData.userInfo?.mobile) {
+      wx.navigateTo({ url: `/pages/order/index?id=${index}` })
+    } else {
+      wx.navigateTo({ url: '/pages/login/index' })
+    }
+  },
+  _toAddress () {
+    if (app.globalData.userInfo?.mobile) {
+      wx.navigateTo({ url: '/pages/address/index' })
+    } else {
+      wx.navigateTo({ url: '/pages/login/index' })
+    }
   },
   async onLogout () {
     await logOut()

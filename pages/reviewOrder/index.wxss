@@ -1,10 +1,36 @@
-.selectAddress {
+.selectAddress_box {
   padding-bottom: 15px;
-  background: linear-gradient(to right, #45b6e7, #45b6e7 10px, transparent 10px, transparent 20px, #f88d8f 20px, #f88d8f 30px, transparent 30px, transparent 40px);
+  background-color: #fff;
+  position: relative;
+}
+.selectAddress_box::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-image: linear-gradient(to right, #45b6e7, #45b6e7 10px, transparent 10px, transparent 20px, #f88d8f 20px, #f88d8f 30px, transparent 30px, transparent 40px);
   background-position: left bottom;
   background-size: 40px 3px;
   background-repeat: repeat-x;
 }
+.selectAddress_box, .service_box, .pay_box, .comment_box, .price_box {
+  margin-bottom: 20rpx;
+}
+.service_box .service_time {
+  color: #20c064;
+}
+.pay_box .black_color {
+  color: #000;
+}
+.pay_box .price_color {
+  color: #ec132d;
+}
+.price_box .black_color {
+  color: #000;
+}
+
 .submit-box {
   position: fixed;
   bottom: 0;
@@ -25,7 +51,13 @@
   text-align: right;
   padding-right: 10px;
 }
+.submit-box .content .text {
+  display: inline-block;
+  font-size: 28rpx;
+  margin-right: 10rpx;
+}
 .submit-box .content .price {
+  display: inline-block;
   font-size: 32rpx;
   color: #ec132d;
   font-weight: 400;

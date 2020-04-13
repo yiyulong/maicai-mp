@@ -7,25 +7,39 @@ Page({
     detail: {},
     _productId: null,
     cartAnimationData: {}, // 点击加入购物车动画效果
-    cartCount: 0 // 当前购物车数量
+    cartCount: null, // 当前购物车数量
+    showLoginBtn: false
   },
-  onLoad (options) {
+  async onLoad (options) {
     // console.log(options)
     // console.log(app.globalData)
     const { id: productId } = options
-    getDetail({ productId }, { showLoading: true }).then(({ data }) => {
-      // console.log(data)
-      this.setData({
-        detail: data,
-        _productId: productId,
-        cartCount: app.globalData.cartCount
-      })
+    const { data } = await getDetail({ productId }, { showLoading: true })
+    this.setData({
+      detail: data,
+      _productId: productId
     })
   },
   onReady () {
     this.animation = wx.createAnimation({
       timingFunction: 'ease' // 动画的效果
     })
+  },
+  onShow () {
+    if (app.globalData.userInfo?.mobile) {
+      if (this.data.showLoginBtn) {
+        this.setData({
+          showLoginBtn: false
+        })
+      }
+      this.setData({
+        cartCount: app.globalData.cartCount
+      })
+    } else {
+      this.setData({
+        showLoginBtn: true
+      })
+    }
   },
   // 加入购物篮
   async onAddToCart (e) {
@@ -57,5 +71,8 @@ Page({
     wx.switchTab({
       url: '/pages/cart/index'
     })
-  }
+  },
+  _toLogn () {
+    wx.navigateTo({ url: '/pages/login/index' })
+  },
 })

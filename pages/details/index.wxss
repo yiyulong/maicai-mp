@@ -46,6 +46,8 @@ page {
 
 .detail-norms {
   background: #fff;
+  padding-bottom: 60px;
+  margin-bottom: 60px;
 }
 .detail-norms .norms {
   padding: 20rpx 30rpx;
@@ -102,6 +104,9 @@ page {
 }
 .goods-action .content .rt {
   flex: none;
+}
+.goods-action .content .rt .btn-login {
+  padding: 0 80rpx;
 }
 
 .goods-action .content .price {

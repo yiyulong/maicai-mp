@@ -1,48 +1,5 @@
-const _list = [
-  {
-    img: 'http://jzfile.zk71.com/File/CorpProductImages/2013/04/22/0_lsyveg_7191_20130422173831.JPG',
-    name: '小青菜',
-    amt: 6.41,
-    qty: 1,
-    id: 0
-  },
-  {
-    img: 'https://camo.githubusercontent.com/728ce9f78c3139e76fa69925ad7cc502e32795d2/68747470733a2f2f7675656a732e6f72672f696d616765732f6c6f676f2e706e67',
-    name: '大白菜',
-    amt: 20.32,
-    qty: 8,
-    id: 1
-  },
-  {
-    img: 'http://jzfile.zk71.com/File/CorpProductImages/2013/04/22/0_lsyveg_7191_20130422173831.JPG',
-    name: '鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋鸡翅鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋',
-    amt: 9.99,
-    qty: 4,
-    id: 2
-  },
-  {
-    img: 'http://jzfile.zk71.com/File/CorpProductImages/2013/04/22/0_lsyveg_7191_20130422173831.JPG',
-    name: '小青菜',
-    amt: 9.99,
-    qty: 1,
-    id: 3
-  },
-  {
-    img: 'https://camo.githubusercontent.com/728ce9f78c3139e76fa69925ad7cc502e32795d2/68747470733a2f2f7675656a732e6f72672f696d616765732f6c6f676f2e706e67',
-    name: '大白菜',
-    amt: 20.8,
-    qty: 8,
-    id: 5
-  },
-  {
-    img: 'http://jzfile.zk71.com/File/CorpProductImages/2013/04/22/0_lsyveg_7191_20130422173831.JPG',
-    name: '鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋鸡翅鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋鸡蛋',
-    amt: 9.99,
-    qty: 4,
-    id: 6
-  }
-]
 import { getCartList } from '../../api/cart'
+const app = getApp()
 Page({
   data: {
     error: '', // 错误提示
@@ -50,15 +7,41 @@ Page({
     checkedAll: true,
     isCheckedAll: true,
     totalPrice: 0.00,
-    checkedList: []
+    checkedList: [],
+    showLoginBtn: false, // 未登录显示登录按钮
+    statusList: [] // status 1下架0在售2删除
   },
   onShow () {
-    this._getList()
+    // console.log(app.globalData.userInfo?.mobile)
+    if (app.globalData.userInfo?.mobile) {
+      if (this.data.showLoginBtn) {
+        this.setData({
+          showLoginBtn: false
+        })
+      }
+      this._getList()
+    } else {
+      this.setData({
+        showLoginBtn: true
+      })
+    }
+    // wx.navigateTo({
+    //   url: '/pages/login/index'
+    // })
   },
   _getList () {
     getCartList().then(({ data }) => {
+      const list = [], statusList = []
+      data.cartProductVoList.forEach(item => {
+        if (item.status) {
+          statusList.push(item)
+        } else {
+          list.push(item)
+        }
+      })
       this.setData({
-        list: data.cartProductVoList,
+        list,
+        statusList,
         totalPrice: data.carTotalPrice
       })
     }).finally (() => {
@@ -77,11 +60,16 @@ Page({
     // console.log('getCalc', detail)
     const { sum, num, isCheckedAll, checkedList } = detail
     app.globalData.cartCount = num
-    const text = num + ''
-    wx.setTabBarBadge({
-      index: 2,
-      text
-    })
+    if (parseInt(num)) {
+      wx.setTabBarBadge({
+        index: 2,
+        text: num + ''
+      })
+    } else {
+      wx.removeTabBarBadge({
+        index: 2
+      })
+    }
     this.setData({
       isCheckedAll: isCheckedAll,
       totalPrice: sum,
@@ -91,19 +79,9 @@ Page({
   onSubmit (e) {
     let paramsData = []
     if (this.data.checkedList.length) {
-      paramsData = this.data.checkedList.map(item => {
-        return {
-          id: item.id,
-          qty: item.qty
-        }
-      })
+      paramsData = this.data.checkedList.map(item => item.productId)
     } else if (this.data.checkedAll || this.data.isCheckedAll) {
-      paramsData = this.data.list.map(item => {
-        return {
-          id: item.id,
-          qty: item.qty
-        }
-      })
+      paramsData = this.data.list.map(item => item.productId)
     } else {
       this.setData({
         error: '请至少选择一件商品'
@@ -112,7 +90,19 @@ Page({
     if (!paramsData.length) return
     // console.log(e, paramsData)
     wx.navigateTo({
-      url: '/pages/reviewOrder/index'
+      url: '/pages/reviewOrder/index',
+      success (res) {
+        res.eventChannel.emit('acceptDataFromCart', paramsData)
+      }
+    })
+  },
+  _toLogn () {
+    wx.navigateTo({ url: '/pages/login/index' })
+  },
+  // 清空失效的商品
+  _clearAllSuccess () {
+    this.setData({
+      statusList: []
     })
   },
   onPullDownRefresh (e) {

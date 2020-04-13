@@ -1,6 +1,6 @@
 const deleteIconSrc = '/assets/trash.png'
 const computedBehavior = require('miniprogram-computed')
-import { addOrUpdate } from '../../../api/cart'
+import { addOrUpdate, reduce, updateQty, deleteProduct } from '../../../api/cart'
 Component({
   behaviors: [computedBehavior],
   options: {
@@ -43,7 +43,7 @@ Component({
       this.setData({
         result: this.data.result
       }, () => {
-        _this.triggerEvent('calc', { sum: _this.data.sum, isCheckedAll: val, checkedList: _this.data.checkedList })
+        _this.triggerEvent('calc', { sum: _this.data.sum, num: _this.data.num, isCheckedAll: val, checkedList: _this.data.checkedList })
         // console.log('sum', _this.data.sum, 'isCheckedAll', val, 'checkedList', _this.data.checkedList)
       })
     }
@@ -119,6 +119,7 @@ Component({
     },
     // 单击跳转到详情页
     onItemClick ({ currentTarget: { dataset: { id } } }) {
+      // console.log(id)
       if (!this.canClick()) return
       wx.navigateTo({
         url: `/pages/details/index?id=${id}`
@@ -129,20 +130,108 @@ Component({
       return false
     },
     // 修改订量
-    async onChangeQty ({
-      detail,
-      currentTarget: {
-        dataset: { index }
-      }
-    }) {
+    // async onChangeQty ({
+    //   detail,
+    //   currentTarget: {
+    //     dataset: { index }
+    //   }
+    // }) {
+    //   if (!this.canClick()) return
+    //   if (detail) {
+    //     const params = {
+    //       count: detail,
+    //       productId: this.data.result[index].productId
+    //     }
+    //     try {
+    //       await addOrUpdate(params, { showLoading: true })
+    //       const key = `result[${index}].quantity`
+    //       const _this = this
+    //       this.setData({
+    //         [key]: detail
+    //       }, () => {
+    //         _this.triggerEvent('calc', { sum: _this.data.sum, num: _this.data.num, isCheckedAll: _this.data.isCheckedAll, checkedList: _this.data.checkedList })
+    //         // console.log('sum', _this.data.sum, 'isCheckedAll', _this.data.isCheckedAll, 'checkedList', _this.data.checkedList)
+    //       })
+    //     } catch (err) {
+    //       console.log(err)
+    //     }
+    //   } else {
+    //     this.deleteItem(index)
+    //   }
+    // },
+    // 判断当前左滑组件是否可以点击
+    canClick () {
+      return this.data._isClose && this.data._transitionEnd
+    },
+    async _blur ({ detail: { value }, currentTarget: { dataset: { index } } }) {
+      // console.log(value, index)
       if (!this.canClick()) return
-      if (detail) {
+      const count = parseInt(value)
+      if (count) {
         const params = {
-          count: detail,
-          productId: this.data.result[index].id
+          count,
+          productId: this.data.result[index].productId
         }
         try {
-          await addOrUpdate(params, { showLoading: true })
+          await updateQty(params, { showLoading: true })
+          const key = `result[${index}].quantity`
+          const _this = this
+          this.setData({
+            [key]: count
+          }, () => {
+            _this.triggerEvent('calc', { sum: _this.data.sum, num: _this.data.num, isCheckedAll: _this.data.isCheckedAll, checkedList: _this.data.checkedList })
+            // console.log('sum', _this.data.sum, 'isCheckedAll', _this.data.isCheckedAll, 'checkedList', _this.data.checkedList)
+          })
+        } catch (err) {
+          console.log(err)
+          const detail = parseInt(this.data.result[index].quantity)
+          const key = `result[${index}].quantity`
+          this.setData({
+            [key]: detail
+          })
+        }
+      } else {
+        this.deleteItem(index)
+      }
+    },
+    async _plus ({ currentTarget: { dataset: { index } } }) {
+      // console.log({ currentTarget: { dataset: { index } } })
+      if (!this.canClick()) return
+      const params = {
+        count: 1,
+        productId: this.data.result[index].productId
+      }
+      const detail = parseInt(this.data.result[index].quantity) + 1
+      try {
+        await addOrUpdate(params, { showLoading: true })
+        const key = `result[${index}].quantity`
+        const _this = this
+        this.setData({
+          [key]: detail
+        }, () => {
+          _this.triggerEvent('calc', { sum: _this.data.sum, num: _this.data.num, isCheckedAll: _this.data.isCheckedAll, checkedList: _this.data.checkedList })
+          // console.log('sum', _this.data.sum, 'isCheckedAll', _this.data.isCheckedAll, 'checkedList', _this.data.checkedList)
+        })
+      } catch (err) {
+        console.log(err)
+        const detail = parseInt(this.data.result[index].quantity)
+        const key = `result[${index}].quantity`
+        this.setData({
+          [key]: detail
+        })
+      }
+    },
+    async _minus ({ currentTarget: { dataset: { index } } }) {
+      // console.log(index)
+      if (!this.canClick()) return
+      const detail = parseInt(this.data.result[index].quantity) - 1
+      if (detail) {
+        const params = {
+          count: 1,
+          productId: this.data.result[index].productId
+        }
+        try {
+          await reduce(params, { showLoading: true })
           const key = `result[${index}].quantity`
           const _this = this
           this.setData({
@@ -153,37 +242,44 @@ Component({
           })
         } catch (err) {
           console.log(err)
+          const detail = parseInt(this.data.result[index].quantity)
+          const key = `result[${index}].quantity`
+          this.setData({
+            [key]: detail
+          })
         }
       } else {
         this.deleteItem(index)
       }
-    },
-    // 判断当前左滑组件是否可以点击
-    canClick () {
-      return this.data._isClose && this.data._transitionEnd
     },
     /**
      * 删除指定商品
      * @param {index} 商品下标 
      */
     deleteItem (index) {
+      // console.log(index)
       const _this = this
       wx.showModal({
         content: '确定删除该商品吗？',
         confirmColor: '#f75355',
-        success ({ confirm, cancel }) {
+        async success ({ confirm, cancel }) {
           if (confirm) {
+            // const params = {
+            //   productIds: _this.data.result[index].productId + ''
+            // }
+            await deleteProduct(_this.data.result[index].productId + '', { showLoading: true })
             _this.data.result.splice(index, 1)
-            wx.showLoading()
-            setTimeout(() => {
-              _this.setData({
-                result: _this.data.result
-              }, () => {
-                _this.triggerEvent('calc', { sum: _this.data.sum, num: _this.data.num, isCheckedAll: _this.data.isCheckedAll, checkedList: _this.data.checkedList })
-                // console.log('sum', _this.data.sum, 'isCheckedAll', _this.data.isCheckedAll, 'checkedList', _this.data.checkedList)
-                wx.hideLoading()
-              })
-            }, 300)
+            _this.setData({
+              result: _this.data.result
+            }, () => {
+              _this.triggerEvent('calc', { sum: _this.data.sum, num: _this.data.num, isCheckedAll: _this.data.isCheckedAll, checkedList: _this.data.checkedList })
+            })
+          } else {
+            const detail = parseInt(_this.data.result[index].quantity)
+            const key = `result[${index}].quantity`
+            _this.setData({
+              [key]: detail
+            })
           }
         }
       })

@@ -118,6 +118,12 @@
 					"pathName": "pages/reviewOrder/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/address/index",
+					"pathName": "pages/address/index",
+					"scene": null
 				}
 			]
 		}

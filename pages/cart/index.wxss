@@ -1,9 +1,20 @@
 page {
   padding: 20rpx 0 60px;
 }
-.list-box {
+.toLogin {
+  padding-top: 300rpx;
+  text-align: center;
+}
+.toLogin .toLoginBtn {
+  padding: 0 150rpx;
+  font-weight: bolder;
+}
+.list-box, .status-box {
   position: relative;
   z-index: 1;
+}
+.status-box {
+  margin-top: 30rpx;
 }
 .submit-box {
   position: fixed;

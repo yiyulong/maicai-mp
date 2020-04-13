@@ -2,7 +2,10 @@
 <view class="topbar {{ topbarStyle? 'van-hairline--bottom': '' }}" style="background-color: {{ topbarStyle }}">
   <view class="location-box">
     <van-icon name="location-o" />
-    <text class="van-ellipsis">您当前的位置信息展示过长显示省略号</text>
+    <!-- <view class="van-ellipsis location">您当前的位置信息展示过长显示省略号</view> -->
+    <picker bind:change="_pickerChange" value="{{ areaIndex }}" range="{{ areaList }}" range-key="name">
+      <text class="van-ellipsis location">{{ areaList[areaIndex].name || '选择你的位置' }}</text>
+    </picker>
     <van-icon name="arrow-down" />
   </view>
   <navigator class="search-box" url="/pages/search/index">
@@ -14,7 +17,7 @@
   <swiper indicator-dots autoplay circular indicator-active-color="#20c064">
     <block wx:for="{{ bannerList }}" wx:key="index">
       <swiper-item>
-        <view class="swiper-item">
+        <view class="swiper-item" bind:tap="_toWebView">
           <image src="{{item.realm + item.picUrl}}" mode="aspectFill" />
         </view>
       </swiper-item>

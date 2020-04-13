@@ -10,7 +10,11 @@
     "pages/register/index",
     "pages/order/index",
     "pages/reviewOrder/index",
-    "pages/web/index"
+    "pages/web/index",
+    "pages/orderDetail/index",
+    "pages/coupon/index",
+    "pages/address/index",
+    "pages/editAddress/index"
   ],
   "window": {
     "backgroundColor": "#f5f5f5",
