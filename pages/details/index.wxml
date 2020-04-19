@@ -1,7 +1,7 @@
 <wxs src="../../wxs/price.wxs" module="price" />
 <view class="detail-box">
   <view class="swiper-content">
-    <swiper indicator-dots="{{ swiper.length > 1 }}" indicator-active-color="#20c064" circular>
+    <swiper indicator-dots="{{ swiper.length > 1 }}" indicator-active-color="#3695e3" circular>
       <block wx:for="{{ detail.bannerUrls }}" wx:key="index">
         <swiper-item>
           <view class="swiper-item">
@@ -51,7 +51,7 @@
       </view>
     </view>
     <view class="rt">
-      <van-button wx:if="{{ showLoginBtn }}" custom-class="btn-login" color="#20c064" round bind:click="_toLogn">登录</van-button>
+      <van-button wx:if="{{ showLoginBtn }}" custom-class="btn-login" color="#3695e3" round bind:click="_toLogn">登录</van-button>
       <van-button wx:else custom-class="btn-submit" color="#f75355" round bind:click="onAddToCart">
         加入购物篮
       </van-button>

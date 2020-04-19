@@ -1,7 +1,7 @@
 {
   "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
-  "backgroundColorTop": "#20c064",
+  "backgroundColorTop": "#3695e3",
   "usingComponents": {
     "my-image": "/components/my-image/index",
     "van-icon": "@vant/weapp/icon/index",

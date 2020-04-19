@@ -267,7 +267,7 @@ Component({
             // const params = {
             //   productIds: _this.data.result[index].productId + ''
             // }
-            await deleteProduct(_this.data.result[index].productId + '', { showLoading: true })
+            await deleteProduct({ productIds: _this.data.result[index].productId + '' }, { showLoading: true })
             _this.data.result.splice(index, 1)
             _this.setData({
               result: _this.data.result

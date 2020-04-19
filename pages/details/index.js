@@ -75,4 +75,10 @@ Page({
   _toLogn () {
     wx.navigateTo({ url: '/pages/login/index' })
   },
+  onShareAppMessage (res) {
+    return {
+      title: '大咖生鲜',
+      path: `/pages/details/index?id=${this.data._productId}`
+    }
+  }
 })

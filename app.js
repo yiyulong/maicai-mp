@@ -29,9 +29,13 @@ App({
     // console.log(this)
   },
   globalData: {
+    canGet: null, // 是否是新人 true: 新人可以领优惠券
     userInfo: null,
-    orderStatusCount: [], // 我的tab页面 订单角标
     cartCount: 0, // 购物车商品数量
-    switchClassifyId: null // 首页分类跳转到分类tab id
+    switchClassifyId: null, // 首页分类跳转到分类tab id
+    payParams: { // 订单支付状态判断
+      status: null,
+      orderNo: ''
+    }
   }
 })

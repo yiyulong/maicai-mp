@@ -1,5 +1,4 @@
 import { getUserInfo } from '../api/user'
-const app = getApp()
 const wxLogin = () => new Promise((resolve, reject) => {
   wx.login({
     success (res) {

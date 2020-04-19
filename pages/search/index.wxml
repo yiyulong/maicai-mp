@@ -2,7 +2,7 @@
   <van-search
     value="{{ value }}"
     placeholder="请输入商品名称"
-    background="#20c064"
+    background="#3695e3"
     shape="round"
     focus
     bind:search="onSearch"

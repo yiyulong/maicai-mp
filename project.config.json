@@ -123,6 +123,49 @@
 					"id": -1,
 					"name": "pages/address/index",
 					"pathName": "pages/address/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/coupon/index",
+					"pathName": "pages/coupon/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/payStatus/index",
+					"pathName": "pages/payStatus/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/editAddress/index",
+					"pathName": "pages/editAddress/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 13,
+					"name": "pages/order/index",
+					"pathName": "pages/order/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/coupon/index",
+					"pathName": "pages/coupon/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/orderDetail/index",
+					"pathName": "pages/orderDetail/index",
+					"query": "orderNo=20200414225014986",
 					"scene": null
 				}
 			]

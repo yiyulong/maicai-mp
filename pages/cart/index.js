@@ -1,4 +1,4 @@
-import { getCartList } from '../../api/cart'
+import { getCartList, deleteProduct } from '../../api/cart'
 const app = getApp()
 Page({
   data: {
@@ -25,9 +25,6 @@ Page({
         showLoginBtn: true
       })
     }
-    // wx.navigateTo({
-    //   url: '/pages/login/index'
-    // })
   },
   _getList () {
     getCartList().then(({ data }) => {
@@ -90,7 +87,7 @@ Page({
     if (!paramsData.length) return
     // console.log(e, paramsData)
     wx.navigateTo({
-      url: '/pages/reviewOrder/index',
+      url: '/pages/orderReview/index',
       success (res) {
         res.eventChannel.emit('acceptDataFromCart', paramsData)
       }
@@ -103,6 +100,25 @@ Page({
   _clearAllSuccess () {
     this.setData({
       statusList: []
+    })
+  },
+  // 删除选中的商品
+  _deleteSelectedItem () {
+    const _this = this
+    wx.showModal({
+      title: '提示',
+      content: '删除当前所选商品',
+      confirmColor: '#f75355',
+      async success ({ confirm, cancel }) {
+        if (confirm) {
+          const productIds = _this.data.checkedList.reduce((acc, cur) => {
+            acc.push(cur.productId)
+            return acc
+          }, [])
+          await deleteProduct({ productIds: productIds.join(',') }, { showLoading: true })
+          _this._getList()
+        }
+      }
     })
   },
   onPullDownRefresh (e) {

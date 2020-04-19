@@ -3,7 +3,8 @@ const baseUrl = 'https://dksx.dingliantech.com'
 function getCommonHeader () {
 
   let header = {
-    'Content-type': 'application/json'
+    'content-type': 'application/json'
+    // 'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
   }
 
   // 如果token有值则带上

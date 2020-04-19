@@ -4,11 +4,11 @@
   <mp-slideview buttons="{{ item.delete }}" icon="{{true}}" bindbuttontap="slideButtonTap" bind:hide="slideHide" bind:show="slideShow" bind:transitionend="slideTransitionEnd">
     <view class="list-item" data-id="{{ item.productId }}" bind:tap="onItemClick">
       <view class="lose-text">失效</view>
-      <!-- <van-checkbox value="{{ item.checked }}" custom-class="my-check" label-class="my-check-label" checked-color="#20c064" data-index="{{ index }}" bind:change="onItemCheck" /> -->
+      <!-- <van-checkbox value="{{ item.checked }}" custom-class="my-check" label-class="my-check-label" checked-color="#3695e3" data-index="{{ index }}" bind:change="onItemCheck" /> -->
       <view class="content van-hairline--bottom">
         <view class="info-box">
           <view class="img">
-            <my-image src="{{ item.realm + item.productMainImg }}" mode="contain" lazy-load square />
+            <my-image src="{{ item.realm + item.productMainImg }}" mode="aspectFit" lazy-load square />
           </view>
           <view class="info">
             <view class="name van-ellipsis">

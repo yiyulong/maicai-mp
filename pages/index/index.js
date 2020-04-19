@@ -1,14 +1,15 @@
-import { getBanner, getHomeCategoryList } from '../../api/common'
-import { getIsCommandProductList } from '../../api/product'
+import { getBanner, getHomeCategoryList, sendCouponForNewUser } from '../../api/common'
+import { getIsCommandProductList, getSaleProductList } from '../../api/product'
 import { getAreasList } from '../../api/address'
-import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast'
+import Toast from '@vant/weapp/toast/toast'
 const app = getApp()
 Page({
   data: {
     bannerList: [], // 顶部轮播图
     category: [], // 分类
     list: [],
-    topbarStyle: '',
+    saleList: [],
+    topbarStyle: '#fff',
     isNoMore: false,
     _pageNum: 1,
     areaList: [],
@@ -16,20 +17,22 @@ Page({
   },
   async onLoad () {
     // 获取轮播图 分类 推荐商品
-    const [{ data: { list: bannerList } }, { data: category }, { data: { list: areaList } }] = await Promise.all([getBanner(), getHomeCategoryList(), getAreasList(), this._getList()])
+    const [{ data: { list: bannerList } }, { data: category }, { data: { list: areaList } }, { data }] = await Promise.all([getBanner(), getHomeCategoryList(), getAreasList(), getSaleProductList(), this._getList()])
     this.setData({
       bannerList,
       category,
-      areaList
+      areaList: [{ id: null, name: '目前已开放配送范围' }, ...areaList],
+      saleList: data?.list || []
     })
+    // sendCouponForNewUser('15800807767')
   },
-  onReady () {
-    // 获取topbar高度
-    wx.createSelectorQuery().in(this).select('.topbar').boundingClientRect(rect => {
-      const { bottom: top } = rect
-      this.observerContentScroll(-top)
-    }).exec()
-  },
+  // onReady () {
+  //   // 获取topbar高度
+  //   wx.createSelectorQuery().in(this).select('.topbar').boundingClientRect(rect => {
+  //     const { bottom: top } = rect
+  //     this.observerContentScroll(-top)
+  //   }).exec()
+  // },
   onShow () {
     if (parseInt(app.globalData.cartCount)) {
       wx.setTabBarBadge({
@@ -42,17 +45,17 @@ Page({
       })
     }
   },
-  observerContentScroll (top) {
-    this.createIntersectionObserver().disconnect()
-    // 设置参考区域减去tobbar高度
-    // 收缩参照节点布局区域的边界
-    this.createIntersectionObserver().relativeToViewport({ top })
-      .observe('.swiper', ({ intersectionRect: { top: intersectionTop } }) => { // 相交区域的上边界坐标
-        this.setData({
-          topbarStyle: intersectionTop ? '' : '#fff'
-        })
-      })
-  },
+  // observerContentScroll (top) {
+  //   this.createIntersectionObserver().disconnect()
+  //   // 设置参考区域减去tobbar高度
+  //   // 收缩参照节点布局区域的边界
+  //   this.createIntersectionObserver().relativeToViewport({ top })
+  //     .observe('.swiper', ({ intersectionRect: { top: intersectionTop } }) => { // 相交区域的上边界坐标
+  //       this.setData({
+  //         topbarStyle: intersectionTop ? '' : '#fff'
+  //       })
+  //     })
+  // },
   _pickerChange ({ detail: { value } }) {
     // console.log(value)
     this.setData({ areaIndex: value })
@@ -92,7 +95,10 @@ Page({
         index: 2
       })
     }
-    Toast.success('已加入购物车')
+    Toast.success({
+      message: '已加入购物车',
+      duration: 1000
+    })
   },
   _addError () {
     // Toast.fail('添加失败请重试')

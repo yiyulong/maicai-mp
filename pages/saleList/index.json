@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "促销商品",
+  "navigationBarBackgroundColor": "#3695e3",
+  "backgroundColor": "#ffffff",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "pdt-list": "/components/pdt-list/index"
+  }
+}

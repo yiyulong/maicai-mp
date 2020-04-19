@@ -74,9 +74,13 @@ Component({
         acc.push(cur.productId)
         return acc
       }, [])
-      await deleteProduct(productIds.join(','))
-      wx.hideLoading()
-      this.triggerEvent('clearAllSuccess')
+      try {
+        await deleteProduct({ productIds: productIds.join(',') })
+        wx.hideLoading()
+        this.triggerEvent('clearAllSuccess')
+      } catch(err) {
+        wx.hideLoading()
+      }
     },
     /**
      * 删除指定商品
@@ -93,7 +97,7 @@ Component({
             // const params = {
             //   productIds: _this.data.result[index].productId + ''
             // }
-            await deleteProduct(_this.data.result[index].productId + '', { showLoading: true })
+            await deleteProduct({ productIds: _this.data.result[index].productId + '' }, { showLoading: true })
             _this.data.result.splice(index, 1)
             _this.setData({
               result: _this.data.result

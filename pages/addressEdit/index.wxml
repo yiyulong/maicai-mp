@@ -1,3 +1,4 @@
+<van-toast id="van-toast" />
 <van-cell-group custom-class="field_box">
   <van-field
     value="{{ name }}"
@@ -6,6 +7,15 @@
     data-key="name"
     bind:change="onChange"
   />
+  <van-cell
+    center
+    value-class="radioValue"
+  >
+    <radio-group bind:change="_genderChange">
+      <radio class="radioClass" color="#3695e3" value="先生">先生</radio>
+      <radio class="radioClass" color="#3695e3" value="女士">女士</radio>
+    </radio-group>
+  </van-cell>
   <van-field
     value="{{ mobile }}"
     placeholder="请填写手机号"
@@ -36,11 +46,11 @@
     center
   >
     <view class="switchValue">
-      <van-switch active-color="#20c064" size="22px" checked="{{ prime }}" active-value="{{ 1 }}" inactive-value="{{ 0 }}" bind:change="onSwitch" />
+      <van-switch active-color="#3695e3" size="22px" checked="{{ prime }}" active-value="{{ 1 }}" inactive-value="{{ 0 }}" bind:change="_primeSwitch" />
     </view>
   </van-cell>
 </van-cell-group>
 <view class="btns">
-  <van-button loading="{{ saving }}" block round color="#20c064" custom-class="btn" bind:click="_addOrUpdateAddress">保存</van-button>
+  <van-button loading="{{ saving }}" block round color="#3695e3" custom-class="btn" bind:click="_addOrUpdateAddress">保存</van-button>
   <van-button wx:if="{{ id }}" block round custom-class="btn" bind:click="_deleteAddress">删除</van-button>
 </view>

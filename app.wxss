@@ -13,4 +13,7 @@ page {
 image {
   vertical-align: middle;
 }
+page button:not([size='mini']) {
+  width: initial;
+}
 /**公共样式**/

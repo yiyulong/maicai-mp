@@ -47,6 +47,16 @@ page {
 .submit-box .content .price .small {
   font-size: 24rpx;
 }
-.btn-submit {
+.submit-box .deleteSelectedItem {
+  margin-left: 30rpx;
+  font-size: 28rpx;
+  color: #999;
+  padding: 16rpx 20rpx;
+  margin-left: 20rpx;
+}
+.submit-box .btn {
   width: 100px;
+}
+.submit-box .btn .btn-submit {
+  width: 100%;
 }

@@ -2,6 +2,8 @@
   min-height: calc(100vh - 20rpx);
   background: #ffffff;
   margin-top: 20rpx;
+  padding-bottom: 140rpx;
+  box-sizing: border-box;
 }
 .address_item {
   position: relative;
@@ -13,7 +15,7 @@
   left: 0;
   height: 0;
   height: 0;
-  border-top: 16px solid #20c064;
+  border-top: 16px solid #3695e3;
   border-right: 16px solid transparent;
 }
 .space {
@@ -26,8 +28,9 @@
 }
 .address_add {
   position: fixed;
-  bottom: calc(20rpx + constant(safe-area-inset-bottom));
-  bottom: calc(20rpx + env(safe-area-inset-bottom));
+  /* bottom: calc(20rpx + constant(safe-area-inset-bottom));
+  bottom: calc(20rpx + env(safe-area-inset-bottom)); */
+  bottom: 40rpx;
   left: 0;
   right: 0;
   text-align: center;

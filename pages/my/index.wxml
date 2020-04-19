@@ -1,6 +1,6 @@
 <view class="my-box">
   <view class="avatar-box">
-    <view class="avatar-content" bind:tap="onLogin">
+    <view class="avatar-content" bind:tap="_onLogin">
       <view class="avatar">
         <my-image src="{{ avatar || '/assets/avatar.png' }}" mode="aspectFill" round></my-image>
       </view>
@@ -21,29 +21,33 @@
     </view>
   </view>
   <view class="order-box">
-    <van-cell title="我的订单" value="查看全部订单" icon="notes-o" is-link data-index="0" bind:click="onOrder" />
+    <van-cell title="我的订单" value="查看全部订单" icon="notes-o" is-link data-index="0" bind:click="_onOrder" />
     <van-grid border="{{ false }}" clickable>
-      <van-grid-item icon="peer-pay" text="待支付" data-index="1" bind:click="onOrder" />
-      <van-grid-item icon="send-gift-o" text="待收货" data-index="2" bind:click="onOrder" />
-      <van-grid-item icon="comment-o" text="待评价" data-index="3" bind:click="onOrder" />
-      <van-grid-item icon="gold-coin-o" text="售后/退款" />
+      <block wx:for="{{ gardList }}" wx:key="index">
+        <van-grid-item icon="{{ item.icon }}" text="{{ item.text }}" data-index="{{ item.index }}" info="{{ item.info }}" bind:click="_onOrder" />
+      </block>
+      <!-- <van-grid-item icon="peer-pay" text="待支付" data-index="1" bind:click="_onOrder" />
+      <van-grid-item icon="send-gift-o" text="待收货" data-index="3" bind:click="_onOrder" />
+      <van-grid-item icon="comment-o" text="待评价" data-index="4" bind:click="_onOrder" /> -->
+      <van-grid-item icon="gold-coin-o" text="售后/退款" data-index="6" />
     </van-grid>
   </view>
   <view class="my-content">
     <van-cell-group>
-      <van-cell title="我的收货地址" is-link bind:click="_toAddress" />
+      <van-cell icon="logistics" title="我的收货地址" is-link bind:click="_toAddress" />
+      <van-cell icon="coupon-o" title="我的优惠券" is-link bind:click="_toCoupon" />
     </van-cell-group>
   </view>
   <view class="my-content">
     <van-cell-group>
-      <van-cell icon="service-o" title="联系客服" is-link />
+      <van-cell icon="service-o" title="联系客服" is-link bind:tap="_previewImage" />
       <van-cell icon="question-o" title="意见反馈" is-link />
     </van-cell-group>
   </view>
+  <view wx:if="{{ version }}" class="version">当前版本：{{version}}</view>
 </view>
 <block wx:if="{{ userInfo && userInfo.mobile }}">
   <view class="logout">
-    <van-button color="#e44545" round block bind:click="onLogout">退出登录</van-button>
+    <van-button color="#e44545" round block bind:click="_onLogout">退出登录</van-button>
   </view>
 </block>
-<view class="version">{{version}}</view>

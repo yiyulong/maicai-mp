@@ -4,11 +4,23 @@
   padding: 8rpx;
   overflow: hidden;
 }
-.img-box {}
+.img-box {
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+}
+.img-box .img-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
 .name-box {
   height: 90rpx;
   padding: 0 12rpx;
   line-height: 0;
+  margin-top: 10rpx;
 }
 .name-box .name {
   line-height: 34rpx;
@@ -50,7 +62,7 @@
   text-decoration: line-through;
 }
 .amt-box .rulingPrice {
-  font-size: 32rpx;
+  font-size: 38rpx;
   color: #ec132d;
   font-weight: 400;
 }

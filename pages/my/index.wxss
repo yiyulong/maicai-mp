@@ -3,11 +3,11 @@ page {
 }
 .my-box {
   min-height: 100%;
-  padding-bottom: 30rpx;
+  padding-bottom: 60rpx;
   box-sizing: border-box;
 }
 .avatar-box {
-  background-color: #20c064;
+  background-color: #3695e3;
   padding: 140rpx 30rpx 30rpx;
 }
 .avatar-content {
@@ -52,7 +52,7 @@ page {
 }
 
 .version {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   z-index: -1;
   left: 0;

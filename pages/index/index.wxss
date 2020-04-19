@@ -1,3 +1,19 @@
+page {
+  /* padding-top: 80rpx; */
+}
+.bg-container {
+  position: relative;
+  padding-top: 80rpx;
+}
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
 /**顶部定位和搜索按钮**/
 .topbar {
   position: fixed;
@@ -47,47 +63,62 @@
 }
 
 /**轮播图**/
+.swiper {
+  /* background: #fff; */
+}
 .swiper .swiper-item {
   height: 100%;
+  padding: 0 20rpx;
 }
 .swiper .swiper-item image {
   width: 100%;
   height: 100%;
+  border-radius: 10rpx;
 }
 
 /**分类格子布局**/
 .grid {
-  background-color: #fff;
   padding: 14rpx 20rpx;
   margin-bottom: 20rpx;
 }
-.grid .grid-item {
-  text-align: center;
-  width: 100%;
+.grid-container {
+  display: flex;
+  flex-flow: row wrap;
+  position: relative;
+  z-index: 1;
 }
-.grid-item .grid-item_img {
+.grid-item-container {
+  flex: 0 0 20%;
+  box-sizing: border-box;
+  padding: 8rpx;
+  text-align: center;
+}
+.grid-item-container .grid-item_img {
   height: 0;
   padding-bottom: 100%;
   position: relative;
 }
-.grid-item .grid-item_img .grid-item_img_content {
+.grid-item-container .grid-item_img .grid-item_img_content {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
-.grid-item text {
+.grid-item-container text {
   font-size: 24rpx;
+  font-weight: 600;
   color: #666;
 }
 
 /**单品列表**/
 .list {
   background-color: #fff;
+  margin-bottom: 20rpx;
 }
 .recommend-box {
   padding: 20rpx 20rpx 0;
+  position: relative;
 }
 .recommend-box .recommend {
   line-height: 60rpx;
@@ -95,6 +126,13 @@
   font-weight: bold;
   padding-left: 20rpx;
   background: no-repeat;
-  background-image: linear-gradient(to right, #20c064, #20c064);
+  background-image: linear-gradient(to right, #3695e3, #3695e3);
   background-size: 10rpx 100%;
+}
+.recommend-box .more {
+  position: absolute;
+  right: 20rpx;
+  bottom: 6rpx;
+  color: #3695e3;
+  font-size: 28rpx;
 }

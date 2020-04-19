@@ -52,13 +52,13 @@ page {
 }
 .navigator-hover {
   background-color: transparent;
-  color: #20c064;
+  color: #3695e3;
 }
 .policyAgreement {
   font-size: 12px;
   color: #999;
 }
 .webLink {
-  color: #20c064;
+  color: #3695e3;
   display: inline-block;
 }

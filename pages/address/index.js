@@ -45,7 +45,7 @@ Page({
     // console.log(id, index)
     const _this = this
     wx.navigateTo({
-      url: `/pages/editAddress/index?id=${id}`,
+      url: `/pages/addressEdit/index?id=${id}`,
       events: {
         // 从编辑地址页面传过来之后更新地址列表
         acceptDataFromEditAddress () {
@@ -59,8 +59,9 @@ Page({
     })
   },
   _addAddress () {
+    const _this = this
     wx.navigateTo({
-      url: '/pages/editAddress/index',
+      url: '/pages/addressEdit/index',
       events: {
         // 从编辑地址页面传过来之后更新地址列表
         acceptDataFromEditAddress () {

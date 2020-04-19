@@ -1,4 +1,5 @@
 import { getAreasList, addOrUpdateAddress, deleteAddress } from '../../api/address'
+import Toast from '@vant/weapp/toast/toast'
 Page({
   data: {
     areaList: [], // 区域列表
@@ -7,7 +8,8 @@ Page({
     name: '',
     mobil: '',
     address: '',
-    prime: false // 是否为默认地址
+    prime: 0, // 是否为默认地址
+    radio: ''
   },
   onLoad (options) {
     getAreasList().then(res => {
@@ -39,7 +41,11 @@ Page({
       [key]: detail
     })
   },
-  onSwitch ({ detail }) {
+  _genderChange ({ detail: { value } }) {
+    // console.log(value)
+    this.setData({ radio: value })
+  },
+  _primeSwitch ({ detail }) {
     this.setData({ prime: detail })
   },
   _pickerChange ({ detail: { value } }) {
@@ -53,15 +59,20 @@ Page({
     const params = {
       address: this.data.address,
       addressId: this.data.id || null,
+      areas: this.data.areaList[this.data.areaIndex]?.name || '',
       mobile: this.data.mobile,
-      name: this.data.name,
+      name: this.data.name + this.data.radio,
       prime: this.data.prime // 是否为默认地址
     }
-    await addOrUpdateAddress(params).catch(err => {
+    try {
+      await addOrUpdateAddress(params)
       this.setData({ saving: false })
-    })
-    this.setData({ saving: false })
-    this._eventChannel?.emit('acceptDataFromEditAddress')
+      Toast.success('保存成功')
+      this._eventChannel?.emit('acceptDataFromEditAddress')
+      wx.navigateBack()
+    } catch (err) {
+      this.setData({ saving: false })
+    }
   },
   _deleteAddress () {
     const _this = this
@@ -70,7 +81,7 @@ Page({
       content: '确认删除地址',
       async success (res) {
         if (res.confirm) {
-          await deleteAddress({ addressId: _this.data.id }, { showLoading: true })
+          await deleteAddress({ addressId: parseInt(_this.data.id) }, { showLoading: true })
           _this._eventChannel?.emit('acceptDataFromEditAddress')
           wx.navigateBack()
         }

@@ -1,7 +1,7 @@
 const computedBehavior = require('miniprogram-computed')
 import { getCategory, getSecondCategoryProduct } from '../../api/common'
 import { addOrUpdate } from '../../api/cart'
-import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast'
+import Toast from '@vant/weapp/toast/toast'
 const app = getApp()
 Component({
   behaviors: [computedBehavior],

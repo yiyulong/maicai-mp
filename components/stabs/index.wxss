@@ -32,7 +32,7 @@
   overflow: hidden;
 }
 .stabs-bar__item.active {
-  color: #20c064;
+  color: #3695e3;
 }
 .stabs-bar__item__title{
   font-size: 12px;

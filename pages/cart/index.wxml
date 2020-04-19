@@ -7,10 +7,11 @@
   <status-list list="{{ statusList }}" bind:clearAllSuccess="_clearAllSuccess" />
 </view>
 <view class="toLogin" wx:if="{{ showLoginBtn }}">
-  <van-button color="#20c064" round custom-class="toLoginBtn" bind:click="_toLogn">登录</van-button>
+  <van-button color="#3695e3" round custom-class="toLoginBtn" bind:click="_toLogn">登录</van-button>
 </view>
 <view class="submit-box van-hairline--top" wx:else>
-  <van-checkbox value="{{ checkedAll && isCheckedAll }}" checked-color="#20c064" bind:change="onCheckAll">全选</van-checkbox>
+  <van-checkbox value="{{ checkedAll && isCheckedAll }}" checked-color="#3695e3" bind:change="onCheckAll">全选</van-checkbox>
+  <text class="deleteSelectedItem" bind:tap="_deleteSelectedItem">删除</text>
   <view class="content">
     <view class="price">
       <text class="currency">¥</text>

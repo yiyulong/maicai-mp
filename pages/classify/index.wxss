@@ -70,7 +70,7 @@ page {
   transform: scaleY(.5);
 }
 .lt-box .classify-sidebar-item.van-sidebar-item--selected {
-  border-color: #42b656;
+  border-color: #3695e3;
   background: #fff;
  }
 .rt-box {

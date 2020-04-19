@@ -1,11 +1,14 @@
 {
   "enablePullDownRefresh": true,
+  "navigationBarBackgroundColor": "#3695e3",
+  "backgroundColorBottom": "#ffffff",
+  "navigationBarTextStyle": "white",
   "usingComponents": {
     "van-icon": "@vant/weapp/icon/index",
-    "van-grid": "@vant/weapp/grid/index",
-    "van-grid-item": "@vant/weapp/grid-item/index",
     "my-image": "/components/my-image/index",
     "pdt-list": "/components/pdt-list/index",
-    "van-toast": "@vant/weapp/toast/index"
+    "pdt-scroll": "/components/pdt-scroll/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-tag": "@vant/weapp/tag/index"
   }
 }

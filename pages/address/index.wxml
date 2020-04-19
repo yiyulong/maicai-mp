@@ -5,7 +5,7 @@
       data-id="{{ item.addressId }}" data-index="{{ index }}"
       bind:tap="_selectAddress"
     >
-      <van-cell title="{{ item.address }}" center label="{{ item.name + ' ' + item.mobile }}" clickable="{{ canSelect }}">
+      <van-cell title="{{ item.areas + ' ' + item.address }}" center label="{{ item.name + ' ' + item.mobile }}" clickable="{{ canSelect }}">
         <view data-id="{{ item.addressId }}" data-index="{{ index }}" class="editIcon" catch:tap="_editAddress">
           <van-icon slot="right-icon" name="edit" size="20px" />
         </view>
@@ -15,5 +15,5 @@
   <view class="space" />
 </view>
 <view class="address_add">
-  <van-button round icon="add-o" color="#20c064" custom-class="addBtn" bind:click="_addAddress">添加新地址</van-button>
+  <van-button round icon="add-o" color="#3695e3" custom-class="addBtn" bind:click="_addAddress">添加新地址</van-button>
 </view>

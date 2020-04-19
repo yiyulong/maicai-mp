@@ -6,7 +6,7 @@ page {
 .detail-box {
 }
 .detail-box swiper {
-  height: 70vw;
+  height: 100vw;
 }
 .detail-box .swiper-item {
   height: 100%;
@@ -23,18 +23,19 @@ page {
 }
 .detail-info .detail_name {
   font-weight: bold;
+  font-size: 44rpx;
 }
 .detail-info .detail_desc {
-  font-size: 24rpx;
+  font-size: 28rpx;
   color: #666;
 }
 .detail-info .detail_price {
-  font-size: 44rpx;
+  font-size: 56rpx;
   color: #ec132d;
   font-weight: 400;
 }
 .detail-info .currency, .small {
-  font-size: 32rpx;
+  font-size: 40rpx;
 }
 .detail-info .detail_price .price {
   display: inline-block;
@@ -110,13 +111,13 @@ page {
 }
 
 .goods-action .content .price {
-  font-size: 32rpx;
+  font-size: 38rpx;
   color: #ec132d;
   font-weight: 400;
 }
 .goods-action .content .price .currency {
-  font-size: 24rpx;
+  font-size: 28rpx;
 }
 .goods-action .content .price .small {
-  font-size: 24rpx;
+  font-size: 28rpx;
 }

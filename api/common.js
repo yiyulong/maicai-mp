@@ -6,3 +6,5 @@ module.exports.getSecondCategoryProduct = (data, config = {}) => getRequest('/pr
 module.exports.getServicetime = (data, config = {}) => getRequest('/servicetime/list', data, config) // 查看送达日期列表
 module.exports.getAreasList = (data, config = {}) => getRequest('/areas/getAreasList', data, config) // 区域列表
 module.exports.getCoupon = (data, config = {}) => getRequest('/coupon/list', data, config) // 查看优惠券列表
+module.exports.orderCouponList = (amt, config = {}) => getRequest('/coupon/orderCouponList', { amt }, config) // 查看优惠券列表
+module.exports.sendCouponForNewUser = (mobile, config = {}) => postRequest('/coupon/sendCouponForNewUser', { mobile }, config) // 新用户领取优惠券

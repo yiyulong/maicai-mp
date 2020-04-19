@@ -1,34 +1,37 @@
 <!-- index.wxml -->
-<view class="topbar {{ topbarStyle? 'van-hairline--bottom': '' }}" style="background-color: {{ topbarStyle }}">
-  <view class="location-box">
-    <van-icon name="location-o" />
-    <!-- <view class="van-ellipsis location">您当前的位置信息展示过长显示省略号</view> -->
-    <picker bind:change="_pickerChange" value="{{ areaIndex }}" range="{{ areaList }}" range-key="name">
-      <text class="van-ellipsis location">{{ areaList[areaIndex].name || '选择你的位置' }}</text>
-    </picker>
-    <van-icon name="arrow-down" />
+<view class="bg-container">
+  <image src="../../assets/iindex_bg.jpeg" class="bg" />
+
+<!-- class="topbar {{ topbarStyle? 'van-hairline--bottom': '' }}" style="background-color: {{ topbarStyle }}" -->
+  <view class="topbar">
+    <view class="location-box">
+      <van-icon name="location-o" />
+      <!-- <view class="van-ellipsis location">您当前的位置信息展示过长显示省略号</view> -->
+      <picker bind:change="_pickerChange" value="{{ areaIndex }}" range="{{ areaList }}" range-key="name" header-text="目前已开放配送范围">
+        <text class="van-ellipsis location">{{ areaList[areaIndex].name || '选择收货地址' }}</text>
+      </picker>
+      <van-icon name="arrow-down" />
+    </view>
+    <navigator class="search-box" url="/pages/search/index">
+      <van-icon name="search" />
+      <text>输入商品名称</text>
+    </navigator>
   </view>
-  <navigator class="search-box" url="/pages/search/index">
-    <van-icon name="search" />
-    <text>输入商品名称</text>
-  </navigator>
-</view>
-<view class="swiper">
-  <swiper indicator-dots autoplay circular indicator-active-color="#20c064">
-    <block wx:for="{{ bannerList }}" wx:key="index">
-      <swiper-item>
-        <view class="swiper-item" bind:tap="_toWebView">
-          <image src="{{item.realm + item.picUrl}}" mode="aspectFill" />
-        </view>
-      </swiper-item>
-    </block>
-  </swiper>
-</view>
-<view class="grid">
-  <van-grid column-num="5" border="{{ false }}" clickable>
-    <block wx:for="{{ category }}" wx:key="index">
-      <van-grid-item use-slot data-id="{{item.id}}" bind:tap="_switchClassify">
-        <view class="grid-item">
+  <view class="swiper">
+    <swiper indicator-dots autoplay circular indicator-active-color="#3695e3">
+      <block wx:for="{{ bannerList }}" wx:key="index">
+        <swiper-item>
+          <view class="swiper-item" bind:tap="_toWebView">
+            <image src="{{item.realm + item.picUrl}}" mode="aspectFill" />
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="grid">
+    <view class="grid-container">
+      <block wx:for="{{ category }}" wx:key="index">
+        <view class="grid-item-container" data-id="{{item.id}}" bind:tap="_switchClassify">
           <view class="grid-item_img">
             <view class="grid-item_img_content">
               <my-image src="{{item.url}}" round mode="aspectFill"></my-image>
@@ -36,9 +39,16 @@
           </view>
           <text>{{item.name}}</text>
         </view>
-      </van-grid-item>
-    </block>
-  </van-grid>
+      </block>
+    </view>
+  </view>
+</view>
+<view class="list">
+  <view class="recommend-box">
+    <view class="recommend">促销商品<van-tag type="danger">hot</van-tag></view>
+    <view class="more"><navigator url="/pages/saleList/index">更多</navigator></view>
+  </view>
+  <pdt-scroll list="{{ saleList }}" bind:addSuccess="_addSuccess" bind:addError="_addError" />
 </view>
 <view class="list">
   <view class="recommend-box">
