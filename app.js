@@ -9,24 +9,6 @@ App({
     // var logs = wx.getStorageSync('logs') || []
     // logs.unshift(Date.now())
     // wx.setStorageSync('logs', logs)
-
-    wxLogin().then(res => {
-      this.globalData.userInfo = {
-        mobile: res.mobile
-      }
-      this.globalData.cartCount = res.cartCount
-      if (parseInt(res.cartCount)) {
-        wx.setTabBarBadge({
-          index: 2,
-          text: res.cartCount + ''
-        })
-      } else {
-        wx.removeTabBarBadge({
-          index: 2
-        })
-      }
-    })
-    // console.log(this)
   },
   globalData: {
     canGet: null, // 是否是新人 true: 新人可以领优惠券
@@ -36,6 +18,22 @@ App({
     payParams: { // 订单支付状态判断
       status: null,
       orderNo: ''
+    }
+  },
+  getUserInfo: async function(callback) {
+    const _this = this
+    if (_this.globalData.userInfo?.mobile) {
+      const { canGet, userInfo: { mobile }, cartCount } = _this.globalData
+      callback(null, { canGet, mobile, cartCount })
+    } else {
+      try {
+        const res = await wxLogin()
+        callback(null, res)
+        const { canGet, mobile, cartCount } = res
+        _this.globalData = { ..._this.globalData, canGet, userInfo: { mobile }, cartCount }
+      } catch (err) {
+        callback(err)
+      }
     }
   }
 })

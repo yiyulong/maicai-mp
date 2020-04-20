@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "新人领取优惠券",
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-toast": "@vant/weapp/toast/index"
+  }
+}

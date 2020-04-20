@@ -41,7 +41,8 @@ Page({
           const { addressId: id, mobile, name, address, areas } = data
           _this.setData({
             orderAddressVo: { id, mobile, name, address, areas },
-            time: '' // 重新选择地址 所以时间要清空
+            time: {}, // 重新选择地址 所以时间要清空
+            timeValue: ''
           })
         }
       },

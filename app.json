@@ -58,6 +58,27 @@
       }
     ]
   },
+  "subPackages": [
+    {
+      "name": "coupon",
+      "root": "subPages/coupon/",
+      "pages": [
+        "newPreson/index"
+      ]
+    },
+    {
+      "root": "subPages/service/",
+      "pages": [
+        "FAQ/index",
+        "feedback/index"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/index/index": {
+      "packages": ["coupon"]
+    }
+  },
   "sitemapLocation": "sitemap.json",
   "style": "v2"
 }

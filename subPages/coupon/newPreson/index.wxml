@@ -1,0 +1,9 @@
+<view class="page_container">
+  <view class="input_content">
+    <input value="{{ inputValue }}" auto-focus placeholder="请输入手机号" type="number" bindinput="_onInput" />
+  </view>
+  <view class="btn_content">
+    <van-button bind:click="_getCoupon">领取优惠券</van-button>
+  </view>
+</view>
+<van-toast id="van-toast" />

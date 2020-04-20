@@ -6,8 +6,8 @@
       </view>
       <view class="user-info">
         <block wx:if="{{ userInfo && userInfo.mobile }}">
-          <view class="name">{{ userInfo.name }}</view>
-          <view class="accounts">{{ userInfo.mobile }}</view>
+          <view class="name">{{ userInfo.mobile }}</view>
+          <!-- <view class="accounts">{{ userInfo.mobile }}</view> -->
         </block>
         <block wx:else>
           <view class="name">立即登录</view>
@@ -41,7 +41,8 @@
   <view class="my-content">
     <van-cell-group>
       <van-cell icon="service-o" title="联系客服" is-link bind:tap="_previewImage" />
-      <van-cell icon="question-o" title="意见反馈" is-link />
+      <van-cell icon="question-o" title="常见问题" is-link url="/subPages/service/FAQ/index" />
+      <van-cell icon="records" title="意见反馈" is-link url="/subPages/service/feedback/index" />
     </van-cell-group>
   </view>
   <view wx:if="{{ version }}" class="version">当前版本：{{version}}</view>

@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
@@ -166,6 +166,12 @@
 					"name": "pages/orderDetail/index",
 					"pathName": "pages/orderDetail/index",
 					"query": "orderNo=20200414225014986",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "subPages/coupon/newPreson/index",
+					"pathName": "subPages/coupon/newPreson/index",
 					"scene": null
 				}
 			]

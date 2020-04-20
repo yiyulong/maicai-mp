@@ -1,0 +1,10 @@
+.page_container {
+  text-align: center;
+  padding-top: 20%;
+}
+.input_content {
+  padding-bottom: 40rpx;
+}
+.btn_content {
+  padding-bottom: 20rpx;
+}

@@ -57,3 +57,8 @@
   <pdt-list list="{{ list }}" is-no-more="{{ isNoMore }}" bind:addSuccess="_addSuccess" bind:addError="_addError" />
 </view>
 <van-toast id="van-toast" />
+<van-popup show="{{ showPop }}" bind:close="_closePop">
+  <view class="getCoupon">
+    <van-button color="#3695e3" round bind:click="_toGetCoupon">领取新人优惠券</van-button>
+  </view>
+</van-popup>

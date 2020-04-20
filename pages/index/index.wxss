@@ -90,7 +90,7 @@ page {
 .grid-item-container {
   flex: 0 0 20%;
   box-sizing: border-box;
-  padding: 8rpx;
+  padding: 16rpx 16rpx 10rpx;
   text-align: center;
 }
 .grid-item-container .grid-item_img {
@@ -135,4 +135,7 @@ page {
   bottom: 6rpx;
   color: #3695e3;
   font-size: 28rpx;
+}
+.getCoupon {
+  padding: 40px 20px;
 }

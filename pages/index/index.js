@@ -1,4 +1,4 @@
-import { getBanner, getHomeCategoryList, sendCouponForNewUser } from '../../api/common'
+import { getBanner, getHomeCategoryList } from '../../api/common'
 import { getIsCommandProductList, getSaleProductList } from '../../api/product'
 import { getAreasList } from '../../api/address'
 import Toast from '@vant/weapp/toast/toast'
@@ -13,7 +13,8 @@ Page({
     isNoMore: false,
     _pageNum: 1,
     areaList: [],
-    areaIndex: null
+    areaIndex: null,
+    showPop: false // 新人领取优惠券
   },
   async onLoad () {
     // 获取轮播图 分类 推荐商品
@@ -24,7 +25,24 @@ Page({
       areaList: [{ id: null, name: '目前已开放配送范围' }, ...areaList],
       saleList: data?.list || []
     })
-    // sendCouponForNewUser('15800807767')
+    app.getUserInfo((err, res) => {
+      // console.log(err, res)
+      if (!err) {
+        if (res.canGet) {
+          this.setData({ showPop: true })
+        }
+        if (parseInt(res.cartCount)) {
+          wx.setTabBarBadge({
+            index: 2,
+            text: res.cartCount + ''
+          })
+        } else {
+          wx.removeTabBarBadge({
+            index: 2
+          })
+        }
+      }
+    })
   },
   // onReady () {
   //   // 获取topbar高度
@@ -105,6 +123,18 @@ Page({
   },
   _toWebView () {
     wx.navigateTo({ url: '/pages/web/index'})
+  },
+  _closePop () {
+    this.setData({ showPop: false })
+  },
+  _toGetCoupon () {
+    const _this = this
+    wx.navigateTo({
+      url: '/subPages/coupon/newPreson/index',
+      success () {
+        _this.setData({ showPop: false })
+      }
+    })
   },
   // 下拉刷新
   onPullDownRefresh () {

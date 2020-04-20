@@ -26,20 +26,24 @@ Page({
     })
   },
   onShow () {
-    if (app.globalData.userInfo?.mobile) {
-      if (this.data.showLoginBtn) {
-        this.setData({
-          showLoginBtn: false
-        })
+    app.getUserInfo((err, res) => {
+      if(!err) {
+        if (res.mobile) {
+          if (this.data.showLoginBtn) {
+            this.setData({
+              showLoginBtn: false
+            })
+          }
+          this.setData({
+            cartCount: res.cartCount
+          })
+        } else {
+          this.setData({
+            showLoginBtn: true
+          })
+        }
       }
-      this.setData({
-        cartCount: app.globalData.cartCount
-      })
-    } else {
-      this.setData({
-        showLoginBtn: true
-      })
-    }
+    })
   },
   // 加入购物篮
   async onAddToCart (e) {
