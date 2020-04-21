@@ -1,4 +1,4 @@
-import { orderPay } from '../../api/order'
+import { orderPay } from '../../../api/order'
 const app = getApp()
 Page({
   data: {
@@ -27,7 +27,7 @@ Page({
   toOrder () {
     // console.log('toorder', this.data.orderNo)
     wx.navigateTo({
-      url: `/pages/orderDetail/index?orderNo=${this.data.orderNo}`
+      url: `/subPages/order/orderDetail/index?orderNo=${this.data.orderNo}`
     })
   },
   async pay () {

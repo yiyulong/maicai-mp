@@ -63,7 +63,7 @@
   color: #666;
 }
 .lt .price .amt {
-  font-size: 56rpx;
+  font-size: 68rpx;
   font-weight: 500;
 }
 .lt .desc {

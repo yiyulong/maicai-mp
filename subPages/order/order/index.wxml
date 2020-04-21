@@ -1,4 +1,4 @@
-<wxs src="../../wxs/orderStatus.wxs" module="wxs" />
+<wxs src="../../../wxs/orderStatus.wxs" module="wxs" />
 <van-toast id="van-toast" />
 <view class="tabs van-hairline--bottom">
   <view class="tabs_item {{ active === 0 && 'active'}}" data-index="{{ 0 }}" bind:tap="_tabChange">全部</view>

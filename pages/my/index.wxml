@@ -7,7 +7,7 @@
       <view class="user-info">
         <block wx:if="{{ userInfo && userInfo.mobile }}">
           <view class="name">{{ userInfo.mobile }}</view>
-          <!-- <view class="accounts">{{ userInfo.mobile }}</view> -->
+          <view wx:if="{{ points !== null }}" class="accounts">积分：{{ points }}</view>
         </block>
         <block wx:else>
           <view class="name">立即登录</view>

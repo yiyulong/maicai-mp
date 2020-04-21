@@ -1,4 +1,4 @@
-import { orderDetail, orderCancel, orderPay } from '../../api/order'
+import { orderDetail, orderCancel, orderPay } from '../../../api/order'
 import Toast from '@vant/weapp/toast/toast'
 Page({
   data: {

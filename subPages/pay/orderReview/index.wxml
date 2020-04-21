@@ -1,4 +1,4 @@
-<wxs src="../../wxs/price.wxs" module="price" />
+<wxs src="../../../wxs/price.wxs" module="price" />
 <mp-toptips msg="{{error}}" type="error" show="{{error}}" ext-class="errorToptips" delay="{{ 1500 }}"></mp-toptips>
 <van-toast id="van-toast" />
 <view class="selectAddress_box">

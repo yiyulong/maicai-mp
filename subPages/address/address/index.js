@@ -1,4 +1,4 @@
-import { getAddressList, deleteAddress, addOrUpdateAddress } from '../../api/address'
+import { getAddressList, deleteAddress, addOrUpdateAddress } from '../../../api/address'
 Page({
   data: {
     _pageNum: 1,
@@ -45,7 +45,7 @@ Page({
     // console.log(id, index)
     const _this = this
     wx.navigateTo({
-      url: `/pages/addressEdit/index?id=${id}`,
+      url: `/subPages/address/addressEdit/index?id=${id}`,
       events: {
         // 从编辑地址页面传过来之后更新地址列表
         acceptDataFromEditAddress () {
@@ -61,7 +61,7 @@ Page({
   _addAddress () {
     const _this = this
     wx.navigateTo({
-      url: '/pages/addressEdit/index',
+      url: '/subPages/address/addressEdit/index',
       events: {
         // 从编辑地址页面传过来之后更新地址列表
         acceptDataFromEditAddress () {

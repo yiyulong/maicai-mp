@@ -1,7 +1,9 @@
 {
   "navigationBarTitleText": "新人领取优惠券",
+  "disableScroll": true,
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
-    "van-toast": "@vant/weapp/toast/index"
+    "van-toast": "@vant/weapp/toast/index",
+    "van-popup": "@vant/weapp/popup/index"
   }
 }

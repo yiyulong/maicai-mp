@@ -2,7 +2,8 @@ import { sendCouponForNewUser } from '../../../api/common'
 import Toast from '@vant/weapp/toast/toast'
 Page({
   data: {
-    inputVal: ''
+    inputVal: '',
+    showPop: false
   },
   _onInput ({ detail }) {
     // console.log(detail)
@@ -19,7 +20,19 @@ Page({
     }
     sendCouponForNewUser(this.data.inputVal).then(({ data }) => {
       // console.log(data)
-      Toast('领取成功，请至我的优惠券页面查看')
+      // Toast('领取成功，请至我的优惠券页面查看')
+      this.setData({ showPop: true })
     })
-  }
+  },
+  _closePop () {
+    this.setData({ showPop: false })
+  },
+  _toGetCoupon () {
+    const _this = this
+    wx.navigateBack({
+      success () {
+        _this.setData({ showPop: false })
+      }
+    })
+  },
 })

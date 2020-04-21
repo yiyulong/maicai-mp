@@ -15,8 +15,8 @@ Page({
     if (ok) {
       const { encryptedData, iv } = detail
       login({ encryptedData, iv }).then(({ data }) => {
-        const { cartCount, mobile, canGet } = data
-        Object.assign(app.globalData, { canGet, cartCount, userInfo: { mobile } })
+        const { cartCount, mobile, canGet, points } = data
+        Object.assign(app.globalData, { canGet, cartCount, userInfo: { mobile }, points })
         wx.navigateBack()
       })
       // wxCheckSession().then(token => {

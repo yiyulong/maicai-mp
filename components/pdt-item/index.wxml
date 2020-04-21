@@ -10,13 +10,13 @@
     <text class="van-multi-ellipsis--l2 title">{{ info.title }}</text>
   </view>
   <view class="amt-box">
-    <view wx:if="{{ info.price }}" class="price">
+    <!-- <view wx:if="{{ info.price }}" class="price">
       <text>¥</text>
       <view class="line-through">
         <text>{{ price.pointBefore(info.price) }}</text>
         <text wx:if="{{price.pointAfter(info.price)}}" class="small">.{{ price.pointAfter(info.price) }}</text>
       </view>
-    </view>
+    </view> -->
     <view class="rulingPrice">
       <text class="currency">¥</text>
       <text>{{ price.pointBefore(info.rulingPrice) }}</text>

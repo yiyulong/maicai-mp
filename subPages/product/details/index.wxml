@@ -1,4 +1,4 @@
-<wxs src="../../wxs/price.wxs" module="price" />
+<wxs src="../../../wxs/price.wxs" module="price" />
 <view class="detail-box">
   <view class="swiper-content">
     <swiper indicator-dots="{{ swiper.length > 1 }}" indicator-active-color="#3695e3" circular>

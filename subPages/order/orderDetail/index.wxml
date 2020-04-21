@@ -1,4 +1,4 @@
-<wxs src="../../wxs/orderStatus.wxs" module="wxs" />
+<wxs src="../../../wxs/orderStatus.wxs" module="wxs" />
 <van-toast id="van-toast" />
 <view class="status van-hairline--bottom">
   <text>{{ wxs.statusConvert(status) }}</text>

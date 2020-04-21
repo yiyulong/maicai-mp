@@ -44,7 +44,7 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  margin-top: 30rpx;
+  /* margin-top: 30rpx; */
   padding: 0 12rpx;
 }
 .amt-box .price {

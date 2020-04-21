@@ -1,4 +1,4 @@
-import { getSaleProductList } from '../../api/product'
+import { getSaleProductList } from '../../../api/product'
 Page({
   data: {
     _pageNum: 1,

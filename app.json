@@ -4,20 +4,9 @@
     "pages/classify/index",
     "pages/cart/index",
     "pages/my/index",
-    "pages/details/index",
-    "pages/search/index",
     "pages/login/index",
     "pages/register/index",
-    "pages/saleList/index",
-    "pages/order/index",
-    "pages/orderReview/index",
-    "pages/orderItemList/index",
-    "pages/orderDetail/index",
-    "pages/web/index",
-    "pages/coupon/index",
-    "pages/address/index",
-    "pages/addressEdit/index",
-    "pages/payStatus/index"
+    "pages/web/index"
   ],
   "window": {
     "backgroundColor": "#f5f5f5",
@@ -60,9 +49,44 @@
   },
   "subPackages": [
     {
+      "name": "product",
+      "root": "subPages/product/",
+      "pages": [
+        "details/index",
+        "saleList/index",
+        "search/index"
+      ]
+    },
+    {
+      "name": "pay",
+      "root": "subPages/pay/",
+      "pages": [
+        "orderReview/index",
+        "orderItem/index",
+        "payStatus/index"
+      ]
+    },
+    {
+      "name": "order",
+      "root": "subPages/order/",
+      "pages": [
+        "order/index",
+        "orderDetail/index"
+      ]
+    },
+    {
+      "name": "address",
+      "root": "subPages/address/",
+      "pages": [
+        "address/index",
+        "addressEdit/index"
+      ]
+    },
+    {
       "name": "coupon",
       "root": "subPages/coupon/",
       "pages": [
+        "coupon/index",
         "newPreson/index"
       ]
     },
@@ -77,6 +101,12 @@
   "preloadRule": {
     "pages/index/index": {
       "packages": ["coupon"]
+    },
+    "pages/cart/index": {
+      "packages": ["pay"]
+    },
+    "pages/my/index": {
+      "packages": ["order", "address", "coupon"]
     }
   },
   "sitemapLocation": "sitemap.json",

@@ -1,4 +1,4 @@
-import { getAreasList, addOrUpdateAddress, deleteAddress } from '../../api/address'
+import { getAreasList, addOrUpdateAddress, deleteAddress } from '../../../api/address'
 import Toast from '@vant/weapp/toast/toast'
 Page({
   data: {

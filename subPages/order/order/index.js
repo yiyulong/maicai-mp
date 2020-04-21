@@ -1,4 +1,4 @@
-import { getOrderList, orderCancel, orderPay, orderSuccess } from '../../api/order'
+import { getOrderList, orderCancel, orderPay, orderSuccess } from '../../../api/order'
 import Toast from '@vant/weapp/toast/toast'
 Page({
   data: {
@@ -105,7 +105,7 @@ Page({
     // console.log(orderNo)
     const _this = this
     wx.navigateTo({
-      url: `/pages/orderDetail/index?orderNo=${orderNo}`,
+      url: `/subPages/order/orderDetail/index?orderNo=${orderNo}`,
       events: {
         // 从编辑地址页面传过来之后更新地址列表
         fromOrderDetail () {

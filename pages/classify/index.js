@@ -89,7 +89,7 @@ Component({
       }
     }) {
       // console.log(id)
-      wx.navigateTo({ url: `/pages/details/index?id=${id}`})
+      wx.navigateTo({ url: `/subPages/product/details/index?id=${id}`})
     },
     onChange (e) {
       

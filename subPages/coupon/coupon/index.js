@@ -1,4 +1,4 @@
-import { getCoupon } from '../../api/common'
+import { getCoupon } from '../../../api/common'
 Page({
   data: {
     active: 0,

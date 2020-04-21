@@ -5,6 +5,7 @@ Page({
   data: {
     avatar: '',
     userInfo: {},
+    points: null,
     cartCount: null,
     version: '',
     gardList: [
@@ -46,7 +47,7 @@ Page({
     })
   },
   onShow () {
-    const { cartCount, userInfo } = app.globalData
+    const { cartCount, userInfo, points } = app.globalData
     if (parseInt(cartCount)) {
       wx.setTabBarBadge({
         index: 2,
@@ -59,7 +60,8 @@ Page({
     }
     if (userInfo?.mobile) {
       this.setData({
-        userInfo: userInfo
+        userInfo: userInfo,
+        points
       })
       refreshCount().then(({ data }) => {
         // console.log(data)
@@ -90,34 +92,35 @@ Page({
   _onLogin (e) {
     if (this.data.userInfo?.mobile) return
     wx.navigateTo({
-      url: '/pages/login/index',
-      events: {
-        getLoginInfo: (data) => {
-          this.setData({
-            userInfo: data
-          })
-        }
-      }
+      url: '/pages/login/index'
+      // events: {
+      //   getLoginInfo: (data) => {
+      //     this.setData({
+      //       userInfo: data.userInfo,
+      //       points: data.points
+      //     })
+      //   }
+      // }
     })
   },
   _onOrder ({ currentTarget: { dataset: { index } } }) {
     // console.log(index)
     if (app.globalData.userInfo?.mobile) {
-      wx.navigateTo({ url: `/pages/order/index?id=${index}` })
+      wx.navigateTo({ url: `/subPages/order/order/index?id=${index}` })
     } else {
       wx.navigateTo({ url: '/pages/login/index' })
     }
   },
   _toAddress () {
     if (app.globalData.userInfo?.mobile) {
-      wx.navigateTo({ url: '/pages/address/index' })
+      wx.navigateTo({ url: '/subPages/address/address/index' })
     } else {
       wx.navigateTo({ url: '/pages/login/index' })
     }
   },
   _toCoupon () {
     if (app.globalData.userInfo?.mobile) {
-      wx.navigateTo({ url: '/pages/coupon/index' })
+      wx.navigateTo({ url: '/subPages/coupon/coupon/index' })
     } else {
       wx.navigateTo({ url: '/pages/login/index' })
     }

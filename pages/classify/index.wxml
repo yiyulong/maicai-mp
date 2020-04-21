@@ -1,6 +1,6 @@
 <wxs src="../../wxs/price.wxs" module="price"></wxs>
 <view class="search-box">
-  <navigator class="search" url="/pages/search/index">
+  <navigator class="search" url="/subPages/product/search/index">
     <van-icon name="search" />
     <text>请输入商品名称</text>
   </navigator>
@@ -38,11 +38,11 @@
                       <view class="desc van-ellipsis">{{ pItem.title }}</view>
                     </view>
                     <view class="price-conent">
-                      <view class="price">
+                      <!-- <view class="price">
                         <text class="currency">¥</text>
                         <text>{{ price.pointBefore(pItem.price) }}</text>
                         <text wx:if="{{price.pointAfter(pItem.price)}}" class="small">.{{ price.pointAfter(pItem.price) }}</text>
-                      </view>
+                      </view> -->
                       <view class="rulingPrice">
                         <text class="currency">¥</text>
                         <text>{{ price.pointBefore(pItem.rulingPrice) }}</text>

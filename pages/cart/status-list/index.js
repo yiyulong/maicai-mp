@@ -59,7 +59,7 @@ Component({
       // console.log(id)
       if (!this.canClick()) return
       wx.navigateTo({
-        url: `/pages/details/index?id=${id}`
+        url: `/subPages/product/details/index?id=${id}`
       })
     },
     // 判断当前左滑组件是否可以点击

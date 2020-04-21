@@ -1,4 +1,4 @@
-import { getList, getIsCommandProductList } from '../../api/product'
+import { getList, getIsCommandProductList } from '../../../api/product'
 Page({
   data: {
     value: '', // search值

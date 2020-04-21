@@ -1,5 +1,5 @@
-import { getDetail } from '../../api/product'
-import { addOrUpdate } from '../../api/cart'
+import { getDetail } from '../../../api/product'
+import { addOrUpdate } from '../../../api/cart'
 const app = getApp()
 Page({
   data: {
@@ -82,7 +82,7 @@ Page({
   onShareAppMessage (res) {
     return {
       title: '大咖生鲜',
-      path: `/pages/details/index?id=${this.data._productId}`
+      path: `/subPages/product/details/index?id=${this.data._productId}`
     }
   }
 })

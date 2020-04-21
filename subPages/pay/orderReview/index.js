@@ -1,6 +1,6 @@
-import { wxCheckSession } from '../../utils/wxCheckLogin'
-import { orderPreview, createOrder, refreshOrderPreview } from '../../api/order'
-import { getServicetime, orderCouponList } from '../../api/common'
+import { wxCheckSession } from '../../../utils/wxCheckLogin'
+import { orderPreview, createOrder, refreshOrderPreview } from '../../../api/order'
+import { getServicetime, orderCouponList } from '../../../api/common'
 import Toast from '@vant/weapp/toast/toast'
 const app = getApp()
 Page({
@@ -33,7 +33,7 @@ Page({
   _toAddress () {
     const _this = this
     wx.navigateTo({
-      url: '/pages/address/index',
+      url: '/subPages/address/address/index',
       events: {
         // 从地址页面传过来的选中的值
         acceptDataFromAddress (data) {
@@ -74,7 +74,7 @@ Page({
   _toOrderItemList () {
     const _this = this
     wx.navigateTo({
-      url: '/pages/orderItemList/index',
+      url: '/subPages/pay/orderItemList/index',
       success (res) {
         // 进入到商品清单
         res.eventChannel.emit('orderItemListFromReviewOrder', _this.data.orderItemVoList)
@@ -135,6 +135,7 @@ Page({
       this.setData({
         error: '请选择送达时间'
       })
+      this._selectTime()
       return
     }
     // console.log('creatOrder')
@@ -161,7 +162,7 @@ Page({
       success (res) {
         // console.log(res)
         wx.redirectTo({
-          url: `/pages/payStatus/index?orderNo=${orderNo}&status=1`
+          url: `/subPages/pay/payStatus/index?orderNo=${orderNo}&status=1`
           // success (result) {
           //   app.globalData.payParams = { status: true, orderNo }
           //   console.log(app.globalData.payParams)
@@ -171,7 +172,7 @@ Page({
       fail (err) {
         // console.log(err)
         wx.redirectTo({
-          url: `/pages/payStatus/index?orderNo=${orderNo}&status=0`
+          url: `/subPages/pay/payStatus/index?orderNo=${orderNo}&status=0`
           // success (result) {
           //   app.globalData.payParams = { status: false, orderNo }
           //   console.log(app.globalData.payParams)

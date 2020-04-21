@@ -17,7 +17,7 @@ Component({
     }) {
       // console.log(id)
       wx.navigateTo({
-        url: `/pages/details/index?id=${id}`
+        url: `/subPages/product/details/index?id=${id}`
       })
     },
     async cartClick ({ currentTarget: { dataset: { id } } }) {

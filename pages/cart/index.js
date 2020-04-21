@@ -87,7 +87,7 @@ Page({
     if (!paramsData.length) return
     // console.log(e, paramsData)
     wx.navigateTo({
-      url: '/pages/orderReview/index',
+      url: '/subPages/pay/orderReview/index',
       success (res) {
         res.eventChannel.emit('acceptDataFromCart', paramsData)
       }

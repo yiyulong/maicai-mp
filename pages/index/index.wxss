@@ -136,6 +136,25 @@ page {
   color: #3695e3;
   font-size: 28rpx;
 }
+.popup-box {
+  background-color: transparent !important;
+}
+.popup-coupon-box {
+  position: relative;
+}
 .getCoupon {
-  padding: 40px 20px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 15%;
+  width: 50%;
+  height: 14%;
+  margin: auto;
+}
+.closeCoupon {
+  position: absolute;
+  top: 4%;
+  right: 5%;
+  width: 12%;
+  height: 12%;
 }

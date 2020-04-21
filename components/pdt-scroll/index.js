@@ -81,7 +81,7 @@ Component({
       clearTimeout(this._timer)
       if (this._active) {
         wx.navigateTo({
-          url: '/pages/saleList/index',
+          url: '/subPages/product/saleList/index',
         })
         this._active = false
       } else if (this._lastScrollLeft > 100 * this.data.list.length - wx.getSystemInfoSync().windowWidth) {
@@ -99,7 +99,7 @@ Component({
     }) {
       // console.log(id)
       wx.navigateTo({
-        url: `/pages/details/index?id=${id}`
+        url: `/subPages/product/details/index?id=${id}`
       })
     },
     async cartClick ({ currentTarget: { dataset: { id } } }) {
