@@ -3,7 +3,6 @@ import { addOrUpdate } from '../../../api/cart'
 const app = getApp()
 Page({
   data: {
-    info: {},
     detail: {},
     _productId: null,
     cartAnimationData: {}, // 点击加入购物车动画效果

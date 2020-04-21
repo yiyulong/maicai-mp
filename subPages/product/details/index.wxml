@@ -13,7 +13,10 @@
   </view>
 </view>
 <view class="van-hairline--top detail-info">
-  <view class="van-ellipsis detail_name">{{ detail.name }}</view>
+  <view class="van-ellipsis">
+    <text class="detail_name">{{ detail.name }}</text>
+    <text class="detail_specs">{{ detail.specs }}</text>
+  </view>
   <view class="van-multi-ellipsis--l3 detail_desc"> {{ detail.title }}</view>
   <view class="detail_price">
     <text class="currency">¥</text>

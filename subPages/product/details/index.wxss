@@ -24,6 +24,8 @@ page {
 .detail-info .detail_name {
   font-weight: bold;
   font-size: 44rpx;
+  display: inline-block;
+  margin-right: 10rpx;
 }
 .detail-info .detail_desc {
   font-size: 28rpx;

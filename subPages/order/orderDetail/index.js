@@ -46,7 +46,7 @@ Page({
       confirmColor: '#f75355',
       async success ({ confirm, cancel }) {
         if (confirm) {
-          await orderCancel(orderNo)
+          await orderCancel({ orderNo })
           Toast.success('订单已取消')
           // console.log(this._eventChannel)
           _this._eventChannel?.emit('fromOrderDetail')

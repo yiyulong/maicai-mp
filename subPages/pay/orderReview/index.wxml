@@ -82,15 +82,16 @@
   round
   safe-area-inset-bottom
   position="bottom"
-  custom-style="height: 200px"
+  custom-style="height: 190px; padding-top: 40px;"
   bind:close="_closePop_date"
 >
-  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 200px;" bindchange="_timeChange">
+  <view class="time-title">送达时间</view>
+  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 150px;" bindchange="_timeChange">
     <picker-view-column>
-      <view style="line-height: 50px; padding: 0 10px">{{time.date}}<text wx:if="{{ time.isToday }}">(今天)</text></view>
+      <view style="line-height: 50px; text-align: center;">{{time.date}}<text wx:if="{{ time.isToday }}">(今天)</text></view>
     </picker-view-column>
     <picker-view-column>
-      <view wx:for="{{ time.time }}" wx:key="index" style="line-height: 50px; padding: 0 10px">{{item}}</view>
+      <view wx:for="{{ time.time }}" wx:key="index" style="line-height: 50px; text-align: center;">{{item}}</view>
     </picker-view-column>
   </picker-view>
 </van-popup>

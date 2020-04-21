@@ -33,9 +33,9 @@
                     <my-image src="{{ pItem.realm + pItem.bannerUrls }}" square mode="aspectFit" />
                   </view>
                   <view class="info-box">
-                    <view class="name van-multi-ellipsis--l2">
-                      <view>{{ pItem.name }}</view>
-                      <view class="desc van-ellipsis">{{ pItem.title }}</view>
+                    <view class="name">
+                      <view class="van-ellipsis">{{ pItem.name }}</view>
+                      <view class="desc van-multi-ellipsis--l2">{{ pItem.title }}</view>
                     </view>
                     <view class="price-conent">
                       <!-- <view class="price">

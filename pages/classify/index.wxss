@@ -100,8 +100,8 @@ page {
 }
 .item-list-content .img-box {
   flex: none;
-  width: 200rpx;
-  height: 200rpx;
+  width: 160rpx;
+  height: 160rpx;
 }
 .item-list-content .info-box {
   flex: 1;
