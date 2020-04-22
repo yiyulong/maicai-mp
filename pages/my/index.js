@@ -75,14 +75,6 @@ Page({
             }
           }
         })
-        // data.forEach(item => {
-        //   for (let i = 0; i < this.data.gardList.length; i++) {
-        //     if (this.data.gardList[i].alias in item) {
-        //       this.data.gardList[i].info = item[this.data.gardList[i].alias]
-        //       break
-        //     }
-        //   }
-        // })
         this.setData({ gardList: this.data.gardList })
       }).catch(err => {
         console.log(err)
@@ -92,7 +84,7 @@ Page({
   _onLogin (e) {
     if (this.data.userInfo?.mobile) return
     wx.navigateTo({
-      url: '/pages/login/index'
+      url: '/subPages/login/login/index'
       // events: {
       //   getLoginInfo: (data) => {
       //     this.setData({
@@ -108,21 +100,15 @@ Page({
     if (app.globalData.userInfo?.mobile) {
       wx.navigateTo({ url: `/subPages/order/order/index?id=${index}` })
     } else {
-      wx.navigateTo({ url: '/pages/login/index' })
+      wx.navigateTo({ url: '/subPages/login/login/index' })
     }
   },
-  _toAddress () {
+  _jump ({ currentTarget: { dataset: { father, child } } }) {
+    // console.log(father, child)
     if (app.globalData.userInfo?.mobile) {
-      wx.navigateTo({ url: '/subPages/address/address/index' })
+      wx.navigateTo({ url: `/subPages/${father}/${child}/index` })
     } else {
-      wx.navigateTo({ url: '/pages/login/index' })
-    }
-  },
-  _toCoupon () {
-    if (app.globalData.userInfo?.mobile) {
-      wx.navigateTo({ url: '/subPages/coupon/coupon/index' })
-    } else {
-      wx.navigateTo({ url: '/pages/login/index' })
+      wx.navigateTo({ url: '/subPages/login/login/index' })
     }
   },
   async _onLogout () {

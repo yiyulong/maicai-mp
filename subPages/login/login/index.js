@@ -1,5 +1,5 @@
-import { wxCheckSession, wxLogin } from '../../utils/wxCheckLogin'
-import { login } from '../../api/user'
+import { wxCheckSession, wxLogin } from '../../../utils/wxCheckLogin'
+import { login } from '../../../api/user'
 const app = getApp()
 Page({
   data: {
@@ -38,7 +38,7 @@ Page({
         confirmText: '验证登录',
         success (res) {
           if (res.confirm) {
-            wx.navigateTo({ url: '/pages/register/index' })
+            wx.navigateTo({ url: '/subPages/login/register/index' })
           }
         }
       })

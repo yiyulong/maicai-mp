@@ -105,7 +105,7 @@ Component({
     async cartClick ({ currentTarget: { dataset: { id } } }) {
       // console.log('addcart', id)
       if (!app.globalData.userInfo?.mobile) {
-        wx.navigateTo({ url: '/pages/login/index' })
+        wx.navigateTo({ url: '/subPages/login/login/index' })
         return
       }
       const params = {

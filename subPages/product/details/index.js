@@ -26,6 +26,7 @@ Page({
   },
   onShow () {
     app.getUserInfo((err, res) => {
+      // console.log(err, res)
       if(!err) {
         if (res.mobile) {
           if (this.data.showLoginBtn) {
@@ -41,6 +42,10 @@ Page({
             showLoginBtn: true
           })
         }
+      } else {
+        this.setData({
+          showLoginBtn: true
+        })
       }
     })
   },
@@ -76,7 +81,7 @@ Page({
     })
   },
   _toLogn () {
-    wx.navigateTo({ url: '/pages/login/index' })
+    wx.navigateTo({ url: '/subPages/login/login/index' })
   },
   onShareAppMessage (res) {
     return {

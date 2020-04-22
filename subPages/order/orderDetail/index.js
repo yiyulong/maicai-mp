@@ -1,4 +1,4 @@
-import { orderDetail, orderCancel, orderPay } from '../../../api/order'
+import { orderDetail, orderCancel, orderPay, orderSuccess } from '../../../api/order'
 import Toast from '@vant/weapp/toast/toast'
 Page({
   data: {
@@ -30,7 +30,7 @@ Page({
     })
   },
   unOnLoad () {
-    clearTimeout(this._timer)
+    this._timer && clearTimeout(this._timer)
   },
   _displayMore () {
     this.setData({
@@ -73,4 +73,29 @@ Page({
       }
     })
   },
+  async _orderConfirm ({ currentTarget: { dataset: { no: orderNo } } }) {
+    const _this = this
+    wx.showModal({
+      title: '提示',
+      content: '确认收货',
+      confirmColor: '#f75355',
+      async success ({ confirm, cancel }) {
+        if (confirm) {
+          await orderSuccess(orderNo)
+          Toast.success('订单已确认收货')
+          _this._eventChannel?.emit('fromOrderDetail')
+          _this._timer = setTimeout(() => { wx.navigateBack() }, 1500)
+        }
+      }
+    })
+  },
+  _orderRate ({ currentTarget: { dataset: { no: orderNo } } }) {
+    const _this = this
+    wx.navigateTo({
+      url: `/subPages/order/orderRate/index?orderno=${orderNo}`,
+      success (res) {
+        res.eventChannel.emit('orderItemVoListFromOrderRate', _this.data.orderItemVoList)
+      }
+    })
+  }
 })

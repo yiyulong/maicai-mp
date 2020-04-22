@@ -1,6 +1,7 @@
 page {
   background: #ce2b40;
 }
+
 .page_container {
   text-align: center;
   padding-top: 20%;

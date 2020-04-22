@@ -3,10 +3,7 @@
     "pages/index/index",
     "pages/classify/index",
     "pages/cart/index",
-    "pages/my/index",
-    "pages/login/index",
-    "pages/register/index",
-    "pages/web/index"
+    "pages/my/index"
   ],
   "window": {
     "backgroundColor": "#f5f5f5",
@@ -49,6 +46,14 @@
   },
   "subPackages": [
     {
+      "name": "login",
+      "root": "subPages/login/",
+      "pages": [
+        "login/index",
+        "register/index"
+      ]
+    },
+    {
       "name": "product",
       "root": "subPages/product/",
       "pages": [
@@ -62,7 +67,7 @@
       "root": "subPages/pay/",
       "pages": [
         "orderReview/index",
-        "orderItem/index",
+        "orderItemList/index",
         "payStatus/index"
       ]
     },
@@ -71,7 +76,8 @@
       "root": "subPages/order/",
       "pages": [
         "order/index",
-        "orderDetail/index"
+        "orderDetail/index",
+        "orderRate/index"
       ]
     },
     {
@@ -87,7 +93,15 @@
       "root": "subPages/coupon/",
       "pages": [
         "coupon/index",
-        "newPreson/index"
+        "newPerson/index"
+      ]
+    },
+    {
+      "name": "other",
+      "root": "subPages/other/",
+      "pages": [
+        "points/index",
+        "web/index"
       ]
     },
     {

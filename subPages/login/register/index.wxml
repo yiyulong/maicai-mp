@@ -1,3 +1,5 @@
+<import src="../../../template/footer.wxml" />
+<import src="../template/policyAgreement.wxml" />
 <mp-toptips ext-class="tips" msg="{{ tips.msg }}" type="{{ tips.type }}" show="{{ tips.show }}"></mp-toptips>
 <view class="content-box">
   <van-cell-group border="{{ false }}">
@@ -51,13 +53,6 @@
     </button>
     <text class="wxText">微信手机号一键登录</text>
   </view>
-  <view class="policyAgreement">
-    登录注册即代表你同意maicai
-    <navigator class="webLink" url="/pages/web/index?id=1">《服务协议》</navigator>
-    与
-    <navigator class="webLink" url="/pages/web/index?id=2">《隐私政策》</navigator>
-  </view>
+  <template is="policyAgreement" />
 </view>
-<view class="weui-footer weui-footer_fixed-bottom">
-  <view class="weui-footer__text">Copyright © 2017-2020 DinglianTech</view>
-</view>
+<template is="footer" />

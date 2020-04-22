@@ -4,3 +4,4 @@ module.exports.login = (data, config = {}) => postRequest('/user/login', data, c
 module.exports.mobileLogin = (data, config = {}) => postRequest('/user/mobileLogin', data, config) // 用户手机号注册/登陆
 module.exports.sendMessage = (data, config = {}) => getRequest('/user/sendMessage', data, config) // 发送验证码
 module.exports.logOut = (data, config = {}) => getRequest('/user/logOut', data, config) // 退出登陆
+module.exports.pointsDetail = (data, config = { showLoading: true }) => getRequest('/user/pointsDetail', data, config) // 用户积分明细

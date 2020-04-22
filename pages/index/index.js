@@ -17,14 +17,18 @@ Page({
     showPop: false // 新人领取优惠券
   },
   async onLoad () {
-    // 获取轮播图 分类 推荐商品
-    const [{ data: { list: bannerList } }, { data: category }, { data: { list: areaList } }, { data }] = await Promise.all([getBanner(), getHomeCategoryList(), getAreasList(), getSaleProductList(), this._getList()])
-    this.setData({
-      bannerList,
-      category,
-      areaList: [{ id: null, name: '目前已开放配送范围' }, ...areaList],
-      saleList: data?.list || []
-    })
+    try {
+      // 获取轮播图 分类 推荐商品
+      const [{ data: { list: bannerList } }, { data: category }, { data: { list: areaList } }, { data }] = await Promise.all([getBanner(), getHomeCategoryList(), getAreasList(), getSaleProductList(), this._getList()])
+      this.setData({
+        bannerList,
+        category,
+        areaList: [{ id: null, name: '目前已开放配送范围' }, ...areaList],
+        saleList: data?.list || []
+      })
+    } catch(err) {
+      console.log(err)
+    }
     app.getUserInfo((err, res) => {
       // console.log(err, res)
       if (!err) {
@@ -96,12 +100,6 @@ Page({
       url: '/pages/classify/index'
     })
   },
-  // 上拉触底事件
-  onReachBottom () {
-    if (this.data.isNoMore) return
-    this.data._pageNum = this.data._pageNum + 1
-    this._getList()
-  },
   _addSuccess () {
     if (parseInt(app.globalData.cartCount)) {
       wx.setTabBarBadge({
@@ -121,8 +119,12 @@ Page({
   _addError () {
     // Toast.fail('添加失败请重试')
   },
-  _toWebView () {
-    wx.navigateTo({ url: '/pages/web/index'})
+  _toWebView ({ currentTarget: { dataset: { index } } }) {
+    if (index) {
+      wx.navigateTo({ url: `/subPages/other/web/index?url=${index}`})
+    } else {
+      wx.navigateTo({ url: '/subPages/coupon/newPerson/index' })
+    }
   },
   _closePop () {
     this.setData({ showPop: false })
@@ -130,7 +132,7 @@ Page({
   _toGetCoupon () {
     const _this = this
     wx.navigateTo({
-      url: '/subPages/coupon/newPreson/index',
+      url: '/subPages/coupon/newPerson/index',
       success () {
         _this.setData({ showPop: false })
       }
@@ -139,6 +141,12 @@ Page({
   // 下拉刷新
   onPullDownRefresh () {
     this.pageNum = 1
+    this._getList()
+  },
+  // 上拉触底事件
+  onReachBottom () {
+    if (this.data.isNoMore) return
+    this.data._pageNum = this.data._pageNum + 1
     this._getList()
   },
   onShareAppMessage (res) {

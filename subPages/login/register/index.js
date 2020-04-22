@@ -1,5 +1,5 @@
-import { wxCheckSession } from '../../utils/wxCheckLogin'
-import { login, sendMessage, mobileLogin } from '../../utils/api'
+import { wxCheckSession } from '../../../utils/wxCheckLogin'
+import { login, sendMessage, mobileLogin } from '../../../api/user'
 Page({
   data: {
     tel: '',

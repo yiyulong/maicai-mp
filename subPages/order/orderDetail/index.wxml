@@ -59,17 +59,35 @@
     <view class="rt" wx:if="{{ note }}">{{ note }}</view>
   </view>
 </view>
-<view wx:if="{{ status === 1 }}" class="van-hairline--top footer">
-  <van-button
-    round size="small"
-    custom-class="cancelBtn"
-    data-no="{{ orderno }}"
-    bind:click="_orderCancel"
-  >取消订单</van-button>
-  <van-button
-    round size="small" color="#3695e3"
-    custom-class="payBtn"
-    data-no="{{ orderno }}"
-    bind:click="_orderPay"
-  >立即支付</van-button>
+<view class="footer-container">
+  <view wx:if="{{ status === 1 }}" class="van-hairline--top footer">
+    <van-button
+      round size="small"
+      custom-class="cancelBtn"
+      data-no="{{ orderno }}"
+      bind:click="_orderCancel"
+    >取消订单</van-button>
+    <van-button
+      round size="small" color="#3695e3"
+      custom-class="payBtn"
+      data-no="{{ orderno }}"
+      bind:click="_orderPay"
+    >立即支付</van-button>
+  </view>
+  <view wx:if="{{ status === 3 }}" class="van-hairline--top order-item-footer">
+    <van-button
+      round size="small" color="#3695e3"
+      custom-class="payBtn"
+      data-no="{{ orderno }}"
+      bind:click="_orderConfirm"
+    >确认收货</van-button>
+  </view>
+  <view wx:if="{{ status === 4 }}" class="van-hairline--top footer">
+    <van-button
+      round size="small" color="#3695e3"
+      custom-class="payBtn"
+      data-no="{{ orderno }}"
+      bind:click="_orderRate"
+    >评价订单</van-button>
+  </view>
 </view>

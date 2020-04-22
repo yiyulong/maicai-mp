@@ -29,20 +29,21 @@
       <!-- <van-grid-item icon="peer-pay" text="待支付" data-index="1" bind:click="_onOrder" />
       <van-grid-item icon="send-gift-o" text="待收货" data-index="3" bind:click="_onOrder" />
       <van-grid-item icon="comment-o" text="待评价" data-index="4" bind:click="_onOrder" /> -->
-      <van-grid-item icon="gold-coin-o" text="售后/退款" data-index="6" />
+      <van-grid-item icon="gold-coin-o" text="售后" data-index="6" bind:tap="_previewImage" />
     </van-grid>
   </view>
   <view class="my-content">
     <van-cell-group>
-      <van-cell icon="logistics" title="我的收货地址" is-link bind:click="_toAddress" />
-      <van-cell icon="coupon-o" title="我的优惠券" is-link bind:click="_toCoupon" />
+      <van-cell icon="logistics" title="我的收货地址" is-link data-father="address" data-child="address" bind:tap="_jump" />
+      <van-cell icon="coupon-o" title="我的优惠券" is-link data-father="coupon" data-child="coupon" bind:tap="_jump" />
+      <van-cell icon="gem-o" title="我的积分" is-link data-father="other" data-child="points" bind:tap="_jump" />
     </van-cell-group>
   </view>
   <view class="my-content">
     <van-cell-group>
       <van-cell icon="service-o" title="联系客服" is-link bind:tap="_previewImage" />
       <van-cell icon="question-o" title="常见问题" is-link url="/subPages/service/FAQ/index" />
-      <van-cell icon="records" title="意见反馈" is-link url="/subPages/service/feedback/index" />
+      <van-cell icon="records" title="意见反馈" is-link data-father="service" data-child="feedback" bind:tap="_jump" />
     </van-cell-group>
   </view>
   <view wx:if="{{ version }}" class="version">当前版本：{{version}}</view>

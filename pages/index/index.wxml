@@ -21,7 +21,7 @@
     <swiper indicator-dots autoplay circular indicator-active-color="#3695e3">
       <block wx:for="{{ bannerList }}" wx:key="index">
         <swiper-item>
-          <view class="swiper-item" bind:tap="_toWebView">
+          <view class="swiper-item" data-index="{{ index }}" bind:tap="_toWebView">
             <image src="{{item.realm + item.picUrl}}" mode="aspectFill" />
           </view>
         </swiper-item>

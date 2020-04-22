@@ -1,3 +1,9 @@
+page {
+  /* padding-bottom: calc(50px + constant(safe-area-inset-bottom));
+  padding-bottom: calc(50px + env(safe-area-inset-bottom)); */
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
 .errorToptips {
   font-size: 28rpx !important;
 }
@@ -51,7 +57,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 50px;
+  min-height: 50px;
   z-index: 3;
   display: flex;
   background-color: #fff;
@@ -60,6 +66,8 @@
   align-items: center;
   padding: 0 30rpx;
   box-sizing: border-box;
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 .submit-box .content {
   flex: 1;
@@ -82,6 +90,9 @@
 }
 .submit-box .content .price .small {
   font-size: 24rpx;
+}
+.submit-box .btn {
+  margin: 4px 0;
 }
 .submit-box .btn-submit {
   width: 100px;

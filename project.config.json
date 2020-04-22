@@ -172,6 +172,20 @@
 					"id": -1,
 					"name": "subPages/coupon/newPreson/index",
 					"pathName": "subPages/coupon/newPreson/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "subPages/service/feedback/index",
+					"pathName": "subPages/service/feedback/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "subPages/other/points/index",
+					"pathName": "subPages/other/points/index",
 					"scene": null
 				}
 			]

@@ -94,7 +94,7 @@ Page({
     })
   },
   _toLogn () {
-    wx.navigateTo({ url: '/pages/login/index' })
+    wx.navigateTo({ url: '/subPages/login/login/index' })
   },
   // 清空失效的商品
   _clearAllSuccess () {

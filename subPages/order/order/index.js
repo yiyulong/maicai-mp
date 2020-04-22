@@ -85,7 +85,7 @@ Page({
       }
     })
   },
-  async _orderConfirm ({ currentTarget: { dataset: { no: orderNo, index } } }) {
+  async _orderConfirm ({ currentTarget: { dataset: { no: orderNo } } }) {
     const _this = this
     wx.showModal({
       title: '提示',
@@ -98,6 +98,15 @@ Page({
           _this.data._pageNum = 1
           _this._getList()
         }
+      }
+    })
+  },
+  _orderRate ({ currentTarget: { dataset: { no: orderNo, index } } }) {
+    const _this = this
+    wx.navigateTo({
+      url: `/subPages/order/orderRate/index?orderno=${orderNo}`,
+      success (res) {
+        res.eventChannel.emit('orderItemVoListFromOrderRate', _this.data.list[index].orderItemVoList)
       }
     })
   },

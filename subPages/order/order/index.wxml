@@ -56,6 +56,15 @@
             bind:click="_orderConfirm"
           >确认收货</van-button>
         </view>
+        <view wx:if="{{ item.status === 4 }}" class="van-hairline--top order-item-footer">
+          <van-button
+            round size="small" color="#3695e3"
+            custom-class="payBtn"
+            data-no="{{ item.orderno }}"
+            data-index="{{ index }}"
+            bind:click="_orderRate"
+          >评价订单</van-button>
+        </view>
       </view>
     </block>
     <block wx:if="{{ isNoMore }}">

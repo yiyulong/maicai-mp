@@ -64,6 +64,7 @@
     <van-cell wx:if="{{ previewCouponVo.amt }}" title="优惠券" value-class="black_color" value="- ¥ {{ previewCouponVo.amt }}" />
   </van-cell-group>
 </view>
+<view style="height: 50px;" />
 <view class="submit-box van-hairline--top">
   <view class="content">
     <text class="text">实际支付</text>
@@ -82,7 +83,7 @@
   round
   safe-area-inset-bottom
   position="bottom"
-  custom-style="height: 190px; padding-top: 40px;"
+  custom-style="padding-top: 40px;"
   bind:close="_closePop_date"
 >
   <view class="time-title">送达时间</view>
@@ -94,13 +95,14 @@
       <view wx:for="{{ time.time }}" wx:key="index" style="line-height: 50px; text-align: center;">{{item}}</view>
     </picker-view-column>
   </picker-view>
+  <view style="height: 30px;" />
 </van-popup>
 <van-popup
   show="{{ showPop }}"
   round
   safe-area-inset-bottom="{{ false }}"
   position="bottom"
-  custom-style="min-height: 20%; max-height: 80%;"
+  custom-style="min-height: 24%; max-height: 80%;"
   bind:close="_closePop"
 >
   <block wx:if="{{ couponList && couponList.length }}">

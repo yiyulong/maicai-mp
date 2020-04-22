@@ -15,7 +15,7 @@ Page({
   _jump ({ currentTarget: { dataset: { url } } }) {
     // console.log(url)
     wx.navigateTo({
-      url: `/pages/web/index?url=${url}`
+      url: `/subPages/other/web/index?url=${url}`
     })
   }
 })
