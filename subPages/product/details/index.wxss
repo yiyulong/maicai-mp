@@ -48,6 +48,30 @@ page {
   text-decoration: line-through;
 }
 
+.detail_evaluate {
+  margin-bottom: 10rpx;
+  padding: 20rpx 0;
+  background: #fff;
+}
+.detail_evaluate .detail_title {
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+}
+.detail_evaluate .seeMore {
+  text-align: center;
+  padding: 10rpx 0;
+}
+.detail_evaluate .noMore {
+  color: #666;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 60rpx;
+}
+.detail_evaluate .seeMore button {
+  font-weight: normal;
+}
+
 .detail-norms {
   background: #fff;
   padding-bottom: 60px;

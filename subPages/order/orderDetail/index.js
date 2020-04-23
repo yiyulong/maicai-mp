@@ -2,6 +2,7 @@ import { orderDetail, orderCancel, orderPay, orderSuccess } from '../../../api/o
 import Toast from '@vant/weapp/toast/toast'
 Page({
   data: {
+    orderNo: '',
     amt: null,
     createTime: '',
     note: '',
@@ -23,14 +24,18 @@ Page({
     this._eventChannel = this.getOpenerEventChannel()
     // console.log(this._eventChannel)
     const { orderNo } = options
+    this.data.orderNo = orderNo
+    this._getDetail(orderNo)
+  },
+  unOnLoad () {
+    this._timer && clearTimeout(this._timer)
+  },
+  _getDetail (orderNo) {
     orderDetail({ orderNo }, { showLoading: true }).then(({ data }) => {
       // console.log(data)
       const { amt, createTime, note, orderAddressVo, orderCouponAmt, orderItemVoList, orderno, postage, qty, status } = data
       this.setData({ amt, createTime, note, orderAddressVo, orderCouponAmt, orderItemVoList, orderno, postage, qty, status })
     })
-  },
-  unOnLoad () {
-    this._timer && clearTimeout(this._timer)
   },
   _displayMore () {
     this.setData({
@@ -93,6 +98,12 @@ Page({
     const _this = this
     wx.navigateTo({
       url: `/subPages/order/orderRate/index?orderno=${orderNo}`,
+      events: {
+        updateRateFromOrderRate () {
+          _this._getDetail(_this.data.orderNo)
+          _this._eventChannel?.emit('fromOrderDetail')
+        }
+      },
       success (res) {
         res.eventChannel.emit('orderItemVoListFromOrderRate', _this.data.orderItemVoList)
       }

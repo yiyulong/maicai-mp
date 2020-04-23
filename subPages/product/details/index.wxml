@@ -29,6 +29,18 @@
     </view>
   </view>
 </view>
+<view class="detail_evaluate">
+  <view class="detail_title">评论</view>
+  <block wx:if="{{ evaluate.length }}">
+    <block wx:for="{{ evaluate }}" wx:key="index">
+      <the-evaluate info="{{ item }}" less />
+    </block>
+    <view class="seeMore"><van-button plain round color="#666" size="small" bind:click="_toEvaluate">查看评论（{{ evaluateTotal }}）</van-button></view>
+  </block>
+  <block wx:else>
+    <view class="noMore">暂无评论～</view>
+  </block>
+</view>
 <view class="detail-norms">
   <!-- <view class="norms">规格</view> -->
   <view class="van-hairline--top norms_item">

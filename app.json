@@ -59,7 +59,8 @@
       "pages": [
         "details/index",
         "saleList/index",
-        "search/index"
+        "search/index",
+        "evaluate/index"
       ]
     },
     {

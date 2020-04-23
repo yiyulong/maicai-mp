@@ -105,6 +105,13 @@ Page({
     const _this = this
     wx.navigateTo({
       url: `/subPages/order/orderRate/index?orderno=${orderNo}`,
+      events: {
+        updateRateFromOrderRate () {
+          _this.setData({ isNoMore: false })
+          _this.data._pageNum = 1
+          _this._getList()
+        }
+      },
       success (res) {
         res.eventChannel.emit('orderItemVoListFromOrderRate', _this.data.list[index].orderItemVoList)
       }
@@ -118,7 +125,7 @@ Page({
       events: {
         // 从编辑地址页面传过来之后更新地址列表
         fromOrderDetail () {
-          console.log('fromOrderDetail')
+          // console.log('fromOrderDetail')
           _this.setData({ isNoMore: false })
           _this.data._pageNum = 1
           _this._getList()

@@ -9,3 +9,4 @@ module.exports.orderCancel = (data, config = {}) => postRequest('/order/orderCan
 module.exports.orderDetail = (data, config = {}) => getRequest('/order/orderDetail', data, config) // 订单详情
 module.exports.refreshOrderPreview = (userCouponId = null, config = {}) => postRequest('/order/refreshOrderPreview', { userCouponId }, config) // 取消订单
 module.exports.orderSuccess = (orderNo, config = {}) => postRequest('/order/orderSuccess', { orderNo }, config) // 取消订单
+module.exports.createEvaluate = (data, config = { showLoading: true }) => postRequest('/evaluate/createEvaluate', data, config) // 取消订单

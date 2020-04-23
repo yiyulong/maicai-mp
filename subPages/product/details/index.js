@@ -1,4 +1,4 @@
-import { getDetail } from '../../../api/product'
+import { getDetail, getProductEvaluate } from '../../../api/product'
 import { addOrUpdate } from '../../../api/cart'
 const app = getApp()
 Page({
@@ -7,15 +7,19 @@ Page({
     _productId: null,
     cartAnimationData: {}, // 点击加入购物车动画效果
     cartCount: null, // 当前购物车数量
-    showLoginBtn: false
+    showLoginBtn: false,
+    evaluate: [],
+    evaluateTotal: 0
   },
   async onLoad (options) {
     // console.log(options)
     // console.log(app.globalData)
     const { id: productId } = options
-    const { data } = await getDetail({ productId }, { showLoading: true })
+    const [{ data }, { data: { list, total } }] = await Promise.all([getDetail({ productId }, { showLoading: true }), getProductEvaluate({ productId, pageNum: 1, pageSize: 1 })])
     this.setData({
       detail: data,
+      evaluate: list,
+      evaluateTotal: total,
       _productId: productId
     })
   },
@@ -79,6 +83,9 @@ Page({
     wx.switchTab({
       url: '/pages/cart/index'
     })
+  },
+  _toEvaluate () {
+    wx.navigateTo({ url: `/subPages/product/evaluate/index?id=${this.data._productId}`})
   },
   _toLogn () {
     wx.navigateTo({ url: '/subPages/login/login/index' })

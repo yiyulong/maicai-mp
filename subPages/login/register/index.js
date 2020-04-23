@@ -1,5 +1,6 @@
 import { wxCheckSession } from '../../../utils/wxCheckLogin'
 import { login, sendMessage, mobileLogin } from '../../../api/user'
+const app = getApp()
 Page({
   data: {
     tel: '',
@@ -47,9 +48,11 @@ Page({
   toLogin (e) {
     clearInterval(this._interval)
     this.setData({ logging: true, text: '验证码' })
-    mobileLogin({ mobile: this.data.tel, Verification: this.data.sms }, { showToast: false }).then(({ data }) => {
-      console.log(data)
-      wx.navigateBack({ detail: 2 })
+    mobileLogin({ mobile: this.data.tel, verification: this.data.sms }, { showToast: false }).then(({ data }) => {
+      // console.log(data)
+      const { cartCount, mobile, canGet, points } = data
+      Object.assign(app.globalData, { canGet, cartCount, userInfo: { mobile }, points })
+      wx.navigateBack({ delta: 2 })
     }).catch(err => {
       const tips = { msg: err.msg || '登录失败！', type: 'error', show: true }
       this.setData({ tips })
@@ -58,16 +61,14 @@ Page({
     })
   },
   _getPhoneNumber ({ detail }) {
-    console.log(detail)
+    // console.log(detail)
     const ok = detail.errMsg === 'getPhoneNumber:ok'
     if (ok) {
       const { encryptedData, iv } = detail
-      wxCheckSession().then(token => {
-        console.log(token)
-        login({ encryptedData, iv }).then(res => {
-          console.log(res)
-          wx.navigateBack({ detail: 2 })
-        })
+      login({ encryptedData, iv }).then(({ data }) => {
+        const { cartCount, mobile, canGet, points } = data
+        Object.assign(app.globalData, { canGet, cartCount, userInfo: { mobile }, points })
+        wx.navigateBack({ delta: 2 })
       })
     } else {
       wx.showModal({

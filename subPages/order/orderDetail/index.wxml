@@ -74,7 +74,7 @@
       bind:click="_orderPay"
     >立即支付</van-button>
   </view>
-  <view wx:if="{{ status === 3 }}" class="van-hairline--top order-item-footer">
+  <view wx:if="{{ status === 3 }}" class="van-hairline--top footer">
     <van-button
       round size="small" color="#3695e3"
       custom-class="payBtn"

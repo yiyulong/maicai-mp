@@ -27,7 +27,7 @@ Page({
       {
         icon: 'send-gift-o',
         text: '待收货',
-        alias: '已付款',
+        alias: '已发货',
         index: '3',
         info: ''
       },
