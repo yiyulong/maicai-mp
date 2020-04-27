@@ -16,7 +16,7 @@
         </view>
         <view class="menu_item_info">
           <view class="name-box">
-            <view class="van-ellipsis"><text class="name">{{ item.name }}</text></view>
+            <view class="van-ellipsis name">{{ item.name }}</view>
             <view class="van-ellipsis title">{{ item.specs }}</view>
             <!-- <view class="van-ellipsis"><text class="name">{{ item.name }}</text><text class="specs">{{ item.specs }}</text></view>
             <view class="van-ellipsis title">{{ item.title }}</view> -->

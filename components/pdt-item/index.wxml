@@ -5,9 +5,9 @@
       <my-image src="{{ info.realm + info.url }}" lazy-load mode="aspectFit"></my-image>
     </view>
   </view>
-  <view class="name-box">
+  <view class="van-multi-ellipsis--l3 name-box">
     <text class="van-ellipsis name">{{ info.name }}</text><text class="specs">{{ info.specs }}</text>
-    <text class="van-multi-ellipsis--l2 title">{{ info.title }}</text>
+    <text class="van-ellipsis title">{{ info.title }}</text>
   </view>
   <view class="amt-box">
     <!-- <view wx:if="{{ info.price }}" class="price">

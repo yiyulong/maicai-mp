@@ -1,6 +1,9 @@
 import { addOrUpdate } from '../../api/cart'
 const app = getApp()
 Component({
+  options: {
+    addGlobalClass: true,
+  },
   properties: {
     list: {
       type: Array,

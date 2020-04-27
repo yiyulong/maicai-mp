@@ -22,11 +22,11 @@
     <text class="currency">¥</text>
     <text>{{ price.pointBefore(detail.rulingPrice) }}</text>
     <text wx:if="{{price.pointAfter(detail.rulingPrice)}}" class="small">.{{ price.pointAfter(detail.rulingPrice) }}</text>
-    <view class="price">
+    <!-- <view class="price">
       <text>¥</text>
       <text>{{ price.pointBefore(detail.price) }}</text>
       <text wx:if="{{price.pointAfter(detail.price)}}">.{{ price.pointAfter(detail.price) }}</text>
-    </view>
+    </view> -->
   </view>
 </view>
 <view class="detail_evaluate">

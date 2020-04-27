@@ -26,17 +26,22 @@
   line-height: 34rpx;
   font-weight: 400;
   font-size: 28rpx;
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  margin-right: 10rpx;
 }
 .name-box .specs {
   font-size: 24rpx;
   line-height: 28rpx;
   display: inline-block;
-  margin-left: 10rpx;
+  vertical-align: middle;
 }
 .name-box .title {
   line-height: 28rpx;
   font-weight: 300;
   font-size: 24rpx;
+  display: block
 }
 .amt-box {
   display: flex;
