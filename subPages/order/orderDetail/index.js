@@ -55,7 +55,17 @@ Page({
           Toast.success('订单已取消')
           // console.log(this._eventChannel)
           _this._eventChannel?.emit('fromOrderDetail')
-          _this._timer = setTimeout(() => { wx.navigateBack() }, 1500)
+          _this._timer = setTimeout(() => {
+            // 获取当前页面栈
+            const pages = getCurrentPages()
+            const prePages = pages[pages.length - 2]
+            // 判断是否从订单状态页面跳转过来
+            if (prePages.route === 'subPages/pay/payStatus/index') {
+              wx.redirectTo({ url: '/subPages/order/order/index' })
+              return
+            }
+            wx.navigateBack()
+          }, 1500)
         }
       }
     })

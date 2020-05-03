@@ -10,17 +10,19 @@
     <text class="van-ellipsis title">{{ info.title }}</text>
   </view>
   <view class="amt-box">
-    <!-- <view wx:if="{{ info.price }}" class="price">
-      <text>¥</text>
-      <view class="line-through">
-        <text>{{ price.pointBefore(info.price) }}</text>
-        <text wx:if="{{price.pointAfter(info.price)}}" class="small">.{{ price.pointAfter(info.price) }}</text>
+    <view class="price-container">
+      <view class="rulingPrice">
+        <text class="currency">¥</text>
+        <text>{{ price.pointBefore(info.rulingPrice) }}</text>
+        <text wx:if="{{price.pointAfter(info.rulingPrice)}}" class="small">.{{ price.pointAfter(info.rulingPrice) }}</text>
       </view>
-    </view> -->
-    <view class="rulingPrice">
-      <text class="currency">¥</text>
-      <text>{{ price.pointBefore(info.rulingPrice) }}</text>
-      <text wx:if="{{price.pointAfter(info.rulingPrice)}}" class="small">.{{ price.pointAfter(info.rulingPrice) }}</text>
+      <view wx:if="{{ info.price && info.price !== info.rulingPrice }}" class="price">
+        <text class="currency">¥</text>
+        <view class="line-through">
+          <text>{{ price.pointBefore(info.price) }}</text>
+          <text wx:if="{{price.pointAfter(info.price)}}" class="small">.{{ price.pointAfter(info.price) }}</text>
+        </view>
+      </view>
     </view>
     <view class="cart" data-id="{{ info.id }}" catch:tap="cartClick">
       <add name="add" size="24" />

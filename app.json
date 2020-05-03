@@ -101,8 +101,10 @@
       "name": "other",
       "root": "subPages/other/",
       "pages": [
+        "modifyRate/index",
         "points/index",
-        "web/index"
+        "web/index",
+        "webPage/index"
       ]
     },
     {

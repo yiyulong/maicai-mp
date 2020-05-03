@@ -49,34 +49,34 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  /* margin-top: 30rpx; */
   padding: 0 12rpx;
 }
-.amt-box .price {
-  position: absolute;
-  top: 0;
-  left: 12rpx;
-  right: 0;
-  height: 30rpx;
-  transform: translateY(-100%);
+.amt-box .price-container {
+
+}
+.price-container .currency, .small {
   font-size: 24rpx;
-  color: #666;
 }
-.amt-box .price .line-through {
+.price-container .rulingPrice {
   display: inline-block;
-  text-decoration: line-through;
-}
-.amt-box .rulingPrice {
   font-size: 38rpx;
   color: #ec132d;
   font-weight: 400;
+  margin-right: 10rpx;
 }
-.amt-box .rulingPrice > text {
+.price-container .rulingPrice > text {
   display: inline-block;
 }
-.currency, .small {
+.price-container .price {
+  display: inline-block;
   font-size: 24rpx;
+  color: #666;
 }
+.price-container .price .line-through {
+  display: inline-block;
+  text-decoration: line-through;
+}
+
 .amt-box .cart {
   line-height: 0;
 }

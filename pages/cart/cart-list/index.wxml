@@ -17,15 +17,17 @@
             </view>
             <view class="space"></view>
             <view class="calc-box">
-              <!-- <view class="price">
-                <text>¥</text>
-                <text>{{ price.pointBefore(item.productPrice) }}</text>
-                <text wx:if="{{price.pointAfter(item.productPrice)}}" class="small">.{{ price.pointAfter(item.productPrice) }}</text>
-              </view> -->
-              <view class="rulingPrice">
-                <text class="currency">¥</text>
-                <text>{{ price.pointBefore(item.rulingPrice) }}</text>
-                <text wx:if="{{price.pointAfter(item.rulingPrice)}}" class="small">.{{ price.pointAfter(item.rulingPrice) }}</text>
+              <view class="price-container">
+                <view class="rulingPrice">
+                  <text class="currency">¥</text>
+                  <text>{{ price.pointBefore(item.rulingPrice) }}</text>
+                  <text wx:if="{{price.pointAfter(item.rulingPrice)}}" class="small">.{{ price.pointAfter(item.rulingPrice) }}</text>
+                </view>
+                <view wx:if="{{ item.productPrice && item.productPrice != item.rulingPrice}}" class="price">
+                  <text>¥</text>
+                  <text>{{ price.pointBefore(item.productPrice) }}</text>
+                  <text wx:if="{{price.pointAfter(item.productPrice)}}" class="small">.{{ price.pointAfter(item.productPrice) }}</text>
+                </view>
               </view>
               <view class="stepper" catch:tap="stopBubble">
                 <!-- async-change -->

@@ -91,8 +91,9 @@ Page({
     wx.navigateTo({ url: '/subPages/login/login/index' })
   },
   onShareAppMessage (res) {
+    const title = this.data.detail.name + '[' + this.data.detail.specs + ']' + ' ¥' + this.data.detail.rulingPrice
     return {
-      title: '大咖生鲜',
+      title,
       path: `/subPages/product/details/index?id=${this.data._productId}`
     }
   }

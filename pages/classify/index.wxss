@@ -109,12 +109,29 @@ page {
   flex-flow: column nowrap;
   justify-content: space-between;
   padding-left: 20rpx;
+  overflow: hidden;
 }
-.info-box .name {
+.info-box .info {
   font-size: 28rpx;
-  line-height: 38rpx;
 }
-.info-box .name .desc {
+.info-box .info .name-box {
+  line-height: 0;
+  margin-bottom: 2px;
+}
+.info-box .info .name {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  margin-right: 10rpx;
+  line-height: 32rpx;
+}
+.info-box .info .specs {
+  font-size: 24rpx;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 28rpx;
+}
+.info-box .info .desc {
   font-size: 24rpx;
   line-height: 28rpx;
   color: #666;
@@ -127,22 +144,22 @@ page {
   color: #ec132d;
   position: relative;
 }
-.price-conent .price {
-  position: absolute;
-  left: 0;
-  top: -28rpx;
+.price-box .price {
+  display: inline-block;
   font-size: 24rpx;
   text-decoration:line-through;
   font-style: italic;
   color: #666;
 }
-.price .currency, .price .small {
+.price-box .price .currency, .price-box .price .small {
   font-size: 24rpx;
 }
-.price-conent .rulingPrice {
-  font-size: 28rpx;
+.price-box .rulingPrice {
+  display: inline-block;
+  margin-right: 10rpx;
+  font-size: 32rpx;
 }
-.rulingPrice .currency, .rulingPrice .small {
+.price-box .rulingPrice .currency, .price-box .rulingPrice .small {
   font-size: 24rpx;
 }
 .price-conent .add-cart {

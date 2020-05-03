@@ -10,7 +10,9 @@ Page({
   },
   getH5Message: function (e) {
     // console.log(e)
-    app.globalData.switchClassifyId = e.detail.data[0]
+    if (e.detail.data[0]?.classifyId) {
+      app.globalData.switchClassifyId = e.detail.data[0]?.classifyId
+    }
   //   wx.navigateToMiniProgram({
   //    appId: e.detail.data[0],
   //    path: '/pages/indAex/index',

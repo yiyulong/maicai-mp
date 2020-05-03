@@ -17,7 +17,7 @@ var statusConvert = function (value) {
       str = '待评价'
       break
     case 5:
-      str = '已关闭'
+      str = '已评价'
       break
     case 6:
       str = '售后退款'

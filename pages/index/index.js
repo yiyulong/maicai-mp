@@ -119,11 +119,13 @@ Page({
   _addError () {
     // Toast.fail('添加失败请重试')
   },
-  _toWebView ({ currentTarget: { dataset: { index } } }) {
-    if (index) {
-      wx.navigateTo({ url: `/subPages/other/web/index?url=${index}`})
-    } else {
-      wx.navigateTo({ url: '/subPages/coupon/newPerson/index' })
+  _toWebView ({ currentTarget: { dataset: { url } } }) {
+    if (url) {
+      if (/^(https|http)/.test(url)) {
+        wx.navigateTo({ url: `/subPages/other/webPage/index?url=${url}`})
+      } else {
+        wx.navigateTo({ url })
+      }
     }
   },
   _closePop () {
