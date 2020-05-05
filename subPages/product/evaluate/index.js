@@ -4,7 +4,8 @@ Page({
     _productId: null,
     _pageNum: 1,
     _pageSize: 20,
-    isNoMore: false
+    isNoMore: false,
+    list: []
   },
   onLoad (options) {
     // this._getList()

@@ -9,6 +9,7 @@
     bindrefresherrefresh="scrollRefresh"
     bindscrolltolower="scrollLower"
   >
-    <pdt-list list="{{ list }}" is-no-more="{{ isNoMore }}" />
+    <pdt-list list="{{ list }}" is-no-more="{{ isNoMore }}" bind:addSuccess="_addSuccess" bind:addError="_addError" />
   </scroll-view>
 </view>
+<van-toast id="van-toast" />

@@ -15,6 +15,7 @@ App({
     userInfo: null,
     points: null, // 积分
     cartCount: 0, // 购物车商品数量
+    cartCountObj: {}, // 商品购物车中的数量对象 {id: 0}
     switchClassifyId: null, // 首页分类跳转到分类tab id
     payParams: { // 订单支付状态判断
       status: null,

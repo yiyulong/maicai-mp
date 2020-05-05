@@ -4,6 +4,7 @@
   "backgroundColor": "#ffffff",
   "navigationBarTextStyle": "white",
   "usingComponents": {
+    "van-toast": "@vant/weapp/toast/index",
     "van-search": "@vant/weapp/search/index",
     "van-cell": "@vant/weapp/cell/index",
     "mp-icon": "weui-miniprogram/icon/icon",

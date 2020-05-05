@@ -60,7 +60,9 @@
         "details/index",
         "saleList/index",
         "search/index",
-        "evaluate/index"
+        "evaluate/index",
+        "userEvaluate/index",
+        "productRate/index"
       ]
     },
     {

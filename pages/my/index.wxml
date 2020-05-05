@@ -37,6 +37,7 @@
       <van-cell icon="logistics" title="我的收货地址" is-link data-father="address" data-child="address" bind:tap="_jump" />
       <van-cell icon="coupon-o" title="我的优惠券" is-link data-father="coupon" data-child="coupon" bind:tap="_jump" />
       <van-cell icon="gem-o" title="我的积分" is-link data-father="other" data-child="points" bind:tap="_jump" />
+      <van-cell icon="good-job-o" title="我的评价" is-link data-father="product" data-child="userEvaluate" bind:tap="_jump" />
     </van-cell-group>
   </view>
   <view class="my-content">

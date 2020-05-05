@@ -188,6 +188,19 @@
 					"pathName": "subPages/other/points/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "subPages/product/evaluate/index",
+					"pathName": "subPages/product/evaluate/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "subPages/product/userEvaluate/index",
+					"pathName": "subPages/product/userEvaluate/index",
+					"scene": null
 				}
 			]
 		}

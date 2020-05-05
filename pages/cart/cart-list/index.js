@@ -1,6 +1,7 @@
 const deleteIconSrc = '/assets/trash.png'
 const computedBehavior = require('miniprogram-computed')
 import { addOrUpdate, reduce, updateQty, deleteProduct } from '../../../api/cart'
+const app = getApp()
 Component({
   behaviors: [computedBehavior],
   options: {
@@ -174,6 +175,10 @@ Component({
         }
         try {
           await updateQty(params, { showLoading: true })
+          let obj = {}
+          obj[this.data.result[index].productId] = count
+          const cartCountObj = { ...app.globalData.cartCountObj, ...obj }
+          app.globalData.cartCountObj = cartCountObj
           const key = `result[${index}].quantity`
           const _this = this
           this.setData({
@@ -204,6 +209,10 @@ Component({
       const detail = parseInt(this.data.result[index].quantity) + 1
       try {
         await addOrUpdate(params, { showLoading: true })
+        let obj = {}
+        obj[this.data.result[index].productId] = detail
+        const cartCountObj = { ...app.globalData.cartCountObj, ...obj }
+        app.globalData.cartCountObj = cartCountObj
         const key = `result[${index}].quantity`
         const _this = this
         this.setData({
@@ -232,6 +241,10 @@ Component({
         }
         try {
           await reduce(params, { showLoading: true })
+          let obj = {}
+          obj[this.data.result[index].productId] = detail
+          const cartCountObj = { ...app.globalData.cartCountObj, ...obj }
+          app.globalData.cartCountObj = cartCountObj
           const key = `result[${index}].quantity`
           const _this = this
           this.setData({
@@ -268,6 +281,10 @@ Component({
             //   productIds: _this.data.result[index].productId + ''
             // }
             await deleteProduct({ productIds: _this.data.result[index].productId + '' }, { showLoading: true })
+            let obj = {}
+            obj[_this.data.result[index].productId] = 0
+            const cartCountObj = { ...app.globalData.cartCountObj, ...obj }
+            app.globalData.cartCountObj = cartCountObj
             _this.data.result.splice(index, 1)
             _this.setData({
               result: _this.data.result

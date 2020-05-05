@@ -66,6 +66,15 @@ Page({
         index: 2
       })
     }
+    for (let key in app.globalData.cartCountObj) {
+      const id = parseInt(key)
+      const index = this.data.list.findIndex(item => item.id === id)
+      if ((typeof(index) === 'number') && (index != -1)) {
+        this.setData({
+          [`list[${index}].cartCount`]: app.globalData.cartCountObj[key]
+        })
+      }
+    }
   },
   // observerContentScroll (top) {
   //   this.createIntersectionObserver().disconnect()
@@ -100,7 +109,11 @@ Page({
       url: '/pages/classify/index'
     })
   },
-  _addSuccess () {
+  _addSuccess ({ detail }) {
+    Toast.success({
+      duration: 1000
+    })
+    // console.log(detail)
     if (parseInt(app.globalData.cartCount)) {
       wx.setTabBarBadge({
         index: 2,
@@ -111,13 +124,23 @@ Page({
         index: 2
       })
     }
-    Toast.success({
-      message: '已加入购物车',
-      duration: 1000
-    })
+    const targetItemIndex = this.data.list.findIndex(item => item.id === detail.id)
+    if ((typeof(targetItemIndex) === 'number') && (targetItemIndex != -1)) {
+      const key = `list[${targetItemIndex}].cartCount`
+      this.setData({
+        [key]: detail.count
+      })
+    }
   },
-  _addError () {
+  _addError ({ detail }) {
     // Toast.fail('添加失败请重试')
+    const targetItemIndex = this.data.list.findIndex(item => item.id === detail.id)
+    if ((typeof(targetItemIndex) === 'number') && (targetItemIndex != -1)) {
+      const key = `list[${targetItemIndex}].cartCount`
+      this.setData({
+        [key]: detail.count
+      })
+    }
   },
   _toWebView ({ currentTarget: { dataset: { url } } }) {
     if (url) {

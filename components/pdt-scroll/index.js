@@ -119,10 +119,14 @@ Component({
         await addOrUpdate(params, { showLoading: true })
         const cartCount = parseInt(app.globalData.cartCount) + 1
         app.globalData.cartCount = cartCount
-        this.triggerEvent('addSuccess', {}, { bubbles: true, composed: true })
+        let obj = {}
+        obj[id] = 1
+        const cartCountObj = { ...app.globalData.cartCountObj, ...obj }
+        app.globalData.cartCountObj = cartCountObj
+        this.triggerEvent('addSuccess', { count: 1, id }, { bubbles: true, composed: true })
       } catch (err) {
         console.log(err)
-        this.triggerEvent('addError', {}, { bubbles: true, composed: true })
+        this.triggerEvent('addError', { count: 0, id }, { bubbles: true, composed: true })
       }
     }
   },

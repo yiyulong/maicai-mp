@@ -29,7 +29,8 @@ Page({
     const ratedList = this.data.list.filter(item => {
       return item.rate
     })
-    this.data.ratedList = ratedList
+    // this.data.ratedList = ratedList
+    this.setData({ ratedList })
   },
   _selectItem ({ currentTarget: { dataset: { index } } }) {
     // console.log(index)

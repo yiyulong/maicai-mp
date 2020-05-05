@@ -4,6 +4,7 @@
   "backgroundColor": "#ffffff",
   "navigationBarTextStyle": "white",
   "usingComponents": {
+    "van-toast": "@vant/weapp/toast/index",
     "pdt-list": "/components/pdt-list/index"
   }
 }

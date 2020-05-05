@@ -24,8 +24,32 @@
         </view>
       </view>
     </view>
-    <view class="cart" data-id="{{ info.id }}" catch:tap="cartClick">
+    <!-- <view class="cart" data-id="{{ info.id }}" catch:tap="cartClick">
       <add name="add" size="24" />
+    </view> -->
+    <view wx:if="{{ info.historyCount }}" class="buyed">
+      <text>已下单：{{ info.historyCount }}</text>
+    </view>
+  </view>
+  <view class="stepper-box" catch:tap="stopBubble">
+    <view class="btn">
+      <block wx:if="{{ info.cartCount }}">
+        <van-stepper
+          input-width="34" button-size="24"
+          value="{{ info.cartCount }}"
+          min="{{ 0 }}"
+          max="{{ info.stock || 999 }}"
+          data-id="{{ info.id }}"
+          bind:blur="_blur"
+          bind:plus="_plus"
+          bind:minus="_minus"
+        />
+      </block>
+      <block wx:else>
+        <view data-id="{{ info.id }}" catch:tap="cartClick">
+          <add name="add" size="24" />
+        </view>
+      </block>
     </view>
   </view>
 </view>

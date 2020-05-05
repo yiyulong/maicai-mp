@@ -23,7 +23,7 @@
       bindrefresherabort="scrollAbort"
       bindscrolltolower="scrollLower"
     >
-      <pdt-list list="{{ list }}" is-no-more="{{ isNoMore }}" />
+      <pdt-list list="{{ list }}" is-no-more="{{ isNoMore }}" bind:addSuccess="_addSuccess" bind:addError="_addError" />
     </scroll-view>
   </view>
 </block>
@@ -48,3 +48,4 @@
     </view>
   </view>
 </block>
+<van-toast id="van-toast" />

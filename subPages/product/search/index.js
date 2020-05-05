@@ -1,4 +1,6 @@
+import Toast from '@vant/weapp/toast/toast'
 import { getList, getIsCommandProductList } from '../../../api/product'
+const app = getApp()
 Page({
   data: {
     value: '', // search值
@@ -17,6 +19,17 @@ Page({
     this.setData({
       historyList: wx.getStorageSync('historyList') || [],//若无储存则为空
     })
+  },
+  onShow () {
+    for (let key in app.globalData.cartCountObj) {
+      const id = parseInt(key)
+      const index = this.data.list.findIndex(item => item.id === id)
+      if (typeof(index) === 'number' && index != -1) {
+        this.setData({
+          [`list[${index}].cartCount`]: app.globalData.cartCountObj[key]
+        })
+      }
+    }
   },
   _getList () {
     const params = {
@@ -49,6 +62,29 @@ Page({
         this.setData({
           refresherTriggered: false
         })
+      })
+    }
+  },
+  _addSuccess ({ detail }) {
+    Toast.success({
+      duration: 1000
+    })
+    // console.log(detail)
+    const targetItemIndex = this.data.list.findIndex(item => item.id === detail.id)
+    if ((typeof(targetItemIndex) === 'number') && (targetItemIndex != -1)) {
+      const key = `list[${targetItemIndex}].cartCount`
+      this.setData({
+        [key]: detail.count
+      })
+    }
+  },
+  _addError ({ detail }) {
+    // Toast.fail('添加失败请重试')
+    const targetItemIndex = this.data.list.findIndex(item => item.id === detail.id)
+    if ((typeof(targetItemIndex) === 'number') && (targetItemIndex != -1)) {
+      const key = `list[${targetItemIndex}].cartCount`
+      this.setData({
+        [key]: detail.count
       })
     }
   },

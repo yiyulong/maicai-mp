@@ -5,3 +5,4 @@ module.exports.mobileLogin = (data, config = {}) => postRequest('/user/mobileLog
 module.exports.sendMessage = (data, config = {}) => getRequest('/user/sendMessage', data, config) // 发送验证码
 module.exports.logOut = (data, config = {}) => getRequest('/user/logOut', data, config) // 退出登陆
 module.exports.pointsDetail = (data, config = { showLoading: true }) => getRequest('/user/pointsDetail', data, config) // 用户积分明细
+module.exports.getUserEvaluate = (data = { productId, pageNum, pageSize }, config = { showLoading: true }) => getRequest('/evaluate/getUserEvaluate', data, config) // 用户评价列表

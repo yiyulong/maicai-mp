@@ -12,16 +12,20 @@ Page({
     evaluateTotal: 0
   },
   async onLoad (options) {
-    // console.log(options)
+    console.log(options)
     // console.log(app.globalData)
-    const { id: productId } = options
-    const [{ data }, { data: { list, total } }] = await Promise.all([getDetail({ productId }, { showLoading: true }), getProductEvaluate({ productId, pageNum: 1, pageSize: 1 })])
-    this.setData({
-      detail: data,
-      evaluate: list,
-      evaluateTotal: total,
-      _productId: productId
-    })
+    try {
+      const { id: productId } = options
+      const [{ data }, { data: { list, total } }] = await Promise.all([getDetail({ productId }, { showLoading: true }), getProductEvaluate({ productId, pageNum: 1, pageSize: 1 })])
+      this.setData({
+        detail: data,
+        evaluate: list,
+        evaluateTotal: total,
+        _productId: productId
+      })
+    } catch (error) {
+      console.log(error)
+    }
   },
   onReady () {
     this.animation = wx.createAnimation({
@@ -74,6 +78,10 @@ Page({
       this.setData({
         cartAnimationData: this.animation.export()
       })
+      let obj = {}
+      obj[id] = parseInt(this.data.detail.cartCount) + 1
+      const cartCountObj = { ...app.globalData.cartCountObj, ...obj }
+      app.globalData.cartCountObj = cartCountObj
     } catch (err) {
       console.log(err)
     }

@@ -87,7 +87,7 @@ Component({
      * @param {index} 商品下标 
      */
     deleteItem (index) {
-      console.log(index)
+      // console.log(index)
       const _this = this
       wx.showModal({
         content: '确定删除该商品吗？',
@@ -98,6 +98,10 @@ Component({
             //   productIds: _this.data.result[index].productId + ''
             // }
             await deleteProduct({ productIds: _this.data.result[index].productId + '' }, { showLoading: true })
+            let obj = {}
+            obj[_this.data.result[index].productId] = 0
+            const cartCountObj = { ...app.globalData.cartCountObj, ...obj }
+            app.globalData.cartCountObj = cartCountObj
             _this.data.result.splice(index, 1)
             _this.setData({
               result: _this.data.result
