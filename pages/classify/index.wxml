@@ -79,7 +79,7 @@
                       </view>
                     </view>
                     <view wx:if="{{ pItem.historyCount }}" class="buyed">
-                      <text>已下单：{{ pItem.historyCount }}</text>
+                      <text>历史下单：{{ pItem.historyCount }}</text>
                     </view>
                   </view>
                 </view>

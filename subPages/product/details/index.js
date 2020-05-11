@@ -12,7 +12,7 @@ Page({
     evaluateTotal: 0
   },
   async onLoad (options) {
-    console.log(options)
+    // console.log(options)
     // console.log(app.globalData)
     try {
       const { id: productId } = options
@@ -79,7 +79,8 @@ Page({
         cartAnimationData: this.animation.export()
       })
       let obj = {}
-      obj[id] = parseInt(this.data.detail.cartCount) + 1
+      obj[this.data._productId] = parseInt(this.data.detail.cartCount) + 1
+      this.data.detail.cartCount = parseInt(this.data.detail.cartCount) + 1
       const cartCountObj = { ...app.globalData.cartCountObj, ...obj }
       app.globalData.cartCountObj = cartCountObj
     } catch (err) {

@@ -177,5 +177,4 @@ page {
   font-size: 24rpx;
   color: #666;
   margin-top: 10rpx;
-  margin-bottom: -10rpx;
 }

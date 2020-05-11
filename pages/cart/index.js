@@ -98,8 +98,16 @@ Page({
   },
   // 清空失效的商品
   _clearAllSuccess () {
+    const _this = this
     this.setData({
       statusList: []
+    }, () => {
+      let obj = {}
+      _this.data.statusList.forEach(item => {
+        obj[item.productId] = 0
+      })
+      const cartCountObj = { ...app.globalData.cartCountObj, ...obj }
+      app.globalData.cartCountObj = cartCountObj
     })
   },
   // 删除选中的商品
@@ -111,11 +119,15 @@ Page({
       confirmColor: '#f75355',
       async success ({ confirm, cancel }) {
         if (confirm) {
+          let obj = {}
           const productIds = _this.data.checkedList.reduce((acc, cur) => {
+            obj[cur.productId] = 0
             acc.push(cur.productId)
             return acc
           }, [])
           await deleteProduct({ productIds: productIds.join(',') }, { showLoading: true })
+          const cartCountObj = { ...app.globalData.cartCountObj, ...obj }
+          app.globalData.cartCountObj = cartCountObj
           _this._getList()
         }
       }

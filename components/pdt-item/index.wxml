@@ -28,7 +28,7 @@
       <add name="add" size="24" />
     </view> -->
     <view wx:if="{{ info.historyCount }}" class="buyed">
-      <text>已下单：{{ info.historyCount }}</text>
+      <text>历史下单：{{ info.historyCount }}</text>
     </view>
   </view>
   <view class="stepper-box" catch:tap="stopBubble">

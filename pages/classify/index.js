@@ -44,6 +44,7 @@ Component({
           })
         }
       }
+      this._updateCartCount()
     },
     hide () {
       app.globalData.switchClassifyId = null
@@ -65,6 +66,25 @@ Component({
     }
   },
   methods: {
+    _updateCartCount () {
+      let globalDataCartCountArr = []
+      for (let key in app.globalData.cartCountObj) {
+        globalDataCartCountArr.push({ id: key, value: app.globalData.cartCountObj[key] })
+      }
+      this.data.list.forEach((item, outIndex) => {
+        for (let i = 0; i < globalDataCartCountArr.length; i++) {
+          const id = parseInt(globalDataCartCountArr[i].id)
+          const index = item.productVoList.findIndex(item => item.id === id)
+          if (typeof(index) === 'number' && index != -1) {
+            this.setData({
+              [`list[${outIndex}].productVoList[${index}].cartCount`]: globalDataCartCountArr[i].value
+            })
+            globalDataCartCountArr.splice(i, 1)
+            i--
+          }
+        }
+      })
+    },
     async tapClassifyItem ({ currentTarget: { dataset: { id } } }) {
       // console.log(id)
       if (this.data._tempList[id]) {
@@ -72,6 +92,7 @@ Component({
           list: this.data._tempList[id],
           activeTab: 0
         })
+        this._updateCartCount()
         return
       }
       const { data } = await getSecondCategoryProduct({ categoryId: id }, { showLoading: true })
