@@ -158,3 +158,19 @@ page {
   width: 12%;
   height: 12%;
 }
+
+.must-login {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, .6);
+  padding: 15rpx 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.must-login text {
+  color: #fff;
+  font-size: 26rpx;
+}

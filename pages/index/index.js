@@ -14,7 +14,8 @@ Page({
     _pageNum: 1,
     areaList: [],
     areaIndex: null,
-    showPop: false // 新人领取优惠券
+    showPop: false, // 新人领取优惠券
+    showLoginBtn: false // 底部登录提示
   },
   async onLoad () {
     try {
@@ -75,6 +76,26 @@ Page({
         })
       }
     }
+    app.getUserInfo((err, res) => {
+      // console.log(err, res)
+      if(!err) {
+        if (res.mobile) {
+          if (this.data.showLoginBtn) {
+            this.setData({
+              showLoginBtn: false
+            })
+          }
+        } else {
+          this.setData({
+            showLoginBtn: true
+          })
+        }
+      } else {
+        this.setData({
+          showLoginBtn: true
+        })
+      }
+    })
   },
   // observerContentScroll (top) {
   //   this.createIntersectionObserver().disconnect()
@@ -162,6 +183,9 @@ Page({
         _this.setData({ showPop: false })
       }
     })
+  },
+  _toLogin () {
+    wx.navigateTo({ url: '/subPages/login/login/index' })
   },
   // 下拉刷新
   onPullDownRefresh () {

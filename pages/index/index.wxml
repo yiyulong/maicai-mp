@@ -64,3 +64,7 @@
     <view class="closeCoupon" bind:tap="_closePop"></view>
   </view>
 </van-popup>
+<view class="must-login" wx:if="{{ showLoginBtn }}">
+  <text>如果你不登录，我就霸占这里不离开</text>
+  <van-button round color="#3695e3" size="small" bind:click="_toLogin">马上登录</van-button>
+</view>

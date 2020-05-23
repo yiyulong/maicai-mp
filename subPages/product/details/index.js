@@ -96,7 +96,7 @@ Page({
   _toEvaluate () {
     wx.navigateTo({ url: `/subPages/product/evaluate/index?id=${this.data._productId}`})
   },
-  _toLogn () {
+  _toLogin () {
     wx.navigateTo({ url: '/subPages/login/login/index' })
   },
   onShareAppMessage (res) {
