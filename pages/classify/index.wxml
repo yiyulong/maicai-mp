@@ -21,7 +21,7 @@
       default-tab="{{ activeTab }}"
     >
       <block wx:for="{{ list }}" wx:for-index="outIndex" wx:key="id">
-        <stabs-item tabIndex="{{ index }}">
+        <stabs-item tab-index="{{ outIndex }}">
           <view class="stabs-content-item">
             <view class="item-title van-hairline--bottom">
               {{item.name}}

@@ -31,8 +31,10 @@ Component({
 		'../stabs-item/index': {
 			type: 'child',
 			linked: function linked(target) {
+				// console.log(target)
 				var _this = this
 				target.calcHeight(function (rect) {
+					// console.log(rect)
 					_this.data._contentHeight[target.data.tabIndex] = rect.height
 					if (_this._calcHeightTimer) {
 						clearTimeout(_this._calcHeightTimer)
@@ -83,6 +85,7 @@ Component({
 			if (len === 0) return
 			// var currentView = index < 6 ? 0 : index - 5
 			var currentView = index < 3 ? 0 : index - 2
+			// var currentView = index
 			if (currentView >= len) currentView = len - 1
 			this.setData({ currentView: currentView })
 		},
@@ -90,6 +93,7 @@ Component({
 			var _heightRecords = this.data._heightRecords
 			var index = e.currentTarget.dataset.index
 			var contentScrollTop = _heightRecords[index - 1] || 0
+			// console.log(index, contentScrollTop, this.data)
 			this.triggerEvent('tabclick', { index: index })
 			this.setData({
 				activeTab: index,
