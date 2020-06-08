@@ -31,8 +31,8 @@
           </view>
           <view class="rulingPrice">
             <text class="currency">¥</text>
-            <text>{{ price.pointBefore(item.rulingPrice) }}</text>
-            <text wx:if="{{price.pointAfter(item.rulingPrice)}}" class="small">.{{ price.pointAfter(item.rulingPrice) }}</text>
+            <text>{{ price.pointBefore(item.salePrice) }}</text>
+            <text wx:if="{{price.pointAfter(item.salePrice)}}" class="small">.{{ price.pointAfter(item.salePrice) }}</text>
           </view>
           <view class="cart" data-id="{{ item.id }}" catch:tap="cartClick">
             <add name="add" size="24" />

@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
@@ -13,6 +13,7 @@
 		"coverView": true,
 		"nodeModules": true,
 		"autoAudits": false,
+		"showShadowRootInWxmlPanel": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": false,
 		"uploadWithSourceMap": true,
@@ -21,7 +22,7 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -202,6 +203,13 @@
 					"id": -1,
 					"name": "subPages/product/userEvaluate/index",
 					"pathName": "subPages/product/userEvaluate/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "subPages/product/saleList/index",
+					"pathName": "subPages/product/saleList/index",
 					"scene": null
 				}
 			]

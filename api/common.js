@@ -10,3 +10,4 @@ module.exports.orderCouponList = (amt, config = {}) => getRequest('/coupon/order
 module.exports.sendCouponForNewUser = (mobile, config = {}) => postRequest('/coupon/sendCouponForNewUser', { mobile }, config) // 新用户领取优惠券
 module.exports.addFeedback = ({ content, pic }, config = { showLoading: true }) => postRequest('/opinions/add', { content, pic }, config) // 添加反馈建议
 module.exports.addPic = (filePath, data = null, config = {}) => uploadFile('/opinions/addPic', filePath, data, config) // 反馈建议的图片
+module.exports.addRadio = (data = null, config = {}) => getRequest('/static/board/list', data, config) // 获取首页广播

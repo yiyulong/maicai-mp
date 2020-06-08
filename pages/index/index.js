@@ -1,6 +1,7 @@
-import { getBanner, getHomeCategoryList } from '../../api/common'
-import { getIsCommandProductList, getSaleProductList } from '../../api/product'
+import { getBanner, getHomeCategoryList, addRadio } from '../../api/common'
+import { getIsCommandProductList, getIndexFlashSale } from '../../api/product'
 import { getAreasList } from '../../api/address'
+import { timeData } from '../../utils/countTime'
 import Toast from '@vant/weapp/toast/toast'
 const app = getApp()
 Page({
@@ -9,6 +10,11 @@ Page({
     category: [], // 分类
     list: [],
     saleList: [],
+    countTime: {
+      calendar: '', // 相对时间
+      duration: '' // 限时抢购倒计时
+    },
+    radioText: '', // 广播
     topbarStyle: '#fff',
     isNoMore: false,
     _pageNum: 1,
@@ -20,12 +26,27 @@ Page({
   async onLoad () {
     try {
       // 获取轮播图 分类 推荐商品
-      const [{ data: { list: bannerList } }, { data: category }, { data: { list: areaList } }, { data }] = await Promise.all([getBanner(), getHomeCategoryList(), getAreasList(), getSaleProductList(), this._getList()])
+      const [
+        { data: { list: bannerList } },
+        { data: category },
+        { data: { list: areaList } },
+        { data: { list: saleList, startTime, endTime } },
+        { data }
+      ] = await Promise.all([
+        getBanner(), // 轮播图
+        getHomeCategoryList(), // 分类
+        getAreasList(), // 区域列表
+        getIndexFlashSale(), // 限时抢购
+        addRadio(), // 首页广播
+        this._getList()
+      ])
       this.setData({
         bannerList,
         category,
         areaList: [{ id: null, name: '目前已开放配送范围' }, ...areaList],
-        saleList: data?.list || []
+        saleList: saleList || [],
+        countTime: timeData(startTime, endTime),
+        radioText: data ? data.join(' ') : ''
       })
     } catch(err) {
       console.log(err)

@@ -4,6 +4,7 @@
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
     "van-icon": "@vant/weapp/icon/index",
-    "the-evaluate": "../components/the-evaluate/evaluate"
+    "the-evaluate": "../components/the-evaluate/evaluate",
+    "van-tag": "@vant/weapp/tag/index"
   }
 }

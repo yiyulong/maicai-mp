@@ -76,6 +76,7 @@ page {
   border-radius: 10rpx;
 }
 
+
 /**分类格子布局**/
 .grid {
   padding: 14rpx 20rpx;
@@ -120,6 +121,18 @@ page {
   padding: 20rpx 20rpx 0;
   position: relative;
 }
+.recommend-container .recommend {
+  display: inline-block;
+}
+.recommend-container .count {
+  display: inline-block;
+  margin-left: 20rpx;
+}
+.count .calendar {
+  font-size: 28rpx;
+  color: #3695e3;
+}
+
 .recommend-box .recommend {
   line-height: 60rpx;
   font-size: 34rpx;

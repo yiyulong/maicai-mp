@@ -87,10 +87,24 @@ Page({
       console.log(err)
     }
   },
+  onSubmit () {
+    const paramsData = [this.data._productId]
+    wx.navigateTo({
+      url: '/subPages/pay/orderReview/index',
+      success (res) {
+        res.eventChannel.emit('acceptDataFromCart', paramsData)
+      }
+    })
+  },
   // 跳转到购物车
   onToCart (e) {
     wx.switchTab({
       url: '/pages/cart/index'
+    })
+  },
+  onToHome () {
+    wx.switchTab({
+      url: '/pages/index/index'
     })
   },
   _toEvaluate () {

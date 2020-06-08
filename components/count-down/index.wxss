@@ -1,0 +1,15 @@
+.timeItem, .dot {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 24rpx;
+}
+.timeItem {
+  padding: 2rpx 8rpx;
+  background: #3695e3;
+  color: #fff;
+  border-radius: 10rpx;
+}
+.dot {
+  color: #3695e3;
+  margin: 0 6rpx;
+}

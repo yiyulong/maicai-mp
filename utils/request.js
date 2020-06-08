@@ -1,5 +1,6 @@
 // const baseUrl = 'https://avril.easy.echosite.cn'
-const baseUrl = 'https://dksx.dingliantech.com'
+// const baseUrl = 'https://dksx.dingliantech.com'
+const baseUrl = 'https://bobo.easy.echosite.cn'
 function getCommonHeader () {
 
   let header = {

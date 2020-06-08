@@ -12,7 +12,7 @@ page {
 .detail-box .swiper-item {
   height: 100%;
 }
-.detail-box .swiper-item image {
+.detail-box .swiper-item image, .detail-box .swiper-item video {
   width: 100%;
   height: 100%;
 }
@@ -31,6 +31,8 @@ page {
 .detail-info .detail_desc {
   font-size: 28rpx;
   color: #666;
+  line-height: 36rpx;
+  font-weight: 300;
 }
 .detail-info .detail_price {
   font-size: 56rpx;
@@ -44,8 +46,15 @@ page {
   display: inline-block;
   margin-left: 20rpx;
   color: #666;
-  font-size: 24rpx;
+  font-size: 28rpx;
   text-decoration: line-through;
+}
+.detail-info .detail_price .tag-content {
+  display: inline-block;
+}
+.detail-info .detail_price .tag-content .tag-item {
+  display: inline-block;
+  margin-left: 8rpx;
 }
 
 .detail_evaluate {
@@ -96,6 +105,9 @@ page {
   width: 100%;
   height: 100%;
 }
+.detail-norms .details video {
+  width: 100%;
+}
 
 .goods-action {
   position: fixed;
@@ -118,7 +130,14 @@ page {
   box-sizing: border-box;
 }
 .goods-action .content .ic {
-  display: inline-flex;
+  display: inline-block;
+  padding: 0 10rpx;
+  text-align: center;
+  line-height: 32rpx;
+}
+.goods-action .content .ic .text {
+  font-size: 24rpx;
+  color: #999;
 }
 .goods-action .content .lt {
   flex: 1;
@@ -134,6 +153,10 @@ page {
 }
 .goods-action .content .rt .btn-login {
   padding: 0 80rpx;
+}
+.goods-action .content .rt .btns {
+  border-radius: 100px;
+  overflow: hidden;
 }
 
 .goods-action .content .price {

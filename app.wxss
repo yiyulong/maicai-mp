@@ -4,6 +4,9 @@ page {
   background-color: #f5f5f5;
   /**覆盖Vant样式**/
   --grid-item-content-padding: 6px 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Segoe UI, Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei',
+    sans-serif;
 }
 /**覆盖weui样式**/
 .weui-icon {

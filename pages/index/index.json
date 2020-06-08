@@ -9,8 +9,9 @@
     "pdt-list": "/components/pdt-list/index",
     "pdt-scroll": "/components/pdt-scroll/index",
     "van-toast": "@vant/weapp/toast/index",
-    "van-tag": "@vant/weapp/tag/index",
     "van-popup": "@vant/weapp/popup/index",
-    "van-button": "@vant/weapp/button/index"
+    "van-button": "@vant/weapp/button/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "count-down": "/components/count-down/index"
   }
 }

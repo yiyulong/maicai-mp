@@ -1,11 +1,17 @@
 <wxs src="../../../wxs/price.wxs" module="price" />
+<wxs src="../../../wxs/util.wxs" module="util" />
 <view class="detail-box">
   <view class="swiper-content">
-    <swiper indicator-dots="{{ swiper.length > 1 }}" indicator-active-color="#3695e3" circular>
+    <swiper indicator-dots="{{ detail.bannerUrls.length > 1 }}" indicator-active-color="#3695e3" circular>
       <block wx:for="{{ detail.bannerUrls }}" wx:key="index">
         <swiper-item>
           <view class="swiper-item">
-            <image src="{{ detail.bannerRealm + item }}" mode="aspectFill" />
+            <block wx:if="{{ util.validImgType(item) }}">
+              <image src="{{ detail.bannerRealm + item }}" mode="aspectFill" />
+            </block>
+            <block wx:else>
+              <video src="{{ detail.bannerRealm + item }}" duration="{{ 15 }}" muted show-mute-btn play-btn-position="center" />
+            </block>
           </view>
         </swiper-item>
       </block>
@@ -26,6 +32,13 @@
       <text>¥</text>
       <text>{{ price.pointBefore(detail.price) }}</text>
       <text wx:if="{{price.pointAfter(detail.price)}}">.{{ price.pointAfter(detail.price) }}</text>
+    </view>
+    <view class="tag-content">
+      <block wx:for="{{ detail.tags }}" wx:key="index">
+        <view class="tag-item">
+          <van-tag size="medium" color="#3695e3">{{ item }}</van-tag>
+        </view>
+      </block>
     </view>
   </view>
 </view>
@@ -49,14 +62,24 @@
   </view>
   <view class="details">
     <block wx:for="{{ detail.detailUrls }}" wx:key="index">
-      <image src="{{ detail.detailRealm + item }}" mode="widthFix" />
+      <block wx:if="{{ util.validImgType(item) }}">
+        <image src="{{ detail.detailRealm + item }}" mode="widthFix" />
+      </block>
+      <block wx:else>
+        <video src="{{ detail.detailRealm + item }}" muted show-mute-btn play-btn-position="center" />
+      </block>
     </block>
   </view>
 </view>
 <view class="goods-action van-hairline--top">
   <view class="content">
+    <view class="ic" bind:tap="onToHome">
+      <van-icon name="wap-home-o" size="20" color="#666" />
+      <view class="text">首页</view>
+    </view>
     <view class="ic" bind:tap="onToCart" animation="{{ cartAnimationData }}">
-      <van-icon name="shopping-cart-o" size="22" info="{{ cartCount }}" />
+      <van-icon name="shopping-cart-o" size="20" info="{{ cartCount }}" color="#666" />
+      <view class="text">购物篮</view>
     </view>
     <view class="lt">
       <view class="price">
@@ -67,9 +90,13 @@
     </view>
     <view class="rt">
       <van-button wx:if="{{ showLoginBtn }}" custom-class="btn-login" color="#3695e3" round bind:click="_toLogin">登录</van-button>
-      <van-button wx:else custom-class="btn-submit" color="#f75355" round bind:click="onAddToCart">
+      <view wx:else class="btns">
+        <van-button custom-class="btn-submit" square color="#fd932f" bind:click="onAddToCart">加入购物篮</van-button>
+        <van-button custom-class="btn-submit" square color="#f75355" bind:click="onSubmit">立即购买</van-button>
+      </view>
+      <!-- <van-button wx:else custom-class="btn-submit" color="#f75355" round bind:click="onAddToCart">
         加入购物篮
-      </van-button>
+      </van-button> -->
     </view>
   </view>
 </view>

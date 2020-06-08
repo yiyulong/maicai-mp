@@ -1,5 +1,5 @@
 import Toast from '@vant/weapp/toast/toast'
-import { getSaleProductList } from '../../../api/product'
+import { getFlashSaleList } from '../../../api/product'
 const app = getApp()
 Page({
   data: {
@@ -28,7 +28,7 @@ Page({
       pageNum: this.data._pageNum,
       pageSize: this.data._pageSize
     }
-    getSaleProductList(params, { showLoading: true }).then(({ data }) => {
+    getFlashSaleList(params, { showLoading: true }).then(({ data }) => {
       if (data) {
         const list = this.data._pageNum === 1 ? data.list : this.data.list.push(...data.list)
         this.setData({

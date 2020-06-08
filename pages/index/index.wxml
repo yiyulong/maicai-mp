@@ -28,6 +28,14 @@
       </block>
     </swiper>
   </view>
+  <view class="notice" wx:if="{{ radioText }}">
+    <van-notice-bar
+      left-icon="volume-o"
+      backgroundColor="#edf9ff"
+      color="#3695e3"
+      text="{{ radioText }}"
+    />
+  </view>
   <view class="grid">
     <view class="grid-container">
       <block wx:for="{{ category }}" wx:key="index">
@@ -43,9 +51,26 @@
     </view>
   </view>
 </view>
-<view class="list">
+<!-- <view class="list">
   <view class="recommend-box">
     <view class="recommend">促销商品<van-tag type="danger">hot</van-tag></view>
+    <view class="more"><navigator url="/subPages/product/saleList/index">更多</navigator></view>
+  </view>
+  <pdt-scroll list="{{ saleList }}" bind:addSuccess="_addSuccess" bind:addError="_addError" />
+</view> -->
+<view class="list">
+  <view class="recommend-box">
+    <view class="recommend-container">
+      <view class="recommend">限时抢购</view>
+      <view class="count">
+        <block wx:if="{{ countTime.duration }}">
+          <count-down time="{{ countTime.duration }}" />
+        </block>
+        <block wx:else>
+          <view class="calendar">{{ countTime.calendar }}</view>
+        </block>
+      </view>
+    </view>
     <view class="more"><navigator url="/subPages/product/saleList/index">更多</navigator></view>
   </view>
   <pdt-scroll list="{{ saleList }}" bind:addSuccess="_addSuccess" bind:addError="_addError" />

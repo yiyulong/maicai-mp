@@ -1,0 +1,7 @@
+<van-count-down use-slot time="{{ time }}" bind:change="_timeChange">
+  <text class="timeItem">{{ timeData.hours }}</text>
+  <text class="dot">:</text>
+  <text class="timeItem">{{ timeData.minutes }}</text>
+  <text class="dot">:</text>
+  <text class="timeItem">{{ timeData.seconds }}</text>
+</van-count-down>
