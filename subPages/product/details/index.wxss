@@ -57,6 +57,27 @@ page {
   margin-left: 8rpx;
 }
 
+.delivery-box {
+  margin-bottom: 5px;
+  background: #fff;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+.delivery-box .deliver-item {
+  flex: 1 0;
+  padding: 20rpx;
+  font-size: 24rpx;  
+}
+.deliver-item .label {
+  color: #666;
+  display: inline-block;
+  margin-right: 20rpx;  
+}
+.deliver-item .value {
+  display: inline-block;
+}
+
 .detail_evaluate {
   margin-bottom: 10rpx;
   padding: 20rpx 0;

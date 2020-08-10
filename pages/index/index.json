@@ -12,6 +12,9 @@
     "van-popup": "@vant/weapp/popup/index",
     "van-button": "@vant/weapp/button/index",
     "van-notice-bar": "@vant/weapp/notice-bar/index",
-    "count-down": "/components/count-down/index"
+    "count-down": "/components/count-down/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
+    "ptd-item": "/components/pdt-item/index"
   }
 }

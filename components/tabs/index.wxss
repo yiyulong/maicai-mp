@@ -1,0 +1,35 @@
+.weui-tabs{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.weui-tabs-bar__wrp{
+  height: 44px;
+}
+.weui-tabs-bar__content{
+  width:100%;white-space:nowrap;
+  height: 44px;
+  display: flex;
+}
+.weui-tabs-bar__content.long .weui-tabs-bar__item {
+  flex: 0 0 25%;
+}
+.weui-tabs-bar__content.short .weui-tabs-bar__item {
+  flex: 1 0;
+}
+
+.weui-tabs-bar__item{
+}
+
+.swiperClass {
+  position: absolute;
+  top: 44px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  height: 100%;
+}

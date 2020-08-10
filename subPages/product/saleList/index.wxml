@@ -1,15 +1,37 @@
-<!-- 搜索完成显示搜索结果 -->
-<view class="content-box">
-  <scroll-view
-    class="scroll-box"
-    scroll-y
-    refresher-enabled
-    enable-back-to-top
-    refresher-triggered="{{ refresherTriggered }}"
-    bindrefresherrefresh="scrollRefresh"
-    bindscrolltolower="scrollLower"
-  >
-    <pdt-list list="{{ list }}" is-no-more="{{ isNoMore }}" bind:addSuccess="_addSuccess" bind:addError="_addError" />
-  </scroll-view>
-</view>
+<mp-tabs
+  tabs="{{tabs}}" 
+  activeTab="{{activeTab}}" 
+  swiperClass="weui-tabs-swiper"
+  bindtabclick="onTabclick"
+  bindchange="onChange"
+  activeClass="tab-bar-title__selected"
+>
+  <block wx:for="{{tabs}}" wx:key="index">
+    <view class="tab-title {{ activeTab === index && 'active' }}" slot="tab-title-{{index}}">
+      <view class="title-content">
+        <block wx:if="{{ activeTab === index && item.duration }}">
+          <view class="desc">距离结束</view>
+          <count-down time="{{ item.duration }}" item-class="itemClass" dot-class="dotClass" />
+        </block>
+        <block wx:else>
+          <view class="time">{{ item.calendar }}</view>
+          <view class="desc">{{ item.state }}</view>
+        </block>
+      </view>
+    </view>
+    <view class="tab-content" slot="tab-content-{{index}}" >
+      <scroll-view
+        class="scroll-box"
+        scroll-y
+        refresher-enabled
+        enable-back-to-top
+        refresher-triggered="{{ refresherTriggered }}"
+        bindrefresherrefresh="scrollRefresh"
+        bindscrolltolower="scrollLower"
+      >
+        <pdt-list list="{{ resultList[index].list }}" is-no-more="{{ isNoMore }}" bind:addSuccess="_addSuccess" bind:addError="_addError" />
+      </scroll-view>
+    </view>
+  </block>
+</mp-tabs>
 <van-toast id="van-toast" />

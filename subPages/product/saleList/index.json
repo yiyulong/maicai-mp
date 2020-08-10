@@ -1,10 +1,12 @@
 {
-  "navigationBarTitleText": "限时商品",
-  "navigationBarBackgroundColor": "#3695e3",
-  "backgroundColor": "#ffffff",
-  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "限时抢购",
+  "navigationBarBackgroundColor": "#fff",
+  "backgroundColor": "#f5f5f5",
+  "navigationBarTextStyle": "black",
   "usingComponents": {
     "van-toast": "@vant/weapp/toast/index",
-    "pdt-list": "/components/pdt-list/index"
+    "pdt-list": "/components/pdt-list/index",
+    "mp-tabs": "/components/tabs/index",
+    "count-down": "/components/count-down/index"
   }
 }

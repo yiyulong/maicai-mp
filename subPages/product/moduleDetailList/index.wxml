@@ -1,0 +1,10 @@
+<view class="img-box">
+  <image src="{{ realm + url }}" mode="widthFix" />
+</view>
+<view class="des-box">
+  <text>{{ board }}</text>
+</view>
+<view class="list-box">
+  <pdt-list list="{{ list }}" is-no-more="{{ isNoMore }}" bind:addSuccess="_addSuccess" bind:addError="_addError" />
+</view>
+<van-toast id="van-toast" />

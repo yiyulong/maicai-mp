@@ -1,5 +1,5 @@
 import { getBanner, getHomeCategoryList, addRadio } from '../../api/common'
-import { getIsCommandProductList, getIndexFlashSale } from '../../api/product'
+import { getIsCommandProductList, getIndexFlashSale, getIndexModuleProductList } from '../../api/product'
 import { getAreasList } from '../../api/address'
 import { timeData } from '../../utils/countTime'
 import Toast from '@vant/weapp/toast/toast'
@@ -8,7 +8,8 @@ Page({
   data: {
     bannerList: [], // 顶部轮播图
     category: [], // 分类
-    list: [],
+    list: [], // 推荐商品列表
+    resultList: [], // 分类商品列表
     saleList: [],
     countTime: {
       calendar: '', // 相对时间
@@ -38,7 +39,8 @@ Page({
         getAreasList(), // 区域列表
         getIndexFlashSale(), // 限时抢购
         addRadio(), // 首页广播
-        this._getList()
+        // this._getList()
+        this._getModuleList()
       ])
       this.setData({
         bannerList,
@@ -88,15 +90,24 @@ Page({
         index: 2
       })
     }
-    for (let key in app.globalData.cartCountObj) {
-      const id = parseInt(key)
-      const index = this.data.list.findIndex(item => item.id === id)
-      if ((typeof(index) === 'number') && (index != -1)) {
-        this.setData({
-          [`list[${index}].cartCount`]: app.globalData.cartCountObj[key]
-        })
-      }
-    }
+    // for (let key in app.globalData.cartCountObj) {
+    //   const id = parseInt(key)
+    //   const index = this.data.list.findIndex(item => item.id === id)
+    //   if ((typeof(index) === 'number') && (index != -1)) {
+    //     this.setData({
+    //       [`list[${index}].cartCount`]: app.globalData.cartCountObj[key]
+    //     })
+    //   }
+    // }
+    this.data.resultList.forEach(res => {
+      res.productList.forEach(item => {
+        if (app.globalData.cartCountObj[item.id]) {
+          item.cartCount = app.globalData.cartCountObj[item.id]
+        }
+      })
+    })
+    this.setData({ resultList: this.data.resultList })
+
     app.getUserInfo((err, res) => {
       // console.log(err, res)
       if(!err) {
@@ -133,16 +144,29 @@ Page({
     // console.log(value)
     this.setData({ areaIndex: value })
   },
-  _getList () {
-    getIsCommandProductList({ pageNum: this.data._pageNum }, { showLoading: true }).then(({ data }) => {
-      const list = this.data._pageNum === 1 ? data.list : this.data.list.push(...data.list)
+  // _getList () {
+  //   getIsCommandProductList({ pageNum: this.data._pageNum }, { showLoading: true }).then(({ data }) => {
+  //     const list = this.data._pageNum === 1 ? data.list : this.data.list.push(...data.list)
+  //     this.setData({
+  //       list,
+  //       isNoMore: data.isLastPage
+  //     })
+  //   }).finally(() => {
+  //     wx.stopPullDownRefresh()
+  //   })
+  // },
+  _getModuleList () {
+    getIndexModuleProductList({ pageNum: this.data._pageNum }, { showLoading: true }).then(({ data }) => {
       this.setData({
-        list,
-        isNoMore: data.isLastPage
+        resultList: data
       })
     }).finally(() => {
       wx.stopPullDownRefresh()
     })
+  },
+  _jumpTo ({ currentTarget: { dataset: { id } } }) {
+    // console.log(id)
+    wx.navigateTo({ url: `/subPages/product/moduleDetailList/index?id=${id}`})
   },
   _switchClassify ({ currentTarget: { dataset: { id } } }) {
     // console.log(id)
@@ -166,23 +190,43 @@ Page({
         index: 2
       })
     }
-    const targetItemIndex = this.data.list.findIndex(item => item.id === detail.id)
-    if ((typeof(targetItemIndex) === 'number') && (targetItemIndex != -1)) {
-      const key = `list[${targetItemIndex}].cartCount`
-      this.setData({
-        [key]: detail.count
-      })
-    }
+    // const targetItemIndex = this.data.list.findIndex(item => item.id === detail.id)
+    // if ((typeof(targetItemIndex) === 'number') && (targetItemIndex != -1)) {
+    //   const key = `list[${targetItemIndex}].cartCount`
+    //   this.setData({
+    //     [key]: detail.count
+    //   })
+    // }
+    this._setDetailCount(detail)
   },
   _addError ({ detail }) {
     // Toast.fail('添加失败请重试')
-    const targetItemIndex = this.data.list.findIndex(item => item.id === detail.id)
-    if ((typeof(targetItemIndex) === 'number') && (targetItemIndex != -1)) {
-      const key = `list[${targetItemIndex}].cartCount`
-      this.setData({
-        [key]: detail.count
-      })
+    // const targetItemIndex = this.data.list.findIndex(item => item.id === detail.id)
+    // if ((typeof(targetItemIndex) === 'number') && (targetItemIndex != -1)) {
+    //   const key = `list[${targetItemIndex}].cartCount`
+    //   this.setData({
+    //     [key]: detail.count
+    //   })
+    // }
+    this._setDetailCount(detail)
+  },
+  _setDetailCount (detail) {
+    const { id, count } = detail
+    let indexArr = []
+    const arr = this.data.resultList
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = 0; j < arr[i].productList.length; j++) {
+        if (arr[i].productList[j].id === id) {
+          indexArr = [i, j]
+          break
+        }
+      }
     }
+    const [i, j] = indexArr
+    const key = `resultList[${i}].productList[${j}].cartCount`
+    this.setData({
+      [key]: count
+    })
   },
   _toWebView ({ currentTarget: { dataset: { url } } }) {
     if (url) {
@@ -211,14 +255,15 @@ Page({
   // 下拉刷新
   onPullDownRefresh () {
     this.pageNum = 1
-    this._getList()
+    // this._getList()
+    this._getModuleList()
   },
-  // 上拉触底事件
-  onReachBottom () {
-    if (this.data.isNoMore) return
-    this.data._pageNum = this.data._pageNum + 1
-    this._getList()
-  },
+  // // 上拉触底事件
+  // onReachBottom () {
+  //   if (this.data.isNoMore) return
+  //   this.data._pageNum = this.data._pageNum + 1
+  //   this._getList()
+  // },
   onShareAppMessage (res) {
     return {
       title: '大咖生鲜',

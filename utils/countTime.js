@@ -22,15 +22,14 @@ const getCalendar = (t) => {
 }
 // x 开始时间 y 结束时间
 const timeData = (x, y) => {
-  let duration, calendar,
+  let duration = '', calendar = '',
     currentTime = getCurrentTime(),
     startTime = isBefore(x, y) ? x : y,
     endTime = isAfter(y, x) ? y : x
   if (isBetween(currentTime, startTime, endTime)) {
     duration = getDuration(currentTime, endTime)
-  } else {
-    calendar = getCalendar(endTime)
   }
+  calendar = getCalendar(startTime)
   return {
     duration,
     calendar

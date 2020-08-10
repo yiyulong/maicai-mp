@@ -42,6 +42,16 @@
     </view>
   </view>
 </view>
+<view class="delivery-box">
+  <view class="deliver-item">
+    <view class="label">配送</view>
+    <view class="value">{{ detail.deliveryMethod }}</view>
+  </view>
+  <view class="deliver-item" wx:if="{{ detail.deliveryFee }}">
+    <view class="label">配送费</view>
+    <view class="value">¥{{ detail.deliveryFee }}</view>
+  </view>
+</view>
 <view class="detail_evaluate">
   <view class="detail_title">评论</view>
   <block wx:if="{{ evaluate.length }}">

@@ -76,7 +76,6 @@ page {
   border-radius: 10rpx;
 }
 
-
 /**分类格子布局**/
 .grid {
   padding: 14rpx 20rpx;
@@ -110,6 +109,26 @@ page {
   font-size: 24rpx;
   font-weight: 600;
   color: #666;
+}
+
+/* 模块分类列表 */
+.module-content {
+  background-color: #fff;
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+}
+.module-img {
+  padding: 0 20rpx;
+}
+.module-img > image {
+  width: 100%;
+  height: 80px;
+}
+.module-list {
+  padding: 20rpx;
+}
+.module-list .list-item {
+  margin-bottom: 6px;
 }
 
 /**单品列表**/

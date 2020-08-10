@@ -62,7 +62,8 @@
         "search/index",
         "evaluate/index",
         "userEvaluate/index",
-        "productRate/index"
+        "productRate/index",
+        "moduleDetailList/index"
       ]
     },
     {

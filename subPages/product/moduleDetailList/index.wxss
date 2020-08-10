@@ -1,0 +1,15 @@
+page {
+  background-color: #fff;
+}
+.img-box > image {
+  width: 100%;
+  height: 100px;
+}
+
+.des-box {
+  padding: 20rpx;
+}
+.des-box > text {
+  font-size: 28rpx;
+  color: #666;
+}

@@ -1,0 +1,10 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarBackgroundColor": "#3695e3",
+  "backgroundColorBottom": "#ffffff",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "pdt-list": "/components/pdt-list/index",
+    "van-toast": "@vant/weapp/toast/index"
+  }
+}

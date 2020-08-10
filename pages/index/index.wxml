@@ -75,12 +75,30 @@
   </view>
   <pdt-scroll list="{{ saleList }}" bind:addSuccess="_addSuccess" bind:addError="_addError" />
 </view>
-<view class="list">
+<view class="module-content">
+  <block wx:for="{{ resultList }}" wx:key="index">
+    <view class="module-img">
+      <image src="{{ item.realm + item.url }}" mode="widthFix" lazy-load data-id="{{ item.moduleId }}" bind:tap="_jumpTo" />
+    </view>
+    <view class="module-list">
+      <van-row gutter="6">
+        <block wx:for="{{ item.productList }}" wx:for-item="pdt" wx:for-index="idx" wx:key="id">
+          <van-col span="12">
+            <view class="list-item">
+              <ptd-item info="{{ pdt }}" bind:addSuccess="_addSuccess" bind:addError="_addError" />
+            </view>
+          </van-col>
+        </block>
+      </van-row>
+    </view>
+  </block>
+</view>
+<!-- <view class="list">
   <view class="recommend-box">
     <view class="recommend">推荐商品</view>
   </view>
   <pdt-list list="{{ list }}" is-no-more="{{ isNoMore }}" bind:addSuccess="_addSuccess" bind:addError="_addError" />
-</view>
+</view> -->
 <van-toast id="van-toast" />
 <van-popup custom-class="popup-box" show="{{ showPop }}" close-on-click-overlay="{{ false }}">
   <view class="popup-coupon-box">

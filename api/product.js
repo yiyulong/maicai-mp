@@ -6,3 +6,5 @@ module.exports.getSaleProductList = (data, config = {}) => getRequest('/product/
 module.exports.getProductEvaluate = ({ productId, pageNum, pageSize }, config = {}) => getRequest('/evaluate/getProductEvaluate', { productId, pageNum, pageSize }, config) // 查看产品评价
 module.exports.getIndexFlashSale = (data, config = {}) => getRequest('/product/getIndexFlashSale', data, config) // 限时抢购
 module.exports.getFlashSaleList = (data, config = {}) => getRequest('/product/getFlashSaleList', data, config) // 查看限时促销商品列表
+module.exports.getIndexModuleProductList = (data, config = {}) => getRequest('/product/getIndexModuleProductList', data, config) // 首页分类模块
+module.exports.getIndexModuleProductDetail = (data, config = {}) => getRequest('/product/getIndexModuleProductDetail', data, config) // 首页分类模块详情

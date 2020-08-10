@@ -1,4 +1,5 @@
 Component({
+  externalClasses: ['item-class', 'dot-class'],
   properties: {
     time: {
       type: String,
